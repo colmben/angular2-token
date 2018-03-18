@@ -2,8 +2,8 @@
   "name": "angular2-token",
   "version": "0.2.0-beta.14",
   "description": "Angular2 service for token based authentication",
-  "main": "./angular2-token.js",
-  "typings": "./angular2-token.d.ts",
+  "main": "bundles/angular2-token.umd.js",
+  "typings": "angular2-token.d.ts",
   "scripts": {
     "test": "karma start",
     "build": "ng-packagr -p ng-package.json"
@@ -71,5 +71,11 @@
   "bugs": {
     "url": "https://github.com/neroniaky/angular2-token/issues"
   },
-  "homepage": "https://github.com/neroniaky/angular2-token#readme"
+  "homepage": "https://github.com/neroniaky/angular2-token#readme",
+  "module": "esm5/angular2-token.js",
+  "es2015": "esm2015/angular2-token.js",
+  "metadata": "angular2-token.metadata.json",
+  "dependencies": {
+    "tslib": "^1.7.1"
+  }
 }
