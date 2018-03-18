@@ -15,6 +15,7 @@ export class Angular2TokenInteceptor implements HttpInterceptor {
         return next.handle(req)
             .pipe(
                 tap((evt => {
+                        console.log('In token interceptor, evt : ', evt);
                         if (evt instanceof HttpResponse) {
                             console.log('---> status:', evt.status);
                             console.log('---> filter:', req.params.get('filter'));
