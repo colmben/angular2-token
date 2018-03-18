@@ -2,8 +2,8 @@
   "name": "angular2-token",
   "version": "0.2.0-beta.14",
   "description": "Angular2 service for token based authentication",
-  "main": "./angular2-token.js",
-  "typings": "./angular2-token.d.ts",
+  "main": "dist/angular2-token.js",
+  "typings": "dist/angular2-token.d.ts",
   "scripts": {
     "test": "karma start",
     "build": "ng-packagr -p ng-package.json"
