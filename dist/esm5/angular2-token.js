@@ -2,6 +2,8 @@ import { Injectable, EventEmitter, Component, Input, NgModule, Optional } from '
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
+import { HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 import { Http, Headers, Request, RequestMethod, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
@@ -270,6 +272,30 @@ A2tUiComponent.decorators = [
             },] },
 ];
 A2tUiComponent.ctorParameters = function () { return []; };
+var Angular2TokenInteceptor = /** @class */ (function () {
+    function Angular2TokenInteceptor() {
+    }
+    Angular2TokenInteceptor.prototype.intercept = function (req, next) {
+        return next.handle(req)
+            .pipe(tap((function (evt) {
+            console.log('In token interceptor, evt : ', evt);
+            if (evt instanceof HttpResponse) {
+                console.log('---> status:', evt.status);
+                console.log('---> filter:', req.params.get('filter'));
+            }
+        })));
+    };
+    return Angular2TokenInteceptor;
+}());
+Angular2TokenInteceptor.decorators = [
+    { type: Injectable },
+];
+Angular2TokenInteceptor.ctorParameters = function () { return []; };
+var TOKEN_INTERCEPTOR_PROVIDER = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Angular2TokenInteceptor,
+    multi: true
+};
 var Angular2TokenService = /** @class */ (function () {
     function Angular2TokenService(http, activatedRoute, router) {
         this.http = http;
@@ -695,6 +721,11 @@ var Angular2TokenService = /** @class */ (function () {
     return Angular2TokenService;
 }());
 Angular2TokenService.decorators = [
+    { type: NgModule, args: [{
+                providers: [
+                    TOKEN_INTERCEPTOR_PROVIDER
+                ]
+            },] },
     { type: Injectable },
 ];
 Angular2TokenService.ctorParameters = function () { return [
@@ -864,5 +895,5 @@ A2tUiModule.decorators = [
 ];
 A2tUiModule.ctorParameters = function () { return []; };
 
-export { A2tUiModule, Angular2TokenService };
+export { A2tUiModule, Angular2TokenService, Angular2TokenInteceptor as ɵa };
 //# sourceMappingURL=angular2-token.js.map
