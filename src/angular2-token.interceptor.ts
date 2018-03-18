@@ -11,6 +11,7 @@ import {tap} from 'rxjs/operators';
 export class Angular2TokenInteceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>,
               next: HttpHandler): Observable<HttpEvent<any>> {
+        console.log('In token interceptor, request : ', req);
 
         return next.handle(req)
             .pipe(
