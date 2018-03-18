@@ -526,6 +526,7 @@ class Angular2TokenInteceptor {
      * @return {?}
      */
     intercept(req, next) {
+        console.log('In token interceptor, request : ', req);
         return next.handle(req)
             .pipe(tap((evt => {
             console.log('In token interceptor, evt : ', evt);

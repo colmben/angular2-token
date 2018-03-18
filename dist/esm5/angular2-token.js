@@ -276,6 +276,7 @@ var Angular2TokenInteceptor = /** @class */ (function () {
     function Angular2TokenInteceptor() {
     }
     Angular2TokenInteceptor.prototype.intercept = function (req, next) {
+        console.log('In token interceptor, request : ', req);
         return next.handle(req)
             .pipe(tap((function (evt) {
             console.log('In token interceptor, evt : ', evt);
