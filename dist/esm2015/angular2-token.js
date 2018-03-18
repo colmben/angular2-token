@@ -1400,12 +1400,18 @@ A2tUiModule.ctorParameters = () => [];
  */
 class Angular2TokenInteceptor {
     /**
+     * @param {?} _tokenService
+     */
+    constructor(_tokenService) {
+        this._tokenService = _tokenService;
+    }
+    /**
      * @param {?} req
      * @param {?} next
      * @return {?}
      */
     intercept(req, next) {
-        console.log('In token interceptor, request : ', req);
+        console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
         return next.handle(req)
             .pipe(tap((evt => {
             console.log('In token interceptor, evt : ', evt);
@@ -1422,7 +1428,9 @@ Angular2TokenInteceptor.decorators = [
     { type: Injectable },
 ];
 /** @nocollapse */
-Angular2TokenInteceptor.ctorParameters = () => [];
+Angular2TokenInteceptor.ctorParameters = () => [
+    { type: Angular2TokenService, },
+];
 
 /**
  * @fileoverview added by tsickle

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cb05a80-3d85-4ba7-b29f-7f517918ec09" name="Default" comment="" />
+    <list default="true" id="9cb05a80-3d85-4ba7-b29f-7f517918ec09" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/angular2-token.interceptor.ts" afterPath="$PROJECT_DIR$/src/angular2-token.interceptor.ts" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,9 +26,11 @@
       <file leaf-file-name="angular2-token.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-              <folding />
+            <state relative-caret-position="684">
+              <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#76#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -34,9 +38,11 @@
       <file leaf-file-name="angular2-token.interceptor.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-              <folding />
+            <state relative-caret-position="252">
+              <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -93,9 +99,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/augular2-token.interceptor.ts" />
-        <option value="$PROJECT_DIR$/src/angular2-token.interceptor.ts" />
         <option value="$PROJECT_DIR$/src/angular2-token.service.ts" />
         <option value="$PROJECT_DIR$/src/public_api.ts" />
+        <option value="$PROJECT_DIR$/src/angular2-token.interceptor.ts" />
       </list>
     </option>
   </component>
@@ -191,12 +197,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1521405448246</updated>
-      <workItem from="1521405449502" duration="10335000" />
+      <workItem from="1521405449502" duration="10947000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10335000" />
+    <option name="totallyTimeSpent" value="10947000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="2112" extended-state="0" />
@@ -264,33 +270,33 @@
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
             <folding>
-              <marker date="1521416150156" expanded="true" signature="1580:1820" ph="{...}" />
-              <marker date="1521416150156" expanded="true" signature="1599:1686" ph="[...]" />
-              <marker date="1521416150156" expanded="true" signature="1988:2030" ph="{...}" />
-              <marker date="1521416150156" expanded="true" signature="2498:2763" ph="{...}" />
-              <marker date="1521416150156" expanded="true" signature="2517:2629" ph="[...]" />
-              <marker date="1521416150156" expanded="true" signature="4507:5744" ph="{...}" />
-              <marker date="1521416150156" expanded="true" signature="4537:5740" ph="{&quot;signInPath&quot;: 'auth/sign_in'...}" />
-              <marker date="1521416150156" expanded="true" signature="5300:5361" ph="{&quot;github&quot;: 'auth/github'...}" />
-              <marker date="1521416150156" expanded="true" signature="5575:5734" ph="{...}" />
-              <marker date="1521416150156" expanded="true" signature="5598:5724" ph="{&quot;Content-Type&quot;: 'application/json'...}" />
-              <marker date="1521416150156" expanded="true" signature="8956:9027" ph="{&quot;email&quot;: 'example@example.org'...}" />
-              <marker date="1521416150156" expanded="true" signature="9635:9774" ph="{&quot;email&quot;: 'example@example.org'...}" />
-              <marker date="1521416150156" expanded="true" signature="10673:10847" ph="{&quot;password&quot;: 'newPassword'...}" />
-              <marker date="1521416150156" expanded="true" signature="11137:11174" ph="{&quot;email&quot;: 'example@example.org'...}" />
-              <marker date="1521416150156" expanded="true" signature="12258:12325" ph="[...]" />
-              <marker date="1521416150156" expanded="true" signature="12377:12395" ph="{&quot;template&quot;: ''...}" />
-              <marker date="1521416150156" expanded="true" signature="12451:12514" ph="{...}" />
-              <marker date="1521416150156" expanded="true" signature="12529:12581" ph="{...}" />
-              <marker date="1521416150156" expanded="true" signature="13801:13908" ph="{...}" />
-              <marker date="1521416150156" expanded="true" signature="13818:13906" ph="[...]" />
-              <marker date="1521416150156" expanded="true" signature="13938:14032" ph="{&quot;email&quot;: 'example@example.com'...}" />
-              <marker date="1521416150156" expanded="true" signature="14439:14628" ph="[...]" />
-              <marker date="1521416150156" expanded="true" signature="14445:14505" ph="{&quot;path&quot;: ''...}" />
-              <marker date="1521416150156" expanded="true" signature="14507:14626" ph="{&quot;path&quot;: 'restricted'...}" />
-              <marker date="1521416150156" expanded="true" signature="15136:15219" ph="{&quot;method&quot;: RequestMethod.Post...}" />
-              <marker date="1521416150156" expanded="true" signature="16182:16253" ph="{&quot;email&quot;: 'example@example.org'...}" />
-              <marker date="1521416150156" expanded="true" signature="16277:16346" ph="{...}" />
+              <marker date="1521416697800" expanded="true" signature="1580:1820" ph="{...}" />
+              <marker date="1521416697800" expanded="true" signature="1599:1686" ph="[...]" />
+              <marker date="1521416697800" expanded="true" signature="1988:2030" ph="{...}" />
+              <marker date="1521416697800" expanded="true" signature="2498:2763" ph="{...}" />
+              <marker date="1521416697800" expanded="true" signature="2517:2629" ph="[...]" />
+              <marker date="1521416697800" expanded="true" signature="4507:5744" ph="{...}" />
+              <marker date="1521416697800" expanded="true" signature="4537:5740" ph="{&quot;signInPath&quot;: 'auth/sign_in'...}" />
+              <marker date="1521416697800" expanded="true" signature="5300:5361" ph="{&quot;github&quot;: 'auth/github'...}" />
+              <marker date="1521416697800" expanded="true" signature="5575:5734" ph="{...}" />
+              <marker date="1521416697800" expanded="true" signature="5598:5724" ph="{&quot;Content-Type&quot;: 'application/json'...}" />
+              <marker date="1521416697800" expanded="true" signature="8956:9027" ph="{&quot;email&quot;: 'example@example.org'...}" />
+              <marker date="1521416697800" expanded="true" signature="9635:9774" ph="{&quot;email&quot;: 'example@example.org'...}" />
+              <marker date="1521416697800" expanded="true" signature="10673:10847" ph="{&quot;password&quot;: 'newPassword'...}" />
+              <marker date="1521416697800" expanded="true" signature="11137:11174" ph="{&quot;email&quot;: 'example@example.org'...}" />
+              <marker date="1521416697800" expanded="true" signature="12258:12325" ph="[...]" />
+              <marker date="1521416697800" expanded="true" signature="12377:12395" ph="{&quot;template&quot;: ''...}" />
+              <marker date="1521416697800" expanded="true" signature="12451:12514" ph="{...}" />
+              <marker date="1521416697800" expanded="true" signature="12529:12581" ph="{...}" />
+              <marker date="1521416697800" expanded="true" signature="13801:13908" ph="{...}" />
+              <marker date="1521416697800" expanded="true" signature="13818:13906" ph="[...]" />
+              <marker date="1521416697800" expanded="true" signature="13938:14032" ph="{&quot;email&quot;: 'example@example.com'...}" />
+              <marker date="1521416697800" expanded="true" signature="14439:14628" ph="[...]" />
+              <marker date="1521416697800" expanded="true" signature="14445:14505" ph="{&quot;path&quot;: ''...}" />
+              <marker date="1521416697800" expanded="true" signature="14507:14626" ph="{&quot;path&quot;: 'restricted'...}" />
+              <marker date="1521416697800" expanded="true" signature="15136:15219" ph="{&quot;method&quot;: RequestMethod.Post...}" />
+              <marker date="1521416697800" expanded="true" signature="16182:16253" ph="{&quot;email&quot;: 'example@example.org'...}" />
+              <marker date="1521416697800" expanded="true" signature="16277:16346" ph="{...}" />
             </folding>
           </first_editor>
           <second_editor />
@@ -331,14 +337,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/angular2-token.model.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-531">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/public_api.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -363,19 +361,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/angular2-token.model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-531">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-          <folding />
+        <state relative-caret-position="684">
+          <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#76#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="252">
+          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

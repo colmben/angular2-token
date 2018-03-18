@@ -866,10 +866,11 @@ A2tUiModule.decorators = [
 ];
 A2tUiModule.ctorParameters = function () { return []; };
 var Angular2TokenInteceptor = /** @class */ (function () {
-    function Angular2TokenInteceptor() {
+    function Angular2TokenInteceptor(_tokenService) {
+        this._tokenService = _tokenService;
     }
     Angular2TokenInteceptor.prototype.intercept = function (req, next) {
-        console.log('In token interceptor, request : ', req);
+        console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
         return next.handle(req)
             .pipe(tap((function (evt) {
             console.log('In token interceptor, evt : ', evt);
@@ -886,7 +887,9 @@ var Angular2TokenInteceptor = /** @class */ (function () {
 Angular2TokenInteceptor.decorators = [
     { type: Injectable },
 ];
-Angular2TokenInteceptor.ctorParameters = function () { return []; };
+Angular2TokenInteceptor.ctorParameters = function () { return [
+    { type: Angular2TokenService, },
+]; };
 
 export { A2tUiModule, Angular2TokenService, Angular2TokenInteceptor };
 //# sourceMappingURL=angular2-token.js.map
