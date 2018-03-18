@@ -1,3 +1,5 @@
+import {Angular2TokenInteceptor} from "./angular2-token.interceptor";
+
 export {
     SignInData,
     RegisterData,
@@ -18,3 +20,7 @@ export {
 export { 
     Angular2TokenService 
 } from './angular2-token.service';
+
+export {
+    Angular2TokenInteceptor
+} from './angular2-token.interceptor'

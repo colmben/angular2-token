@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs/operators'), require('@angular/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs/operators', '@angular/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter'], factory) :
-	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.common.http,global.Rx.Observable.prototype,global.ng.http,global.Rx));
-}(this, (function (exports,core,forms,common,router,http,operators,http$1,Observable) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('@angular/common/http'), require('rxjs/operators')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', '@angular/common/http', 'rxjs/operators'], factory) :
+	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.http,global.Rx,global.Rx.Observable.prototype,global.Rx.Observable,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.ng.common.http,global.Rx.Observable.prototype));
+}(this, (function (exports,core,forms,common,router,http,Observable,share,interval,fromEvent,pluck,filter,http$1,operators) { 'use strict';
 
 var A2tFormService = /** @class */ (function () {
     function A2tFormService() {
@@ -263,31 +263,6 @@ A2tUiComponent.decorators = [
             },] },
 ];
 A2tUiComponent.ctorParameters = function () { return []; };
-var Angular2TokenInteceptor = /** @class */ (function () {
-    function Angular2TokenInteceptor() {
-    }
-    Angular2TokenInteceptor.prototype.intercept = function (req, next) {
-        console.log('In token interceptor, request : ', req);
-        return next.handle(req)
-            .pipe(operators.tap((function (evt) {
-            console.log('In token interceptor, evt : ', evt);
-            if (evt instanceof http.HttpResponse) {
-                console.log('---> status:', evt.status);
-                console.log('---> filter:', req.params.get('filter'));
-            }
-        })));
-    };
-    return Angular2TokenInteceptor;
-}());
-Angular2TokenInteceptor.decorators = [
-    { type: core.Injectable },
-];
-Angular2TokenInteceptor.ctorParameters = function () { return []; };
-var TOKEN_INTERCEPTOR_PROVIDER = {
-    provide: http.HTTP_INTERCEPTORS,
-    useClass: Angular2TokenInteceptor,
-    multi: true
-};
 var Angular2TokenService = /** @class */ (function () {
     function Angular2TokenService(http$$1, activatedRoute, router$$1) {
         this.http = http$$1;
@@ -321,7 +296,7 @@ var Angular2TokenService = /** @class */ (function () {
     Object.defineProperty(Angular2TokenService.prototype, "currentAuthHeaders", {
         get: function () {
             if (this.atCurrentAuthData != null) {
-                return new http$1.Headers({
+                return new http.Headers({
                     'access-token': this.atCurrentAuthData.accessToken,
                     'client': this.atCurrentAuthData.client,
                     'expiry': this.atCurrentAuthData.expiry,
@@ -329,7 +304,7 @@ var Angular2TokenService = /** @class */ (function () {
                     'uid': this.atCurrentAuthData.uid
                 });
             }
-            return new http$1.Headers;
+            return new http.Headers;
         },
         enumerable: true,
         configurable: true
@@ -497,46 +472,46 @@ var Angular2TokenService = /** @class */ (function () {
     Angular2TokenService.prototype.get = function (url, options) {
         return this.request(this.mergeRequestOptionsArgs({
             url: this.getApiPath() + url,
-            method: http$1.RequestMethod.Get
+            method: http.RequestMethod.Get
         }, options));
     };
     Angular2TokenService.prototype.post = function (url, body, options) {
         return this.request(this.mergeRequestOptionsArgs({
             url: this.getApiPath() + url,
-            method: http$1.RequestMethod.Post,
+            method: http.RequestMethod.Post,
             body: body
         }, options));
     };
     Angular2TokenService.prototype.put = function (url, body, options) {
         return this.request(this.mergeRequestOptionsArgs({
             url: this.getApiPath() + url,
-            method: http$1.RequestMethod.Put,
+            method: http.RequestMethod.Put,
             body: body
         }, options));
     };
     Angular2TokenService.prototype.delete = function (url, options) {
         return this.request(this.mergeRequestOptionsArgs({
             url: this.getApiPath() + url,
-            method: http$1.RequestMethod.Delete
+            method: http.RequestMethod.Delete
         }, options));
     };
     Angular2TokenService.prototype.patch = function (url, body, options) {
         return this.request(this.mergeRequestOptionsArgs({
             url: this.getApiPath() + url,
-            method: http$1.RequestMethod.Patch,
+            method: http.RequestMethod.Patch,
             body: body
         }, options));
     };
     Angular2TokenService.prototype.head = function (path, options) {
         return this.request({
-            method: http$1.RequestMethod.Head,
+            method: http.RequestMethod.Head,
             url: this.getApiPath() + path
         });
     };
     Angular2TokenService.prototype.options = function (url, options) {
         return this.request(this.mergeRequestOptionsArgs({
             url: this.getApiPath() + url,
-            method: http$1.RequestMethod.Options
+            method: http.RequestMethod.Options
         }, options));
     };
     Angular2TokenService.prototype.request = function (options) {
@@ -552,11 +527,11 @@ var Angular2TokenService = /** @class */ (function () {
                 'uid': this.atCurrentAuthData.uid
             });
         }
-        baseRequestOptions = new http$1.RequestOptions({
-            headers: new http$1.Headers(baseHeaders)
+        baseRequestOptions = new http.RequestOptions({
+            headers: new http.Headers(baseHeaders)
         });
         baseRequestOptions = baseRequestOptions.merge(options);
-        var response = this.http.request(new http$1.Request(baseRequestOptions)).share();
+        var response = this.http.request(new http.Request(baseRequestOptions)).share();
         this.handleResponse(response);
         return response;
     };
@@ -713,15 +688,10 @@ var Angular2TokenService = /** @class */ (function () {
     return Angular2TokenService;
 }());
 Angular2TokenService.decorators = [
-    { type: core.NgModule, args: [{
-                providers: [
-                    TOKEN_INTERCEPTOR_PROVIDER
-                ]
-            },] },
     { type: core.Injectable },
 ];
 Angular2TokenService.ctorParameters = function () { return [
-    { type: http$1.Http, },
+    { type: http.Http, },
     { type: router.ActivatedRoute, decorators: [{ type: core.Optional },] },
     { type: router.Router, decorators: [{ type: core.Optional },] },
 ]; };
@@ -886,10 +856,30 @@ A2tUiModule.decorators = [
             },] },
 ];
 A2tUiModule.ctorParameters = function () { return []; };
+var Angular2TokenInteceptor = /** @class */ (function () {
+    function Angular2TokenInteceptor() {
+    }
+    Angular2TokenInteceptor.prototype.intercept = function (req, next) {
+        console.log('In token interceptor, request : ', req);
+        return next.handle(req)
+            .pipe(operators.tap((function (evt) {
+            console.log('In token interceptor, evt : ', evt);
+            if (evt instanceof http$1.HttpResponse) {
+                console.log('---> status:', evt.status);
+                console.log('---> filter:', req.params.get('filter'));
+            }
+        })));
+    };
+    return Angular2TokenInteceptor;
+}());
+Angular2TokenInteceptor.decorators = [
+    { type: core.Injectable },
+];
+Angular2TokenInteceptor.ctorParameters = function () { return []; };
 
 exports.A2tUiModule = A2tUiModule;
 exports.Angular2TokenService = Angular2TokenService;
-exports.ɵa = Angular2TokenInteceptor;
+exports.Angular2TokenInteceptor = Angular2TokenInteceptor;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -2,8 +2,6 @@ import { Injectable, EventEmitter, Component, Input, NgModule, Optional } from '
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
-import { HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
 import { Http, Headers, Request, RequestMethod, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
@@ -11,6 +9,8 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
+import { HttpResponse } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -519,39 +519,6 @@ A2tUiComponent.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-class Angular2TokenInteceptor {
-    /**
-     * @param {?} req
-     * @param {?} next
-     * @return {?}
-     */
-    intercept(req, next) {
-        console.log('In token interceptor, request : ', req);
-        return next.handle(req)
-            .pipe(tap((evt => {
-            console.log('In token interceptor, evt : ', evt);
-            if (evt instanceof HttpResponse) {
-                console.log('---> status:', evt.status);
-                console.log('---> filter:', req.params.get('filter'));
-            }
-        })));
-    }
-}
-Angular2TokenInteceptor.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-Angular2TokenInteceptor.ctorParameters = () => [];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-const TOKEN_INTERCEPTOR_PROVIDER = {
-    provide: HTTP_INTERCEPTORS,
-    useClass: Angular2TokenInteceptor,
-    multi: true
-};
 class Angular2TokenService {
     /**
      * @param {?} http
@@ -1149,11 +1116,6 @@ class Angular2TokenService {
     }
 }
 Angular2TokenService.decorators = [
-    { type: NgModule, args: [{
-                providers: [
-                    TOKEN_INTERCEPTOR_PROVIDER
-                ]
-            },] },
     { type: Injectable },
 ];
 /** @nocollapse */
@@ -1436,6 +1398,34 @@ A2tUiModule.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+class Angular2TokenInteceptor {
+    /**
+     * @param {?} req
+     * @param {?} next
+     * @return {?}
+     */
+    intercept(req, next) {
+        console.log('In token interceptor, request : ', req);
+        return next.handle(req)
+            .pipe(tap((evt => {
+            console.log('In token interceptor, evt : ', evt);
+            if (evt instanceof HttpResponse) {
+                console.log('---> status:', evt.status);
+                console.log('---> filter:', req.params.get('filter'));
+            }
+        })));
+    }
+}
+Angular2TokenInteceptor.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+Angular2TokenInteceptor.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 
 /**
  * @fileoverview added by tsickle
@@ -1445,5 +1435,5 @@ A2tUiModule.ctorParameters = () => [];
  * Generated bundle index. Do not edit.
  */
 
-export { A2tUiModule, Angular2TokenService, Angular2TokenInteceptor as ɵa };
+export { A2tUiModule, Angular2TokenService, Angular2TokenInteceptor };
 //# sourceMappingURL=angular2-token.js.map

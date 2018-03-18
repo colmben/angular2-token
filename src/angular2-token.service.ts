@@ -9,6 +9,7 @@ import {
     RequestOptions,
     RequestOptionsArgs
 } from '@angular/http';
+import {HttpClient, HttpResponse, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Angular2TokenInteceptor} from './angular2-token.interceptor';
 import {Observable} from 'rxjs/Observable';
@@ -31,18 +32,7 @@ import {
     Angular2TokenOptions
 } from './angular2-token.model';
 
-const TOKEN_INTERCEPTOR_PROVIDER: ClassProvider = {
-    provide: HTTP_INTERCEPTORS,
-    useClass: Angular2TokenInteceptor,
-    multi: true
-};
 
-@NgModule({
-    providers: [
-        TOKEN_INTERCEPTOR_PROVIDER
-    ]
-
-})
 
 
 @Injectable()
