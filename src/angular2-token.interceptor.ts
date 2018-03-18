@@ -21,6 +21,10 @@ export class Angular2TokenInteceptor implements HttpInterceptor {
                             console.log('---> status:', evt.status);
                             console.log('---> filter:', req.params.get('filter'));
                         }
+                    }),
+                    (err => {
+                        console.log('In token interceptor, err : ', err);
+
                     })
                 )
             )

@@ -868,6 +868,8 @@ var Angular2TokenInteceptor = /** @class */ (function () {
                 console.log('---> status:', evt.status);
                 console.log('---> filter:', req.params.get('filter'));
             }
+        }), (function (err) {
+            console.log('In token interceptor, err : ', err);
         })));
     };
     return Angular2TokenInteceptor;

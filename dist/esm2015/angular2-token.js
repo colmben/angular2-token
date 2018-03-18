@@ -1413,6 +1413,8 @@ class Angular2TokenInteceptor {
                 console.log('---> status:', evt.status);
                 console.log('---> filter:', req.params.get('filter'));
             }
+        }), (err => {
+            console.log('In token interceptor, err : ', err);
         })));
     }
 }
