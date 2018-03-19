@@ -318,6 +318,13 @@ var Angular2TokenService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Angular2TokenService.prototype, "apiPath", {
+        get: function () {
+            return this.getApiPath();
+        },
+        enumerable: true,
+        configurable: true
+    });
     Angular2TokenService.prototype.userSignedIn = function () {
         return !!this.atCurrentAuthData;
     };
@@ -876,11 +883,13 @@ var Angular2TokenInteceptor = /** @class */ (function () {
             headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
         });
         console.log('In intercept request, new headers : ', headersWithAuth);
-        req = req.clone({ headers: headersWithAuth });
-        var authHeaders = this._tokenService.currentAuthHeaders;
-        authHeaders.keys().forEach(function (key) {
-            req.headers.append(key, authHeaders.get(key));
-        });
+        if (req.url.match(this._tokenService.apiPath)) {
+            req = req.clone({ headers: headersWithAuth });
+            var authHeaders_1 = this._tokenService.currentAuthHeaders;
+            authHeaders_1.keys().forEach(function (key) {
+                req.headers.append(key, authHeaders_1.get(key));
+            });
+        }
         return next.handle(req)
             .pipe(tap((function (evt) {
             console.log('In token interceptor, evt : ', evt);

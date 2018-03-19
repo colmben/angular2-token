@@ -16,6 +16,7 @@ export declare class Angular2TokenService implements CanActivate {
     readonly currentUserData: UserData;
     readonly currentAuthData: AuthData;
     readonly currentAuthHeaders: HttpHeaders;
+    readonly apiPath: string;
     private atOptions;
     private atCurrentUserType;
     private atCurrentAuthData;

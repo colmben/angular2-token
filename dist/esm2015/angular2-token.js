@@ -569,6 +569,12 @@ class Angular2TokenService {
     /**
      * @return {?}
      */
+    get apiPath() {
+        return this.getApiPath();
+    }
+    /**
+     * @return {?}
+     */
     userSignedIn() {
         return !!this.atCurrentAuthData;
     }
@@ -1417,11 +1423,13 @@ class Angular2TokenInteceptor {
             headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
         });
         console.log('In intercept request, new headers : ', headersWithAuth);
-        req = req.clone({ headers: headersWithAuth });
-        const /** @type {?} */ authHeaders = this._tokenService.currentAuthHeaders;
-        authHeaders.keys().forEach(key => {
-            req.headers.append(key, authHeaders.get(key));
-        });
+        if (req.url.match(this._tokenService.apiPath)) {
+            req = req.clone({ headers: headersWithAuth });
+            const /** @type {?} */ authHeaders = this._tokenService.currentAuthHeaders;
+            authHeaders.keys().forEach(key => {
+                req.headers.append(key, authHeaders.get(key));
+            });
+        }
         return next.handle(req)
             .pipe(tap((evt => {
             console.log('In token interceptor, evt : ', evt);

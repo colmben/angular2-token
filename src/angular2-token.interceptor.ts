@@ -23,11 +23,14 @@ export class Angular2TokenInteceptor implements HttpInterceptor {
             headersWithAuth = headersWithAuth.append(key, req.headers.get(key) )
         });
         console.log('In intercept request, new headers : ', headersWithAuth);
-        req = req.clone({headers: headersWithAuth});
-        const authHeaders = this._tokenService.currentAuthHeaders;
-        authHeaders.keys().forEach(key => {
-            req.headers.append(key, authHeaders.get(key) )
-        })
+        if(req.url.match(this._tokenService.apiPath)){
+            req = req.clone({headers: headersWithAuth});
+            const authHeaders = this._tokenService.currentAuthHeaders;
+            authHeaders.keys().forEach(key => {
+                req.headers.append(key, authHeaders.get(key) )
+            });
+        }
+
 
         return next.handle(req)
             .pipe(
