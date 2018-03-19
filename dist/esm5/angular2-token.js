@@ -3,13 +3,13 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { Http, Headers, Request, RequestMethod, RequestOptions } from '@angular/http';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
-import { HttpResponse } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
 var A2tFormService = /** @class */ (function () {
@@ -305,7 +305,7 @@ var Angular2TokenService = /** @class */ (function () {
     Object.defineProperty(Angular2TokenService.prototype, "currentAuthHeaders", {
         get: function () {
             if (this.atCurrentAuthData != null) {
-                return new Headers({
+                return new HttpHeaders({
                     'access-token': this.atCurrentAuthData.accessToken,
                     'client': this.atCurrentAuthData.client,
                     'expiry': this.atCurrentAuthData.expiry,
@@ -313,7 +313,7 @@ var Angular2TokenService = /** @class */ (function () {
                     'uid': this.atCurrentAuthData.uid
                 });
             }
-            return new Headers;
+            return new HttpHeaders;
         },
         enumerable: true,
         configurable: true
@@ -871,6 +871,16 @@ var Angular2TokenInteceptor = /** @class */ (function () {
     }
     Angular2TokenInteceptor.prototype.intercept = function (req, next) {
         console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
+        var headersWithAuth = this._tokenService.currentAuthHeaders;
+        req.headers.keys().forEach(function (key) {
+            headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
+        });
+        console.log('In intercept request, new headers : ', headersWithAuth);
+        req = req.clone({ headers: headersWithAuth });
+        var authHeaders = this._tokenService.currentAuthHeaders;
+        authHeaders.keys().forEach(function (key) {
+            req.headers.append(key, authHeaders.get(key));
+        });
         return next.handle(req)
             .pipe(tap((function (evt) {
             console.log('In token interceptor, evt : ', evt);

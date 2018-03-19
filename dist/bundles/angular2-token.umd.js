@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('@angular/common/http'), require('rxjs/operators')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', '@angular/common/http', 'rxjs/operators'], factory) :
-	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.http,global.Rx,global.Rx.Observable.prototype,global.Rx.Observable,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.ng.common.http,global.Rx.Observable.prototype));
-}(this, (function (exports,core,forms,common,router,http,Observable,share,interval,fromEvent,pluck,filter,http$1,operators) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/http'), require('@angular/common/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('rxjs/operators')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/http', '@angular/common/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', 'rxjs/operators'], factory) :
+	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.http,global.ng.common.http,global.Rx,global.Rx.Observable.prototype,global.Rx.Observable,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype));
+}(this, (function (exports,core,forms,common,router,http,http$1,Observable,share,interval,fromEvent,pluck,filter,operators) { 'use strict';
 
 var A2tFormService = /** @class */ (function () {
     function A2tFormService() {
@@ -296,7 +296,7 @@ var Angular2TokenService = /** @class */ (function () {
     Object.defineProperty(Angular2TokenService.prototype, "currentAuthHeaders", {
         get: function () {
             if (this.atCurrentAuthData != null) {
-                return new http.Headers({
+                return new http$1.HttpHeaders({
                     'access-token': this.atCurrentAuthData.accessToken,
                     'client': this.atCurrentAuthData.client,
                     'expiry': this.atCurrentAuthData.expiry,
@@ -304,7 +304,7 @@ var Angular2TokenService = /** @class */ (function () {
                     'uid': this.atCurrentAuthData.uid
                 });
             }
-            return new http.Headers;
+            return new http$1.HttpHeaders;
         },
         enumerable: true,
         configurable: true
@@ -862,6 +862,16 @@ var Angular2TokenInteceptor = /** @class */ (function () {
     }
     Angular2TokenInteceptor.prototype.intercept = function (req, next) {
         console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
+        var headersWithAuth = this._tokenService.currentAuthHeaders;
+        req.headers.keys().forEach(function (key) {
+            headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
+        });
+        console.log('In intercept request, new headers : ', headersWithAuth);
+        req = req.clone({ headers: headersWithAuth });
+        var authHeaders = this._tokenService.currentAuthHeaders;
+        authHeaders.keys().forEach(function (key) {
+            req.headers.append(key, authHeaders.get(key));
+        });
         return next.handle(req)
             .pipe(operators.tap((function (evt) {
             console.log('In token interceptor, evt : ', evt);

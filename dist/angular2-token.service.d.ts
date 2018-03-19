@@ -1,5 +1,6 @@
 import { ActivatedRoute, Router, CanActivate } from '@angular/router';
-import { Http, Response, Headers, RequestOptionsArgs } from '@angular/http';
+import { Http, Response, RequestOptionsArgs } from '@angular/http';
+import { HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/interval';
@@ -14,7 +15,7 @@ export declare class Angular2TokenService implements CanActivate {
     readonly currentUserType: string;
     readonly currentUserData: UserData;
     readonly currentAuthData: AuthData;
-    readonly currentAuthHeaders: Headers;
+    readonly currentAuthHeaders: HttpHeaders;
     private atOptions;
     private atCurrentUserType;
     private atCurrentAuthData;

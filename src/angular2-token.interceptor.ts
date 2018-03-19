@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {
-    HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse
+    HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, HttpHeaders
 }
     from '@angular/common/http';
 import { Angular2TokenService } from './angular2-token.service';
@@ -18,6 +18,16 @@ export class Angular2TokenInteceptor implements HttpInterceptor {
               next: HttpHandler): Observable<HttpEvent<any>> {
         console.log('In token interceptor, request : ', req,
             this._tokenService.currentAuthHeaders);
+        let headersWithAuth = this._tokenService.currentAuthHeaders;
+        req.headers.keys().forEach(key => {
+            headersWithAuth = headersWithAuth.append(key, req.headers.get(key) )
+        });
+        console.log('In intercept request, new headers : ', headersWithAuth);
+        req = req.clone({headers: headersWithAuth});
+        const authHeaders = this._tokenService.currentAuthHeaders;
+        authHeaders.keys().forEach(key => {
+            req.headers.append(key, authHeaders.get(key) )
+        })
 
         return next.handle(req)
             .pipe(

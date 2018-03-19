@@ -53,9 +53,9 @@ export class Angular2TokenService implements CanActivate {
         return this.atCurrentAuthData;
     }
 
-    get currentAuthHeaders(): Headers {
+    get currentAuthHeaders(): HttpHeaders {
         if (this.atCurrentAuthData != null) {
-            return new Headers({
+            return new HttpHeaders({
                 'access-token': this.atCurrentAuthData.accessToken,
                 'client': this.atCurrentAuthData.client,
                 'expiry': this.atCurrentAuthData.expiry,
@@ -64,7 +64,7 @@ export class Angular2TokenService implements CanActivate {
             });
         }
 
-        return new Headers;
+        return new HttpHeaders;
     }
 
     private atOptions: Angular2TokenOptions;
