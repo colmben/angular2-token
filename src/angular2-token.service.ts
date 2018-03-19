@@ -1,15 +1,10 @@
 import {ClassProvider, Injectable, NgModule, Optional} from '@angular/core';
 import {ActivatedRoute, Router, CanActivate} from '@angular/router';
 import {
-    Http,
-    Response,
-    Headers,
-    Request,
-    RequestMethod,
-    RequestOptions,
-    RequestOptionsArgs
-} from '@angular/http';
-import {HttpClient, HttpResponse, HttpHeaders, HttpRequest} from "@angular/common/http";
+    HttpClient,
+    HttpResponse,
+    HttpHeaders,
+} from "@angular/common/http";
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Angular2TokenInteceptor} from './angular2-token.interceptor';
 import {Observable} from 'rxjs/Observable';
@@ -31,8 +26,7 @@ import {
 
     Angular2TokenOptions
 } from './angular2-token.model';
-
-
+import {tap} from "rxjs/operators";
 
 
 @Injectable()
@@ -71,8 +65,8 @@ export class Angular2TokenService implements CanActivate {
         return this.getApiPath();
     }
 
-    set currentAuthData(authData: AuthData){
-        this.setAuthData(authData)        ;
+    set currentAuthData(authData: AuthData) {
+        this.setAuthData(authData);
     }
 
     private atOptions: Angular2TokenOptions;
@@ -80,7 +74,7 @@ export class Angular2TokenService implements CanActivate {
     private atCurrentAuthData: AuthData;
     private atCurrentUserData: UserData;
 
-    constructor(private http: Http,
+    constructor(private http: HttpClient,
                 @Optional() private activatedRoute: ActivatedRoute,
                 @Optional() private router: Router) {
     }
@@ -163,7 +157,7 @@ export class Angular2TokenService implements CanActivate {
      */
 
     // Register request
-    registerAccount(registerData: RegisterData): Observable<Response> {
+    registerAccount(registerData: RegisterData): Observable<Object> {
 
         if (registerData.userType == null)
             this.atCurrentUserType = null;
@@ -177,16 +171,16 @@ export class Angular2TokenService implements CanActivate {
 
         registerData.confirm_success_url = this.atOptions.registerAccountCallback;
 
-        return this.post(this.getUserPath() + this.atOptions.registerAccountPath, JSON.stringify(registerData));
+        return this.request('POST', this.getUserPath() + this.atOptions.registerAccountPath, JSON.stringify(registerData));
     }
 
     // Delete Account
-    deleteAccount(): Observable<Response> {
-        return this.delete(this.getUserPath() + this.atOptions.deleteAccountPath);
+    deleteAccount(): Observable<Object> {
+        return this.request('DELETE', this.getUserPath() + this.atOptions.deleteAccountPath);
     }
 
     // Sign in request and set storage
-    signIn(signInData: SignInData): Observable<Response> {
+    signIn(signInData: SignInData): Observable<Object> {
 
         if (signInData.userType == null)
             this.atCurrentUserType = null;
@@ -198,9 +192,17 @@ export class Angular2TokenService implements CanActivate {
             password: signInData.password
         });
 
-        let observ = this.post(this.getUserPath() + this.atOptions.signInPath, body);
+        let observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
 
-        observ.subscribe(res => this.atCurrentUserData = res.json().data, _error => null);
+        observ.pipe(
+            tap(
+                res => {
+                    if (res instanceof HttpResponse) {
+                        this.atCurrentUserData = res.body.data
+                    }
+                }, _error => {
+                    null
+                }));
 
         return observ;
     }
@@ -240,8 +242,8 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Sign out request and delete storage
-    signOut(): Observable<Response> {
-        let observ = this.delete(this.getUserPath() + this.atOptions.signOutPath);
+    signOut(): Observable<Object> {
+        let observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
 
         localStorage.removeItem('accessToken');
         localStorage.removeItem('client');
@@ -257,22 +259,28 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Validate token request
-    validateToken(): Observable<Response> {
-        let observ = this.get(this.getUserPath() + this.atOptions.validateTokenPath);
+    validateToken(): Observable<Object> {
+        let observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
 
-        observ.subscribe(
-            res => this.atCurrentUserData = res.json().data,
-            error => {
-                if (error.status === 401 && this.atOptions.signOutFailedValidate) {
-                    this.signOut();
+        observ.pipe(
+            tap(
+                res => {
+                    if (res instanceof HttpResponse) {
+                        this.atCurrentUserData = res.body.data
+                    }
+                },
+                error => {
+                    if (error.status === 401 && this.atOptions.signOutFailedValidate) {
+                        this.signOut();
+                    }
                 }
-            });
+            ));
 
         return observ;
     }
 
     // Update password request
-    updatePassword(updatePasswordData: UpdatePasswordData): Observable<Response> {
+    updatePassword(updatePasswordData: UpdatePasswordData): Observable<Object> {
 
         if (updatePasswordData.userType != null)
             this.atCurrentUserType = this.getUserTypeByName(updatePasswordData.userType);
@@ -297,11 +305,11 @@ export class Angular2TokenService implements CanActivate {
         }
 
         let body = JSON.stringify(args);
-        return this.put(this.getUserPath() + this.atOptions.updatePasswordPath, body);
+        return this.request('PUT', this.getUserPath() + this.atOptions.updatePasswordPath, body);
     }
 
     // Reset password request
-    resetPassword(resetPasswordData: ResetPasswordData): Observable<Response> {
+    resetPassword(resetPasswordData: ResetPasswordData): Observable<Object> {
 
         if (resetPasswordData.userType == null)
             this.atCurrentUserType = null;
@@ -313,7 +321,7 @@ export class Angular2TokenService implements CanActivate {
             redirect_url: this.atOptions.resetPasswordCallback
         });
 
-        return this.post(this.getUserPath() + this.atOptions.resetPasswordPath, body);
+        return this.request('POST', this.getUserPath() + this.atOptions.resetPasswordPath, body);
     }
 
     /**
@@ -322,62 +330,41 @@ export class Angular2TokenService implements CanActivate {
      *
      */
 
-    get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Get
-        }, options));
-    }
+    // get(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    //     return this.request(this.mergeRequestOptionsArgs({
+    //         url: this.getApiPath() + url,
+    //         method: 'GET'
+    //     }, options));
+    // }
+    //
+    // post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    //     return this.request(this.mergeRequestOptionsArgs({
+    //         url: this.getApiPath() + url,
+    //         method: 'POST',
+    //         body: body
+    //     }, options));
+    // }
+    //
+    // put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    //     return this.request(this.mergeRequestOptionsArgs({
+    //         url: this.getApiPath() + url,
+    //         method: 'PUT',
+    //         body: body
+    //     }, options));
+    // }
+    //
+    // delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    //     return this.request(this.mergeRequestOptionsArgs({
+    //         url: this.getApiPath() + url,
+    //         method: 'DELETE'
+    //     }, options));
+    // }
 
-    post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Post,
-            body: body
-        }, options));
-    }
-
-    put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Put,
-            body: body
-        }, options));
-    }
-
-    delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Delete
-        }, options));
-    }
-
-    patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Patch,
-            body: body
-        }, options));
-    }
-
-    head(path: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request({
-            method: RequestMethod.Head,
-            url: this.getApiPath() + path
-        });
-    }
-
-    options(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Options
-        }, options));
-    }
 
     // Construct and send Http request
-    request(options: RequestOptionsArgs): Observable<Response> {
+    request(method: string, url: string, body?: any): Observable<Object> {
 
-        let baseRequestOptions: RequestOptions;
+        const options: { [key: string]: any; } = {};
         let baseHeaders: { [key: string]: string; } = this.atOptions.globalOptions.headers;
 
         // Get auth data from local storage
@@ -394,36 +381,24 @@ export class Angular2TokenService implements CanActivate {
             });
         }
 
-        baseRequestOptions = new RequestOptions({
-            headers: new Headers(baseHeaders)
-        });
+        options.headers = new HttpHeaders(baseHeaders);
+        options.body = body;
 
-        // Merge standard and custom RequestOptions
-        baseRequestOptions = baseRequestOptions.merge(options);
-
-        let response = this.http.request(new Request(baseRequestOptions)).share();
+        let response = this.http.request(method, url, options);
         this.handleResponse(response);
 
         return response;
     }
 
-    private mergeRequestOptionsArgs(options: RequestOptionsArgs, addOptions?: RequestOptionsArgs): RequestOptionsArgs {
-
-        let returnOptions: RequestOptionsArgs = options;
-
-        if (options)
-            (<any>Object).assign(returnOptions, addOptions);
-
-        return returnOptions;
-    }
 
     // Check if response is complete and newer, then update storage
-    private handleResponse(response: Observable<Response>): void {
-        response.subscribe(res => {
-            this.getAuthHeadersFromResponse(<any>res);
-        }, error => {
-            this.getAuthHeadersFromResponse(<any>error);
-        });
+    private handleResponse(response: Observable<Object>): void {
+        response.pipe(
+            tap(res => {
+                this.getAuthHeadersFromResponse(<any>res);
+            }, error => {
+                this.getAuthHeadersFromResponse(<any>error);
+            }));
     }
 
     /**

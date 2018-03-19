@@ -2,8 +2,7 @@ import { Injectable, EventEmitter, Component, Input, NgModule, Optional } from '
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
-import { Http, Headers, Request, RequestMethod, RequestOptions } from '@angular/http';
-import { HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/interval';
@@ -657,13 +656,13 @@ class Angular2TokenService {
         registerData["password_confirmation"] = registerData.passwordConfirmation;
         delete registerData.passwordConfirmation;
         registerData["confirm_success_url"] = this.atOptions.registerAccountCallback;
-        return this.post(this.getUserPath() + this.atOptions.registerAccountPath, JSON.stringify(registerData));
+        return this.request('POST', this.getUserPath() + this.atOptions.registerAccountPath, JSON.stringify(registerData));
     }
     /**
      * @return {?}
      */
     deleteAccount() {
-        return this.delete(this.getUserPath() + this.atOptions.deleteAccountPath);
+        return this.request('DELETE', this.getUserPath() + this.atOptions.deleteAccountPath);
     }
     /**
      * @param {?} signInData
@@ -678,8 +677,14 @@ class Angular2TokenService {
             email: signInData.email,
             password: signInData.password
         });
-        let /** @type {?} */ observ = this.post(this.getUserPath() + this.atOptions.signInPath, body);
-        observ.subscribe(res => this.atCurrentUserData = res.json().data, _error => null);
+        let /** @type {?} */ observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
+        observ.pipe(tap(res => {
+            if (res instanceof HttpResponse) {
+                this.atCurrentUserData = res.body.data;
+            }
+        }, _error => {
+            
+        }));
         return observ;
     }
     /**
@@ -719,7 +724,7 @@ class Angular2TokenService {
      * @return {?}
      */
     signOut() {
-        let /** @type {?} */ observ = this.delete(this.getUserPath() + this.atOptions.signOutPath);
+        let /** @type {?} */ observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
         localStorage.removeItem('accessToken');
         localStorage.removeItem('client');
         localStorage.removeItem('expiry');
@@ -734,12 +739,16 @@ class Angular2TokenService {
      * @return {?}
      */
     validateToken() {
-        let /** @type {?} */ observ = this.get(this.getUserPath() + this.atOptions.validateTokenPath);
-        observ.subscribe(res => this.atCurrentUserData = res.json().data, error => {
+        let /** @type {?} */ observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
+        observ.pipe(tap(res => {
+            if (res instanceof HttpResponse) {
+                this.atCurrentUserData = res.body.data;
+            }
+        }, error => {
             if (error.status === 401 && this.atOptions.signOutFailedValidate) {
                 this.signOut();
             }
-        });
+        }));
         return observ;
     }
     /**
@@ -767,7 +776,7 @@ class Angular2TokenService {
             args.reset_password_token = updatePasswordData.resetPasswordToken;
         }
         let /** @type {?} */ body = JSON.stringify(args);
-        return this.put(this.getUserPath() + this.atOptions.updatePasswordPath, body);
+        return this.request('PUT', this.getUserPath() + this.atOptions.updatePasswordPath, body);
     }
     /**
      * @param {?} resetPasswordData
@@ -782,100 +791,19 @@ class Angular2TokenService {
             email: resetPasswordData.email,
             redirect_url: this.atOptions.resetPasswordCallback
         });
-        return this.post(this.getUserPath() + this.atOptions.resetPasswordPath, body);
+        return this.request('POST', this.getUserPath() + this.atOptions.resetPasswordPath, body);
     }
     /**
      *
      * HTTP Wrappers
      *
+     * @param {?} method
      * @param {?} url
-     * @param {?=} options
+     * @param {?=} body
      * @return {?}
      */
-    get(url, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Get
-        }, options));
-    }
-    /**
-     * @param {?} url
-     * @param {?} body
-     * @param {?=} options
-     * @return {?}
-     */
-    post(url, body, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Post,
-            body: body
-        }, options));
-    }
-    /**
-     * @param {?} url
-     * @param {?} body
-     * @param {?=} options
-     * @return {?}
-     */
-    put(url, body, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Put,
-            body: body
-        }, options));
-    }
-    /**
-     * @param {?} url
-     * @param {?=} options
-     * @return {?}
-     */
-    delete(url, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Delete
-        }, options));
-    }
-    /**
-     * @param {?} url
-     * @param {?} body
-     * @param {?=} options
-     * @return {?}
-     */
-    patch(url, body, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Patch,
-            body: body
-        }, options));
-    }
-    /**
-     * @param {?} path
-     * @param {?=} options
-     * @return {?}
-     */
-    head(path, options) {
-        return this.request({
-            method: RequestMethod.Head,
-            url: this.getApiPath() + path
-        });
-    }
-    /**
-     * @param {?} url
-     * @param {?=} options
-     * @return {?}
-     */
-    options(url, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: RequestMethod.Options
-        }, options));
-    }
-    /**
-     * @param {?} options
-     * @return {?}
-     */
-    request(options) {
-        let /** @type {?} */ baseRequestOptions;
+    request(method, url, body) {
+        const /** @type {?} */ options = {};
         let /** @type {?} */ baseHeaders = this.atOptions.globalOptions.headers;
         // Get auth data from local storage
         this.getAuthDataFromStorage();
@@ -889,36 +817,22 @@ class Angular2TokenService {
                 'uid': this.atCurrentAuthData.uid
             });
         }
-        baseRequestOptions = new RequestOptions({
-            headers: new Headers(baseHeaders)
-        });
-        // Merge standard and custom RequestOptions
-        baseRequestOptions = baseRequestOptions.merge(options);
-        let /** @type {?} */ response = this.http.request(new Request(baseRequestOptions)).share();
+        options["headers"] = new HttpHeaders(baseHeaders);
+        options["body"] = body;
+        let /** @type {?} */ response = this.http.request(method, url, options);
         this.handleResponse(response);
         return response;
-    }
-    /**
-     * @param {?} options
-     * @param {?=} addOptions
-     * @return {?}
-     */
-    mergeRequestOptionsArgs(options, addOptions) {
-        let /** @type {?} */ returnOptions = options;
-        if (options)
-            (/** @type {?} */ (Object)).assign(returnOptions, addOptions);
-        return returnOptions;
     }
     /**
      * @param {?} response
      * @return {?}
      */
     handleResponse(response) {
-        response.subscribe(res => {
+        response.pipe(tap(res => {
             this.getAuthHeadersFromResponse(/** @type {?} */ (res));
         }, error => {
             this.getAuthHeadersFromResponse(/** @type {?} */ (error));
-        });
+        }));
     }
     /**
      *
@@ -1133,7 +1047,7 @@ Angular2TokenService.decorators = [
 ];
 /** @nocollapse */
 Angular2TokenService.ctorParameters = () => [
-    { type: Http, },
+    { type: HttpClient, },
     { type: ActivatedRoute, decorators: [{ type: Optional },] },
     { type: Router, decorators: [{ type: Optional },] },
 ];
@@ -1439,14 +1353,14 @@ class Angular2TokenInteceptor {
             });
         }
         return next.handle(req)
-            .pipe(tap((res => {
+            .pipe(tap(res => {
             console.log('In token interceptor, evt : ', res);
             if (res instanceof HttpResponse && res.url.match(this.apiPath)) {
                 console.log('---> status:', res.status);
                 console.log('---> filter:', req.params.get('filter'));
                 this.getAuthHeadersFromResponse(/** @type {?} */ (res));
             }
-        }), (err => {
+        }, err => {
             if (err instanceof HttpErrorResponse && err.url.match(this.apiPath)) {
                 console.log('In token interceptor, err : ', err);
                 this.getAuthHeadersFromResponse(/** @type {?} */ (err));
@@ -1454,7 +1368,7 @@ class Angular2TokenInteceptor {
             else {
                 console.log("Auth Interceptor, non HTTP error - ", err);
             }
-        })));
+        }));
     }
     /**
      * @param {?} data

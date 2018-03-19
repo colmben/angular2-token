@@ -1,6 +1,5 @@
 import { ActivatedRoute, Router, CanActivate } from '@angular/router';
-import { Http, Response, RequestOptionsArgs } from '@angular/http';
-import { HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/interval';
@@ -21,7 +20,7 @@ export declare class Angular2TokenService implements CanActivate {
     private atCurrentUserType;
     private atCurrentAuthData;
     private atCurrentUserData;
-    constructor(http: Http, activatedRoute: ActivatedRoute, router: Router);
+    constructor(http: HttpClient, activatedRoute: ActivatedRoute, router: Router);
     userSignedIn(): boolean;
     canActivate(): boolean;
     init(options?: Angular2TokenOptions): void;
@@ -30,29 +29,21 @@ export declare class Angular2TokenService implements CanActivate {
      * Actions
      *
      */
-    registerAccount(registerData: RegisterData): Observable<Response>;
-    deleteAccount(): Observable<Response>;
-    signIn(signInData: SignInData): Observable<Response>;
+    registerAccount(registerData: RegisterData): Observable<Object>;
+    deleteAccount(): Observable<Object>;
+    signIn(signInData: SignInData): Observable<Object>;
     signInOAuth(oAuthType: string): Observable<any>;
     processOAuthCallback(): void;
-    signOut(): Observable<Response>;
-    validateToken(): Observable<Response>;
-    updatePassword(updatePasswordData: UpdatePasswordData): Observable<Response>;
-    resetPassword(resetPasswordData: ResetPasswordData): Observable<Response>;
+    signOut(): Observable<Object>;
+    validateToken(): Observable<Object>;
+    updatePassword(updatePasswordData: UpdatePasswordData): Observable<Object>;
+    resetPassword(resetPasswordData: ResetPasswordData): Observable<Object>;
     /**
      *
      * HTTP Wrappers
      *
      */
-    get(url: string, options?: RequestOptionsArgs): Observable<Response>;
-    post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>;
-    put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>;
-    delete(url: string, options?: RequestOptionsArgs): Observable<Response>;
-    patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response>;
-    head(path: string, options?: RequestOptionsArgs): Observable<Response>;
-    options(url: string, options?: RequestOptionsArgs): Observable<Response>;
-    request(options: RequestOptionsArgs): Observable<Response>;
-    private mergeRequestOptionsArgs(options, addOptions?);
+    request(method: string, url: string, body?: any): Observable<Object>;
     private handleResponse(response);
     /**
      *

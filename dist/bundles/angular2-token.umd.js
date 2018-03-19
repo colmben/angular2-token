@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/http'), require('@angular/common/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('rxjs/operators')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/http', '@angular/common/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', 'rxjs/operators'], factory) :
-	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.http,global.ng.common.http,global.Rx,global.Rx.Observable.prototype,global.Rx.Observable,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype));
-}(this, (function (exports,core,forms,common,router,http,http$1,Observable,share,interval,fromEvent,pluck,filter,operators) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('rxjs/operators')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', 'rxjs/operators'], factory) :
+	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.common.http,global.Rx,global.Rx.Observable.prototype,global.Rx.Observable,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype));
+}(this, (function (exports,core,forms,common,router,http,Observable,share,interval,fromEvent,pluck,filter,operators) { 'use strict';
 
 var A2tFormService = /** @class */ (function () {
     function A2tFormService() {
@@ -299,7 +299,7 @@ var Angular2TokenService = /** @class */ (function () {
     Object.defineProperty(Angular2TokenService.prototype, "currentAuthHeaders", {
         get: function () {
             if (this.atCurrentAuthData != null) {
-                return new http$1.HttpHeaders({
+                return new http.HttpHeaders({
                     'access-token': this.atCurrentAuthData.accessToken,
                     'client': this.atCurrentAuthData.client,
                     'expiry': this.atCurrentAuthData.expiry,
@@ -307,7 +307,7 @@ var Angular2TokenService = /** @class */ (function () {
                     'uid': this.atCurrentAuthData.uid
                 });
             }
-            return new http$1.HttpHeaders;
+            return new http.HttpHeaders;
         },
         enumerable: true,
         configurable: true
@@ -378,10 +378,10 @@ var Angular2TokenService = /** @class */ (function () {
         registerData["password_confirmation"] = registerData.passwordConfirmation;
         delete registerData.passwordConfirmation;
         registerData["confirm_success_url"] = this.atOptions.registerAccountCallback;
-        return this.post(this.getUserPath() + this.atOptions.registerAccountPath, JSON.stringify(registerData));
+        return this.request('POST', this.getUserPath() + this.atOptions.registerAccountPath, JSON.stringify(registerData));
     };
     Angular2TokenService.prototype.deleteAccount = function () {
-        return this.delete(this.getUserPath() + this.atOptions.deleteAccountPath);
+        return this.request('DELETE', this.getUserPath() + this.atOptions.deleteAccountPath);
     };
     Angular2TokenService.prototype.signIn = function (signInData) {
         var _this = this;
@@ -393,8 +393,13 @@ var Angular2TokenService = /** @class */ (function () {
             email: signInData.email,
             password: signInData.password
         });
-        var observ = this.post(this.getUserPath() + this.atOptions.signInPath, body);
-        observ.subscribe(function (res) { return _this.atCurrentUserData = res.json().data; }, function (_error) { return null; });
+        var observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
+        observ.pipe(operators.tap(function (res) {
+            if (res instanceof http.HttpResponse) {
+                _this.atCurrentUserData = res.body.data;
+            }
+        }, function (_error) {
+        }));
         return observ;
     };
     Angular2TokenService.prototype.signInOAuth = function (oAuthType) {
@@ -424,7 +429,7 @@ var Angular2TokenService = /** @class */ (function () {
         this.getAuthDataFromParams();
     };
     Angular2TokenService.prototype.signOut = function () {
-        var observ = this.delete(this.getUserPath() + this.atOptions.signOutPath);
+        var observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
         localStorage.removeItem('accessToken');
         localStorage.removeItem('client');
         localStorage.removeItem('expiry');
@@ -437,12 +442,16 @@ var Angular2TokenService = /** @class */ (function () {
     };
     Angular2TokenService.prototype.validateToken = function () {
         var _this = this;
-        var observ = this.get(this.getUserPath() + this.atOptions.validateTokenPath);
-        observ.subscribe(function (res) { return _this.atCurrentUserData = res.json().data; }, function (error) {
+        var observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
+        observ.pipe(operators.tap(function (res) {
+            if (res instanceof http.HttpResponse) {
+                _this.atCurrentUserData = res.body.data;
+            }
+        }, function (error) {
             if (error.status === 401 && _this.atOptions.signOutFailedValidate) {
                 _this.signOut();
             }
-        });
+        }));
         return observ;
     };
     Angular2TokenService.prototype.updatePassword = function (updatePasswordData) {
@@ -466,7 +475,7 @@ var Angular2TokenService = /** @class */ (function () {
             args.reset_password_token = updatePasswordData.resetPasswordToken;
         }
         var body = JSON.stringify(args);
-        return this.put(this.getUserPath() + this.atOptions.updatePasswordPath, body);
+        return this.request('PUT', this.getUserPath() + this.atOptions.updatePasswordPath, body);
     };
     Angular2TokenService.prototype.resetPassword = function (resetPasswordData) {
         if (resetPasswordData.userType == null)
@@ -477,55 +486,10 @@ var Angular2TokenService = /** @class */ (function () {
             email: resetPasswordData.email,
             redirect_url: this.atOptions.resetPasswordCallback
         });
-        return this.post(this.getUserPath() + this.atOptions.resetPasswordPath, body);
+        return this.request('POST', this.getUserPath() + this.atOptions.resetPasswordPath, body);
     };
-    Angular2TokenService.prototype.get = function (url, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: http.RequestMethod.Get
-        }, options));
-    };
-    Angular2TokenService.prototype.post = function (url, body, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: http.RequestMethod.Post,
-            body: body
-        }, options));
-    };
-    Angular2TokenService.prototype.put = function (url, body, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: http.RequestMethod.Put,
-            body: body
-        }, options));
-    };
-    Angular2TokenService.prototype.delete = function (url, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: http.RequestMethod.Delete
-        }, options));
-    };
-    Angular2TokenService.prototype.patch = function (url, body, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: http.RequestMethod.Patch,
-            body: body
-        }, options));
-    };
-    Angular2TokenService.prototype.head = function (path, options) {
-        return this.request({
-            method: http.RequestMethod.Head,
-            url: this.getApiPath() + path
-        });
-    };
-    Angular2TokenService.prototype.options = function (url, options) {
-        return this.request(this.mergeRequestOptionsArgs({
-            url: this.getApiPath() + url,
-            method: http.RequestMethod.Options
-        }, options));
-    };
-    Angular2TokenService.prototype.request = function (options) {
-        var baseRequestOptions;
+    Angular2TokenService.prototype.request = function (method, url, body) {
+        var options = {};
         var baseHeaders = this.atOptions.globalOptions.headers;
         this.getAuthDataFromStorage();
         if (this.atCurrentAuthData != null) {
@@ -537,27 +501,19 @@ var Angular2TokenService = /** @class */ (function () {
                 'uid': this.atCurrentAuthData.uid
             });
         }
-        baseRequestOptions = new http.RequestOptions({
-            headers: new http.Headers(baseHeaders)
-        });
-        baseRequestOptions = baseRequestOptions.merge(options);
-        var response = this.http.request(new http.Request(baseRequestOptions)).share();
+        options["headers"] = new http.HttpHeaders(baseHeaders);
+        options["body"] = body;
+        var response = this.http.request(method, url, options);
         this.handleResponse(response);
         return response;
     };
-    Angular2TokenService.prototype.mergeRequestOptionsArgs = function (options, addOptions) {
-        var returnOptions = options;
-        if (options)
-            ((Object)).assign(returnOptions, addOptions);
-        return returnOptions;
-    };
     Angular2TokenService.prototype.handleResponse = function (response) {
         var _this = this;
-        response.subscribe(function (res) {
+        response.pipe(operators.tap(function (res) {
             _this.getAuthHeadersFromResponse((res));
         }, function (error) {
             _this.getAuthHeadersFromResponse((error));
-        });
+        }));
     };
     Angular2TokenService.prototype.tryLoadAuthData = function () {
         var userType = this.getUserTypeByName(localStorage.getItem('userType'));
@@ -701,7 +657,7 @@ Angular2TokenService.decorators = [
     { type: core.Injectable },
 ];
 Angular2TokenService.ctorParameters = function () { return [
-    { type: http.Http, },
+    { type: http.HttpClient, },
     { type: router.ActivatedRoute, decorators: [{ type: core.Optional },] },
     { type: router.Router, decorators: [{ type: core.Optional },] },
 ]; };
@@ -887,22 +843,22 @@ var Angular2TokenInteceptor = /** @class */ (function () {
             });
         }
         return next.handle(req)
-            .pipe(operators.tap((function (res) {
+            .pipe(operators.tap(function (res) {
             console.log('In token interceptor, evt : ', res);
-            if (res instanceof http$1.HttpResponse && res.url.match(_this.apiPath)) {
+            if (res instanceof http.HttpResponse && res.url.match(_this.apiPath)) {
                 console.log('---> status:', res.status);
                 console.log('---> filter:', req.params.get('filter'));
                 _this.getAuthHeadersFromResponse((res));
             }
-        }), (function (err) {
-            if (err instanceof http$1.HttpErrorResponse && err.url.match(_this.apiPath)) {
+        }, function (err) {
+            if (err instanceof http.HttpErrorResponse && err.url.match(_this.apiPath)) {
                 console.log('In token interceptor, err : ', err);
                 _this.getAuthHeadersFromResponse((err));
             }
             else {
                 console.log("Auth Interceptor, non HTTP error - ", err);
             }
-        })));
+        }));
     };
     Angular2TokenInteceptor.prototype.getAuthHeadersFromResponse = function (data) {
         var headers = data.headers;
