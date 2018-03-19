@@ -1444,12 +1444,12 @@ class Angular2TokenInteceptor {
             if (res instanceof HttpResponse && res.url.match(this.apiPath)) {
                 console.log('---> status:', res.status);
                 console.log('---> filter:', req.params.get('filter'));
-                this.getAuthHeadersFromResponse(/** @type {?} */ (res));
+                //this.getAuthHeadersFromResponse(<any>res);
             }
         }), (err => {
             if (err instanceof HttpErrorResponse && err.url.match(this.apiPath)) {
                 console.log('In token interceptor, err : ', err);
-                this.getAuthHeadersFromResponse(/** @type {?} */ (err));
+                //this.getAuthHeadersFromResponse(<any>err);
             }
             else {
                 console.log("Auth Interceptor, non HTTP error - ", err);
