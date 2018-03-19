@@ -71,6 +71,10 @@ export class Angular2TokenService implements CanActivate {
         return this.getApiPath();
     }
 
+    set currentAuthData(authData: AuthData){
+        this.setAuthData(authData)        ;
+    }
+
     private atOptions: Angular2TokenOptions;
     private atCurrentUserType: UserType;
     private atCurrentAuthData: AuthData;
