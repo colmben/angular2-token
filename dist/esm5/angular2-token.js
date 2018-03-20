@@ -405,7 +405,7 @@ var Angular2TokenService = /** @class */ (function () {
         observ.pipe(tap(function (res) {
             if (res instanceof HttpResponse) {
                 console.log('In singIn tap, res is HttpResponse : ', res);
-                _this.atCurrentUserData = res.body.data;
+                _this.atCurrentUserData = res.body;
             }
             else {
                 console.log('In singIn tap, res is NOT HttpResponse : ', res);
@@ -458,7 +458,7 @@ var Angular2TokenService = /** @class */ (function () {
         var observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
         observ.pipe(tap(function (res) {
             if (res instanceof HttpResponse) {
-                _this.atCurrentUserData = res.body.data;
+                _this.atCurrentUserData = res.body;
             }
         }, function (error) {
             if (error.status === 401 && _this.atOptions.signOutFailedValidate) {

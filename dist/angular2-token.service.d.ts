@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router, CanActivate } from '@angular/router';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpResponse, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/interval';
@@ -31,11 +31,11 @@ export declare class Angular2TokenService implements CanActivate {
      */
     registerAccount(registerData: RegisterData): Observable<Object>;
     deleteAccount(): Observable<Object>;
-    signIn(signInData: SignInData): Observable<Object>;
+    signIn(signInData: SignInData): Observable<HttpResponse<UserData>>;
     signInOAuth(oAuthType: string): Observable<any>;
     processOAuthCallback(): void;
     signOut(): Observable<Object>;
-    validateToken(): Observable<Object>;
+    validateToken(): Observable<HttpResponse<Object>>;
     updatePassword(updatePasswordData: UpdatePasswordData): Observable<Object>;
     resetPassword(resetPasswordData: ResetPasswordData): Observable<Object>;
     /**
@@ -43,8 +43,8 @@ export declare class Angular2TokenService implements CanActivate {
      * HTTP Wrappers
      *
      */
-    request(method: string, url: string, body?: any): Observable<Object>;
-    private handleResponse(response);
+    request<T>(method: string, url: string, body?: any): Observable<HttpResponse<T>>;
+    private handleResponse<T>(response);
     /**
      *
      * Get Auth Data

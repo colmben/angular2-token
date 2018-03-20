@@ -180,7 +180,7 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Sign in request and set storage
-    signIn(signInData: SignInData): Observable<Object> {
+    signIn(signInData: SignInData): Observable<HttpResponse<UserData>> {
 
         if (signInData.userType == null)
             this.atCurrentUserType = null;
@@ -192,14 +192,14 @@ export class Angular2TokenService implements CanActivate {
             password: signInData.password
         });
 
-        let observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
+        let observ = this.request<UserData>('POST', this.getUserPath() + this.atOptions.signInPath, body);
 
         observ.pipe(
             tap(
                 res => {
                     if (res instanceof HttpResponse) {
                         console.log('In singIn tap, res is HttpResponse : ', res);
-                        this.atCurrentUserData = res.body.data
+                        this.atCurrentUserData = res.body
                     } else {
                         console.log('In singIn tap, res is NOT HttpResponse : ', res);
 
@@ -263,14 +263,14 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Validate token request
-    validateToken(): Observable<Object> {
-        let observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
+    validateToken(): Observable<HttpResponse<Object>> {
+        let observ = this.request<UserData>('GET', this.getUserPath() + this.atOptions.validateTokenPath);
 
         observ.pipe(
             tap(
                 res => {
                     if (res instanceof HttpResponse) {
-                        this.atCurrentUserData = res.body.data
+                        this.atCurrentUserData = res.body;
                     }
                 },
                 error => {
@@ -366,7 +366,7 @@ export class Angular2TokenService implements CanActivate {
 
 
     // Construct and send Http request
-    request(method: string, url: string, body?: any): Observable<Object> {
+    request<T>(method: string, url: string, body?: any): Observable<HttpResponse<T>> {
 
         const options: { [key: string]: any; } = {};
         let baseHeaders: { [key: string]: string; } = this.atOptions.globalOptions.headers;
@@ -388,7 +388,7 @@ export class Angular2TokenService implements CanActivate {
         options.headers = new HttpHeaders(baseHeaders);
         options.body = body;
 
-        let response = this.http.request(method, this.getApiPath() + url, options);
+        const response = this.http.request<HttpResponse<T>>(method, this.getApiPath() + url, options);
         this.handleResponse(response);
 
         return response;
@@ -396,7 +396,7 @@ export class Angular2TokenService implements CanActivate {
 
 
     // Check if response is complete and newer, then update storage
-    private handleResponse(response: Observable<Object>): void {
+    private handleResponse <T>(response: Observable<HttpResponse<T>>): void {
         response.pipe(
             tap(res => {
                 this.getAuthHeadersFromResponse(<any>res);

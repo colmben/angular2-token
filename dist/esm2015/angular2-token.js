@@ -681,7 +681,7 @@ class Angular2TokenService {
         observ.pipe(tap(res => {
             if (res instanceof HttpResponse) {
                 console.log('In singIn tap, res is HttpResponse : ', res);
-                this.atCurrentUserData = res.body.data;
+                this.atCurrentUserData = res.body;
             }
             else {
                 console.log('In singIn tap, res is NOT HttpResponse : ', res);
@@ -746,7 +746,7 @@ class Angular2TokenService {
         let /** @type {?} */ observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
         observ.pipe(tap(res => {
             if (res instanceof HttpResponse) {
-                this.atCurrentUserData = res.body.data;
+                this.atCurrentUserData = res.body;
             }
         }, error => {
             if (error.status === 401 && this.atOptions.signOutFailedValidate) {
@@ -801,6 +801,7 @@ class Angular2TokenService {
      *
      * HTTP Wrappers
      *
+     * @template T
      * @param {?} method
      * @param {?} url
      * @param {?=} body
@@ -823,11 +824,12 @@ class Angular2TokenService {
         }
         options["headers"] = new HttpHeaders(baseHeaders);
         options["body"] = body;
-        let /** @type {?} */ response = this.http.request(method, this.getApiPath() + url, options);
+        const /** @type {?} */ response = this.http.request(method, this.getApiPath() + url, options);
         this.handleResponse(response);
         return response;
     }
     /**
+     * @template T
      * @param {?} response
      * @return {?}
      */
