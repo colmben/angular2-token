@@ -9,7 +9,7 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -681,13 +681,8 @@ class Angular2TokenService {
         let /** @type {?} */ observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
         console.log('In singIn tap, returned observ : ', observ);
         return observ.pipe(tap(res => {
-            if (res instanceof HttpResponse) {
-                console.log('In singIn tap, res is HttpResponse : ', res);
-                this.atCurrentUserData = res.body;
-            }
-            else {
-                console.log('In singIn tap, res is NOT HttpResponse : ', res);
-            }
+            console.log('In singIn tap, res  : ', res);
+            this.atCurrentUserData = res;
         }, err => {
             console.log('In singIn tap, error : ', err);
         }));
@@ -826,8 +821,8 @@ class Angular2TokenService {
         options["headers"] = new HttpHeaders(baseHeaders);
         options["body"] = body;
         const /** @type {?} */ response = this.http.request(method, this.getApiPath() + url, options);
-        this.handleResponse(response);
-        return response;
+        //this.handleResponse(response);
+        return response.pipe(map(res => res.data));
     }
     /**
      * @template T

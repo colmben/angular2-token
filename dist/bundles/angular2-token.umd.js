@@ -397,13 +397,8 @@ var Angular2TokenService = /** @class */ (function () {
         var observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
         console.log('In singIn tap, returned observ : ', observ);
         return observ.pipe(operators.tap(function (res) {
-            if (res instanceof http.HttpResponse) {
-                console.log('In singIn tap, res is HttpResponse : ', res);
-                _this.atCurrentUserData = res.body;
-            }
-            else {
-                console.log('In singIn tap, res is NOT HttpResponse : ', res);
-            }
+            console.log('In singIn tap, res  : ', res);
+            _this.atCurrentUserData = res;
         }, function (err) {
             console.log('In singIn tap, error : ', err);
         }));
@@ -510,8 +505,7 @@ var Angular2TokenService = /** @class */ (function () {
         options["headers"] = new http.HttpHeaders(baseHeaders);
         options["body"] = body;
         var response = this.http.request(method, this.getApiPath() + url, options);
-        this.handleResponse(response);
-        return response;
+        return response.pipe(operators.map(function (res) { return res.data; }));
     };
     Angular2TokenService.prototype.handleResponse = function (response) {
         var _this = this;

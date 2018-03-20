@@ -26,7 +26,7 @@ import {
 
     Angular2TokenOptions
 } from './angular2-token.model';
-import {tap} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 
 
 @Injectable()
@@ -180,7 +180,7 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Sign in request and set storage
-    signIn(signInData: SignInData): Observable<HttpResponse<UserData>> {
+    signIn(signInData: SignInData): Observable<UserData> {
         console.log('In singIn tap!');
 
         if (signInData.userType == null)
@@ -199,13 +199,10 @@ export class Angular2TokenService implements CanActivate {
         return observ.pipe(
             tap(
                 res => {
-                    if (res instanceof HttpResponse) {
-                        console.log('In singIn tap, res is HttpResponse : ', res);
-                        this.atCurrentUserData = res.body
-                    } else {
-                        console.log('In singIn tap, res is NOT HttpResponse : ', res);
 
-                    }
+                        console.log('In singIn tap, res  : ', res);
+                        this.atCurrentUserData = res;
+
                 }, err => {
                     console.log('In singIn tap, error : ', err);
                 }));
@@ -264,7 +261,7 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Validate token request
-    validateToken(): Observable<HttpResponse<Object>> {
+    validateToken(): Observable<UserData> {
         let observ = this.request<UserData>('GET', this.getUserPath() + this.atOptions.validateTokenPath);
 
         observ.pipe(
@@ -367,11 +364,10 @@ export class Angular2TokenService implements CanActivate {
 
 
     // Construct and send Http request
-    request<T>(method: string, url: string, body?: any): Observable<HttpResponse<T>> {
+    request<T>(method: string, url: string, body?: any): Observable<T> {
 
         const options: { [key: string]: any; } = {};
         let baseHeaders: { [key: string]: string; } = this.atOptions.globalOptions.headers;
-
         // Get auth data from local storage
         this.getAuthDataFromStorage();
 
@@ -389,10 +385,12 @@ export class Angular2TokenService implements CanActivate {
         options.headers = new HttpHeaders(baseHeaders);
         options.body = body;
 
-        const response = this.http.request<HttpResponse<T>>(method, this.getApiPath() + url, options);
-        this.handleResponse(response);
+        const response = this.http.request<{ data: T;}>(method, this.getApiPath() + url, options);
+        //this.handleResponse(response);
 
-        return response;
+        return response.pipe(
+            map(res =>res.data)
+        );
     }
 
 
