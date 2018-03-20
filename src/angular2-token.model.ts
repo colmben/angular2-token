@@ -7,14 +7,6 @@ export interface SignInData {
 }
 
 export interface RegisterData {
-    email:                  string;
-    password:               string;
-    passwordConfirmation:   string;
-    name?:                  string;
-    userType?:              string;
-}
-
-export interface RegisterData {
     [key:string]: string;
 };
 
