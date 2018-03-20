@@ -395,7 +395,8 @@ var Angular2TokenService = /** @class */ (function () {
             password: signInData.password
         });
         var observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
-        observ.pipe(operators.tap(function (res) {
+        console.log('In singIn tap, returned observ : ', observ);
+        return observ.pipe(operators.tap(function (res) {
             if (res instanceof http.HttpResponse) {
                 console.log('In singIn tap, res is HttpResponse : ', res);
                 _this.atCurrentUserData = res.body;
@@ -406,8 +407,6 @@ var Angular2TokenService = /** @class */ (function () {
         }, function (err) {
             console.log('In singIn tap, error : ', err);
         }));
-        console.log('In singIn tap, returned observ : ', observ);
-        return observ;
     };
     Angular2TokenService.prototype.signInOAuth = function (oAuthType) {
         var oAuthPath = this.getOAuthPath(oAuthType);

@@ -195,7 +195,8 @@ export class Angular2TokenService implements CanActivate {
 
         let observ = this.request<UserData>('POST', this.getUserPath() + this.atOptions.signInPath, body);
 
-        observ.pipe(
+        console.log('In singIn tap, returned observ : ', observ);
+        return observ.pipe(
             tap(
                 res => {
                     if (res instanceof HttpResponse) {
@@ -208,8 +209,7 @@ export class Angular2TokenService implements CanActivate {
                 }, err => {
                     console.log('In singIn tap, error : ', err);
                 }));
-        console.log('In singIn tap, returned observ : ', observ);
-        return observ;
+
     }
 
     signInOAuth(oAuthType: string) {

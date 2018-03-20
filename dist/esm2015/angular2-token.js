@@ -679,7 +679,8 @@ class Angular2TokenService {
             password: signInData.password
         });
         let /** @type {?} */ observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
-        observ.pipe(tap(res => {
+        console.log('In singIn tap, returned observ : ', observ);
+        return observ.pipe(tap(res => {
             if (res instanceof HttpResponse) {
                 console.log('In singIn tap, res is HttpResponse : ', res);
                 this.atCurrentUserData = res.body;
@@ -690,8 +691,6 @@ class Angular2TokenService {
         }, err => {
             console.log('In singIn tap, error : ', err);
         }));
-        console.log('In singIn tap, returned observ : ', observ);
-        return observ;
     }
     /**
      * @param {?} oAuthType
