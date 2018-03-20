@@ -198,6 +198,7 @@ export class Angular2TokenService implements CanActivate {
             tap(
                 res => {
                     if (res instanceof HttpResponse) {
+                        console.log('In singIn tap, res is HttpResponse : ', res);
                         this.atCurrentUserData = res.body.data
                     }
                 }, _error => {

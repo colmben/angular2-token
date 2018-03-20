@@ -680,6 +680,7 @@ class Angular2TokenService {
         let /** @type {?} */ observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
         observ.pipe(tap(res => {
             if (res instanceof HttpResponse) {
+                console.log('In singIn tap, res is HttpResponse : ', res);
                 this.atCurrentUserData = res.body.data;
             }
         }, _error => {
