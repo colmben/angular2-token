@@ -181,6 +181,7 @@ export class Angular2TokenService implements CanActivate {
 
     // Sign in request and set storage
     signIn(signInData: SignInData): Observable<HttpResponse<UserData>> {
+        console.log('In singIn tap!');
 
         if (signInData.userType == null)
             this.atCurrentUserType = null;
@@ -207,7 +208,7 @@ export class Angular2TokenService implements CanActivate {
                 }, err => {
                     console.log('In singIn tap, error : ', err);
                 }));
-
+        console.log('In singIn tap, returned observ : ', observ);
         return observ;
     }
 

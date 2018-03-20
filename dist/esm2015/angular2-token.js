@@ -669,6 +669,7 @@ class Angular2TokenService {
      * @return {?}
      */
     signIn(signInData) {
+        console.log('In singIn tap!');
         if (signInData.userType == null)
             this.atCurrentUserType = null;
         else
@@ -689,6 +690,7 @@ class Angular2TokenService {
         }, err => {
             console.log('In singIn tap, error : ', err);
         }));
+        console.log('In singIn tap, returned observ : ', observ);
         return observ;
     }
     /**

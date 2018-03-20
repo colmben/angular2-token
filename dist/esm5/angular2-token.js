@@ -393,6 +393,7 @@ var Angular2TokenService = /** @class */ (function () {
     };
     Angular2TokenService.prototype.signIn = function (signInData) {
         var _this = this;
+        console.log('In singIn tap!');
         if (signInData.userType == null)
             this.atCurrentUserType = null;
         else
@@ -413,6 +414,7 @@ var Angular2TokenService = /** @class */ (function () {
         }, function (err) {
             console.log('In singIn tap, error : ', err);
         }));
+        console.log('In singIn tap, returned observ : ', observ);
         return observ;
     };
     Angular2TokenService.prototype.signInOAuth = function (oAuthType) {
