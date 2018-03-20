@@ -2,14 +2,14 @@ import { Injectable, EventEmitter, Component, Input, NgModule, Optional } from '
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse, HttpClient, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
-import { tap } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -518,6 +518,84 @@ A2tUiComponent.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+class Angular2TokenInteceptor {
+    /**
+     * @param {?} _tokenService
+     */
+    constructor(_tokenService) {
+        this._tokenService = _tokenService;
+        this.apiPath = this._tokenService.apiPath;
+    }
+    /**
+     * @param {?} req
+     * @param {?} next
+     * @return {?}
+     */
+    intercept(req, next) {
+        console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
+        let /** @type {?} */ headersWithAuth = this._tokenService.currentAuthHeaders;
+        const /** @type {?} */ apiPath = req.headers.keys().forEach(key => {
+            headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
+        });
+        console.log('In intercept request, new headers : ', headersWithAuth);
+        if (req.url.match(this.apiPath)) {
+            req = req.clone({ headers: headersWithAuth });
+            const /** @type {?} */ authHeaders = this._tokenService.currentAuthHeaders;
+            authHeaders.keys().forEach(key => {
+                req.headers.append(key, authHeaders.get(key));
+            });
+        }
+        return next.handle(req)
+            .pipe(tap(res => {
+            console.log('In token interceptor, evt : ', res);
+            if (res instanceof HttpResponse && res.url.match(this.apiPath)) {
+                console.log('---> status:', res.status);
+                console.log('---> filter:', req.params.get('filter'));
+                this.getAuthHeadersFromResponse(/** @type {?} */ (res));
+            }
+        }, err => {
+            if (err instanceof HttpErrorResponse && err.url.match(this.apiPath)) {
+                console.log('In token interceptor, err : ', err);
+                this.getAuthHeadersFromResponse(/** @type {?} */ (err));
+            }
+            else {
+                console.log("Auth Interceptor, non HTTP error - ", err);
+            }
+        }));
+    }
+    /**
+     * @param {?} data
+     * @return {?}
+     */
+    getAuthHeadersFromResponse(data) {
+        let /** @type {?} */ headers = data.headers;
+        let /** @type {?} */ authData = {
+            accessToken: headers.get('access-token'),
+            client: headers.get('client'),
+            expiry: headers.get('expiry'),
+            tokenType: headers.get('token-type'),
+            uid: headers.get('uid')
+        };
+        this._tokenService.currentAuthData = authData;
+    }
+}
+Angular2TokenInteceptor.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+Angular2TokenInteceptor.ctorParameters = () => [
+    { type: Angular2TokenService, },
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+const TOKEN_INTERCEPTOR_PROVIDER = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Angular2TokenInteceptor,
+    multi: true
+};
 class Angular2TokenService {
     /**
      * @param {?} http
@@ -528,6 +606,16 @@ class Angular2TokenService {
         this.http = http;
         this.activatedRoute = activatedRoute;
         this.router = router;
+    }
+    /**
+     * @return {?}
+     */
+    static forRoot() {
+        return {
+            ngModule: Angular2TokenService,
+            providers: [Angular2TokenService,
+                TOKEN_INTERCEPTOR_PROVIDER]
+        };
     }
     /**
      * @return {?}
@@ -1280,79 +1368,6 @@ A2tUiModule.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-class Angular2TokenInteceptor {
-    /**
-     * @param {?} _tokenService
-     */
-    constructor(_tokenService) {
-        this._tokenService = _tokenService;
-        this.apiPath = this._tokenService.apiPath;
-    }
-    /**
-     * @param {?} req
-     * @param {?} next
-     * @return {?}
-     */
-    intercept(req, next) {
-        console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
-        let /** @type {?} */ headersWithAuth = this._tokenService.currentAuthHeaders;
-        const /** @type {?} */ apiPath = req.headers.keys().forEach(key => {
-            headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
-        });
-        console.log('In intercept request, new headers : ', headersWithAuth);
-        if (req.url.match(this.apiPath)) {
-            req = req.clone({ headers: headersWithAuth });
-            const /** @type {?} */ authHeaders = this._tokenService.currentAuthHeaders;
-            authHeaders.keys().forEach(key => {
-                req.headers.append(key, authHeaders.get(key));
-            });
-        }
-        return next.handle(req)
-            .pipe(tap(res => {
-            console.log('In token interceptor, evt : ', res);
-            if (res instanceof HttpResponse && res.url.match(this.apiPath)) {
-                console.log('---> status:', res.status);
-                console.log('---> filter:', req.params.get('filter'));
-                this.getAuthHeadersFromResponse(/** @type {?} */ (res));
-            }
-        }, err => {
-            if (err instanceof HttpErrorResponse && err.url.match(this.apiPath)) {
-                console.log('In token interceptor, err : ', err);
-                this.getAuthHeadersFromResponse(/** @type {?} */ (err));
-            }
-            else {
-                console.log("Auth Interceptor, non HTTP error - ", err);
-            }
-        }));
-    }
-    /**
-     * @param {?} data
-     * @return {?}
-     */
-    getAuthHeadersFromResponse(data) {
-        let /** @type {?} */ headers = data.headers;
-        let /** @type {?} */ authData = {
-            accessToken: headers.get('access-token'),
-            client: headers.get('client'),
-            expiry: headers.get('expiry'),
-            tokenType: headers.get('token-type'),
-            uid: headers.get('uid')
-        };
-        this._tokenService.currentAuthData = authData;
-    }
-}
-Angular2TokenInteceptor.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-Angular2TokenInteceptor.ctorParameters = () => [
-    { type: Angular2TokenService, },
-];
 
 /**
  * @fileoverview added by tsickle

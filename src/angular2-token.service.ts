@@ -1,4 +1,4 @@
-import {ClassProvider, Injectable, NgModule, Optional} from '@angular/core';
+import {ClassProvider, Injectable, ModuleWithProviders, NgModule, Optional} from '@angular/core';
 import {ActivatedRoute, Router, CanActivate} from '@angular/router';
 import {
     HttpClient,
@@ -28,10 +28,21 @@ import {
 } from './angular2-token.model';
 import {map, tap} from "rxjs/operators";
 
+const TOKEN_INTERCEPTOR_PROVIDER: ClassProvider = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Angular2TokenInteceptor,
+    multi: true
+};
 
 @Injectable()
 export class Angular2TokenService implements CanActivate {
-
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: Angular2TokenService,
+            providers: [ Angular2TokenService,
+                TOKEN_INTERCEPTOR_PROVIDER ]
+        };
+    }
     get currentUserType(): string {
         if (this.atCurrentUserType != null)
             return this.atCurrentUserType.name;

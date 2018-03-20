@@ -2,14 +2,14 @@ import { Injectable, EventEmitter, Component, Input, NgModule, Optional } from '
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse, HttpClient, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
-import { tap } from 'rxjs/operators';
 
 var A2tFormService = /** @class */ (function () {
     function A2tFormService() {
@@ -271,12 +271,81 @@ A2tUiComponent.decorators = [
             },] },
 ];
 A2tUiComponent.ctorParameters = function () { return []; };
+var Angular2TokenInteceptor = /** @class */ (function () {
+    function Angular2TokenInteceptor(_tokenService) {
+        this._tokenService = _tokenService;
+        this.apiPath = this._tokenService.apiPath;
+    }
+    Angular2TokenInteceptor.prototype.intercept = function (req, next) {
+        var _this = this;
+        console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
+        var headersWithAuth = this._tokenService.currentAuthHeaders;
+        var apiPath = req.headers.keys().forEach(function (key) {
+            headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
+        });
+        console.log('In intercept request, new headers : ', headersWithAuth);
+        if (req.url.match(this.apiPath)) {
+            req = req.clone({ headers: headersWithAuth });
+            var authHeaders_1 = this._tokenService.currentAuthHeaders;
+            authHeaders_1.keys().forEach(function (key) {
+                req.headers.append(key, authHeaders_1.get(key));
+            });
+        }
+        return next.handle(req)
+            .pipe(tap(function (res) {
+            console.log('In token interceptor, evt : ', res);
+            if (res instanceof HttpResponse && res.url.match(_this.apiPath)) {
+                console.log('---> status:', res.status);
+                console.log('---> filter:', req.params.get('filter'));
+                _this.getAuthHeadersFromResponse((res));
+            }
+        }, function (err) {
+            if (err instanceof HttpErrorResponse && err.url.match(_this.apiPath)) {
+                console.log('In token interceptor, err : ', err);
+                _this.getAuthHeadersFromResponse((err));
+            }
+            else {
+                console.log("Auth Interceptor, non HTTP error - ", err);
+            }
+        }));
+    };
+    Angular2TokenInteceptor.prototype.getAuthHeadersFromResponse = function (data) {
+        var headers = data.headers;
+        var authData = {
+            accessToken: headers.get('access-token'),
+            client: headers.get('client'),
+            expiry: headers.get('expiry'),
+            tokenType: headers.get('token-type'),
+            uid: headers.get('uid')
+        };
+        this._tokenService.currentAuthData = authData;
+    };
+    return Angular2TokenInteceptor;
+}());
+Angular2TokenInteceptor.decorators = [
+    { type: Injectable },
+];
+Angular2TokenInteceptor.ctorParameters = function () { return [
+    { type: Angular2TokenService, },
+]; };
+var TOKEN_INTERCEPTOR_PROVIDER = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Angular2TokenInteceptor,
+    multi: true
+};
 var Angular2TokenService = /** @class */ (function () {
     function Angular2TokenService(http, activatedRoute, router) {
         this.http = http;
         this.activatedRoute = activatedRoute;
         this.router = router;
     }
+    Angular2TokenService.forRoot = function () {
+        return {
+            ngModule: Angular2TokenService,
+            providers: [Angular2TokenService,
+                TOKEN_INTERCEPTOR_PROVIDER]
+        };
+    };
     Object.defineProperty(Angular2TokenService.prototype, "currentUserType", {
         get: function () {
             if (this.atCurrentUserType != null)
@@ -802,63 +871,6 @@ A2tUiModule.decorators = [
             },] },
 ];
 A2tUiModule.ctorParameters = function () { return []; };
-var Angular2TokenInteceptor = /** @class */ (function () {
-    function Angular2TokenInteceptor(_tokenService) {
-        this._tokenService = _tokenService;
-        this.apiPath = this._tokenService.apiPath;
-    }
-    Angular2TokenInteceptor.prototype.intercept = function (req, next) {
-        var _this = this;
-        console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
-        var headersWithAuth = this._tokenService.currentAuthHeaders;
-        var apiPath = req.headers.keys().forEach(function (key) {
-            headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
-        });
-        console.log('In intercept request, new headers : ', headersWithAuth);
-        if (req.url.match(this.apiPath)) {
-            req = req.clone({ headers: headersWithAuth });
-            var authHeaders_1 = this._tokenService.currentAuthHeaders;
-            authHeaders_1.keys().forEach(function (key) {
-                req.headers.append(key, authHeaders_1.get(key));
-            });
-        }
-        return next.handle(req)
-            .pipe(tap(function (res) {
-            console.log('In token interceptor, evt : ', res);
-            if (res instanceof HttpResponse && res.url.match(_this.apiPath)) {
-                console.log('---> status:', res.status);
-                console.log('---> filter:', req.params.get('filter'));
-                _this.getAuthHeadersFromResponse((res));
-            }
-        }, function (err) {
-            if (err instanceof HttpErrorResponse && err.url.match(_this.apiPath)) {
-                console.log('In token interceptor, err : ', err);
-                _this.getAuthHeadersFromResponse((err));
-            }
-            else {
-                console.log("Auth Interceptor, non HTTP error - ", err);
-            }
-        }));
-    };
-    Angular2TokenInteceptor.prototype.getAuthHeadersFromResponse = function (data) {
-        var headers = data.headers;
-        var authData = {
-            accessToken: headers.get('access-token'),
-            client: headers.get('client'),
-            expiry: headers.get('expiry'),
-            tokenType: headers.get('token-type'),
-            uid: headers.get('uid')
-        };
-        this._tokenService.currentAuthData = authData;
-    };
-    return Angular2TokenInteceptor;
-}());
-Angular2TokenInteceptor.decorators = [
-    { type: Injectable },
-];
-Angular2TokenInteceptor.ctorParameters = function () { return [
-    { type: Angular2TokenService, },
-]; };
 
 export { A2tUiModule, Angular2TokenService, Angular2TokenInteceptor };
 //# sourceMappingURL=angular2-token.js.map
