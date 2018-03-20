@@ -384,7 +384,7 @@ export class Angular2TokenService implements CanActivate {
         options.headers = new HttpHeaders(baseHeaders);
         options.body = body;
 
-        let response = this.http.request(method, url, options);
+        let response = this.http.request(method, this.getApiPath() + url, options);
         this.handleResponse(response);
 
         return response;

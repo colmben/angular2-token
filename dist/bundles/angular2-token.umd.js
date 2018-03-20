@@ -503,7 +503,7 @@ var Angular2TokenService = /** @class */ (function () {
         }
         options["headers"] = new http.HttpHeaders(baseHeaders);
         options["body"] = body;
-        var response = this.http.request(method, url, options);
+        var response = this.http.request(method, this.getApiPath() + url, options);
         this.handleResponse(response);
         return response;
     };

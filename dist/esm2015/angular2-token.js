@@ -819,7 +819,7 @@ class Angular2TokenService {
         }
         options["headers"] = new HttpHeaders(baseHeaders);
         options["body"] = body;
-        let /** @type {?} */ response = this.http.request(method, url, options);
+        let /** @type {?} */ response = this.http.request(method, this.getApiPath() + url, options);
         this.handleResponse(response);
         return response;
     }
