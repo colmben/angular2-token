@@ -407,6 +407,9 @@ var Angular2TokenService = /** @class */ (function () {
                 console.log('In singIn tap, res is HttpResponse : ', res);
                 _this.atCurrentUserData = res.body.data;
             }
+            else {
+                console.log('In singIn tap, res is NOT HttpResponse : ', res);
+            }
         }, function (_error) {
         }));
         return observ;

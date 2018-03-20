@@ -683,6 +683,9 @@ class Angular2TokenService {
                 console.log('In singIn tap, res is HttpResponse : ', res);
                 this.atCurrentUserData = res.body.data;
             }
+            else {
+                console.log('In singIn tap, res is NOT HttpResponse : ', res);
+            }
         }, _error => {
             
         }));
