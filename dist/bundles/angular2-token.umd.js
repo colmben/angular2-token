@@ -492,16 +492,6 @@ var Angular2TokenService = /** @class */ (function () {
     Angular2TokenService.prototype.request = function (method, url, body) {
         var options = {};
         var baseHeaders = this.atOptions.globalOptions.headers;
-        this.getAuthDataFromStorage();
-        if (this.atCurrentAuthData != null) {
-            ((Object)).assign(baseHeaders, {
-                'access-token': this.atCurrentAuthData.accessToken,
-                'client': this.atCurrentAuthData.client,
-                'expiry': this.atCurrentAuthData.expiry,
-                'token-type': this.atCurrentAuthData.tokenType,
-                'uid': this.atCurrentAuthData.uid
-            });
-        }
         options["headers"] = new http.HttpHeaders(baseHeaders);
         options["body"] = body;
         var response = this.http.request(method, this.getApiPath() + url, options);

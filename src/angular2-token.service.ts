@@ -369,18 +369,18 @@ export class Angular2TokenService implements CanActivate {
         const options: { [key: string]: any; } = {};
         let baseHeaders: { [key: string]: string; } = this.atOptions.globalOptions.headers;
         // Get auth data from local storage
-        this.getAuthDataFromStorage();
+        //this.getAuthDataFromStorage();
 
         // Merge auth headers to request if set
-        if (this.atCurrentAuthData != null) {
-            (<any>Object).assign(baseHeaders, {
-                'access-token': this.atCurrentAuthData.accessToken,
-                'client': this.atCurrentAuthData.client,
-                'expiry': this.atCurrentAuthData.expiry,
-                'token-type': this.atCurrentAuthData.tokenType,
-                'uid': this.atCurrentAuthData.uid
-            });
-        }
+        // if (this.atCurrentAuthData != null) {
+        //     (<any>Object).assign(baseHeaders, {
+        //         'access-token': this.atCurrentAuthData.accessToken,
+        //         'client': this.atCurrentAuthData.client,
+        //         'expiry': this.atCurrentAuthData.expiry,
+        //         'token-type': this.atCurrentAuthData.tokenType,
+        //         'uid': this.atCurrentAuthData.uid
+        //     });
+        // }
 
         options.headers = new HttpHeaders(baseHeaders);
         options.body = body;

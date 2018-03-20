@@ -807,17 +807,17 @@ class Angular2TokenService {
         const /** @type {?} */ options = {};
         let /** @type {?} */ baseHeaders = this.atOptions.globalOptions.headers;
         // Get auth data from local storage
-        this.getAuthDataFromStorage();
+        //this.getAuthDataFromStorage();
         // Merge auth headers to request if set
-        if (this.atCurrentAuthData != null) {
-            (/** @type {?} */ (Object)).assign(baseHeaders, {
-                'access-token': this.atCurrentAuthData.accessToken,
-                'client': this.atCurrentAuthData.client,
-                'expiry': this.atCurrentAuthData.expiry,
-                'token-type': this.atCurrentAuthData.tokenType,
-                'uid': this.atCurrentAuthData.uid
-            });
-        }
+        // if (this.atCurrentAuthData != null) {
+        //     (<any>Object).assign(baseHeaders, {
+        //         'access-token': this.atCurrentAuthData.accessToken,
+        //         'client': this.atCurrentAuthData.client,
+        //         'expiry': this.atCurrentAuthData.expiry,
+        //         'token-type': this.atCurrentAuthData.tokenType,
+        //         'uid': this.atCurrentAuthData.uid
+        //     });
+        // }
         options["headers"] = new HttpHeaders(baseHeaders);
         options["body"] = body;
         const /** @type {?} */ response = this.http.request(method, this.getApiPath() + url, options);
