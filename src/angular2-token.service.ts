@@ -204,8 +204,8 @@ export class Angular2TokenService implements CanActivate {
                         console.log('In singIn tap, res is NOT HttpResponse : ', res);
 
                     }
-                }, _error => {
-                    null
+                }, err => {
+                    console.log('In singIn tap, error : ', err);
                 }));
 
         return observ;

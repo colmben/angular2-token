@@ -686,8 +686,8 @@ class Angular2TokenService {
             else {
                 console.log('In singIn tap, res is NOT HttpResponse : ', res);
             }
-        }, _error => {
-            
+        }, err => {
+            console.log('In singIn tap, error : ', err);
         }));
         return observ;
     }
