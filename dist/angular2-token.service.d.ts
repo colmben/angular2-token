@@ -29,29 +29,22 @@ export declare class Angular2TokenService implements CanActivate {
      * Actions
      *
      */
-    registerAccount(registerData: RegisterData): Observable<Object>;
-    deleteAccount(): Observable<Object>;
-    signIn(signInData: SignInData): Observable<UserData>;
+    registerAccount(registerData: RegisterData): Observable<any>;
+    deleteAccount(): Observable<any>;
+    signIn(signInData: SignInData): Observable<any>;
     signInOAuth(oAuthType: string): Observable<any>;
     processOAuthCallback(): void;
-    signOut(): Observable<Object>;
-    validateToken(): Observable<UserData>;
-    updatePassword(updatePasswordData: UpdatePasswordData): Observable<Object>;
-    resetPassword(resetPasswordData: ResetPasswordData): Observable<Object>;
-    /**
-     *
-     * HTTP Wrappers
-     *
-     */
+    signOut(): Observable<any>;
+    validateToken(): Observable<any>;
+    updatePassword(updatePasswordData: UpdatePasswordData): Observable<any>;
+    resetPassword(resetPasswordData: ResetPasswordData): Observable<any>;
     request<T>(method: string, url: string, body?: any): Observable<T>;
-    private handleResponse<T>(response);
     /**
      *
      * Get Auth Data
      *
      */
     private tryLoadAuthData();
-    private getAuthHeadersFromResponse(data);
     private getAuthDataFromPostMessage(data);
     private getAuthDataFromStorage();
     private getAuthDataFromParams();

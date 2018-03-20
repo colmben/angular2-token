@@ -9,7 +9,7 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -682,7 +682,8 @@ class Angular2TokenService {
         console.log('In singIn tap, returned observ : ', observ);
         return observ.pipe(tap(res => {
             console.log('In singIn tap, res  : ', res);
-            this.atCurrentUserData = res;
+            this.atCurrentUserData = res.data;
+            console.log('In singIn tap, this.atCurrentUserData  : ', this.atCurrentUserData);
         }, err => {
             console.log('In singIn tap, error : ', err);
         }));
@@ -742,7 +743,7 @@ class Angular2TokenService {
         let /** @type {?} */ observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
         observ.pipe(tap(res => {
             if (res instanceof HttpResponse) {
-                this.atCurrentUserData = res.body;
+                this.atCurrentUserData = res.data;
             }
         }, error => {
             if (error.status === 401 && this.atOptions.signOutFailedValidate) {
@@ -794,9 +795,6 @@ class Angular2TokenService {
         return this.request('POST', this.getUserPath() + this.atOptions.resetPasswordPath, body);
     }
     /**
-     *
-     * HTTP Wrappers
-     *
      * @template T
      * @param {?} method
      * @param {?} url
@@ -806,35 +804,10 @@ class Angular2TokenService {
     request(method, url, body) {
         const /** @type {?} */ options = {};
         let /** @type {?} */ baseHeaders = this.atOptions.globalOptions.headers;
-        // Get auth data from local storage
-        //this.getAuthDataFromStorage();
-        // Merge auth headers to request if set
-        // if (this.atCurrentAuthData != null) {
-        //     (<any>Object).assign(baseHeaders, {
-        //         'access-token': this.atCurrentAuthData.accessToken,
-        //         'client': this.atCurrentAuthData.client,
-        //         'expiry': this.atCurrentAuthData.expiry,
-        //         'token-type': this.atCurrentAuthData.tokenType,
-        //         'uid': this.atCurrentAuthData.uid
-        //     });
-        // }
         options["headers"] = new HttpHeaders(baseHeaders);
         options["body"] = body;
         const /** @type {?} */ response = this.http.request(method, this.getApiPath() + url, options);
-        //this.handleResponse(response);
-        return response.pipe(map(res => res.data));
-    }
-    /**
-     * @template T
-     * @param {?} response
-     * @return {?}
-     */
-    handleResponse(response) {
-        response.pipe(tap(res => {
-            this.getAuthHeadersFromResponse(/** @type {?} */ (res));
-        }, error => {
-            this.getAuthHeadersFromResponse(/** @type {?} */ (error));
-        }));
+        return response;
     }
     /**
      *
@@ -851,21 +824,6 @@ class Angular2TokenService {
             this.getAuthDataFromParams();
         if (this.atCurrentAuthData)
             this.validateToken();
-    }
-    /**
-     * @param {?} data
-     * @return {?}
-     */
-    getAuthHeadersFromResponse(data) {
-        let /** @type {?} */ headers = data.headers;
-        let /** @type {?} */ authData = {
-            accessToken: headers.get('access-token'),
-            client: headers.get('client'),
-            expiry: headers.get('expiry'),
-            tokenType: headers.get('token-type'),
-            uid: headers.get('uid')
-        };
-        this.setAuthData(authData);
     }
     /**
      * @param {?} data

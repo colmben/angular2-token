@@ -9,7 +9,7 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 var A2tFormService = /** @class */ (function () {
     function A2tFormService() {
@@ -406,7 +406,8 @@ var Angular2TokenService = /** @class */ (function () {
         console.log('In singIn tap, returned observ : ', observ);
         return observ.pipe(tap(function (res) {
             console.log('In singIn tap, res  : ', res);
-            _this.atCurrentUserData = res;
+            _this.atCurrentUserData = res.data;
+            console.log('In singIn tap, this.atCurrentUserData  : ', _this.atCurrentUserData);
         }, function (err) {
             console.log('In singIn tap, error : ', err);
         }));
@@ -454,7 +455,7 @@ var Angular2TokenService = /** @class */ (function () {
         var observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
         observ.pipe(tap(function (res) {
             if (res instanceof HttpResponse) {
-                _this.atCurrentUserData = res.body;
+                _this.atCurrentUserData = res.data;
             }
         }, function (error) {
             if (error.status === 401 && _this.atOptions.signOutFailedValidate) {
@@ -503,15 +504,7 @@ var Angular2TokenService = /** @class */ (function () {
         options["headers"] = new HttpHeaders(baseHeaders);
         options["body"] = body;
         var response = this.http.request(method, this.getApiPath() + url, options);
-        return response.pipe(map(function (res) { return res.data; }));
-    };
-    Angular2TokenService.prototype.handleResponse = function (response) {
-        var _this = this;
-        response.pipe(tap(function (res) {
-            _this.getAuthHeadersFromResponse((res));
-        }, function (error) {
-            _this.getAuthHeadersFromResponse((error));
-        }));
+        return response;
     };
     Angular2TokenService.prototype.tryLoadAuthData = function () {
         var userType = this.getUserTypeByName(localStorage.getItem('userType'));
@@ -522,17 +515,6 @@ var Angular2TokenService = /** @class */ (function () {
             this.getAuthDataFromParams();
         if (this.atCurrentAuthData)
             this.validateToken();
-    };
-    Angular2TokenService.prototype.getAuthHeadersFromResponse = function (data) {
-        var headers = data.headers;
-        var authData = {
-            accessToken: headers.get('access-token'),
-            client: headers.get('client'),
-            expiry: headers.get('expiry'),
-            tokenType: headers.get('token-type'),
-            uid: headers.get('uid')
-        };
-        this.setAuthData(authData);
     };
     Angular2TokenService.prototype.getAuthDataFromPostMessage = function (data) {
         var authData = {
