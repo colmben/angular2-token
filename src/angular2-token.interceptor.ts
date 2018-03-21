@@ -12,7 +12,7 @@ import {AuthData} from "./angular2-token.model";
 export class Angular2TokenInteceptor implements HttpInterceptor {
     apiPath: string;
 
-    constructor(private _tokenService: Angular2TokenService,) {
+    constructor(private _tokenService: Angular2TokenService) {
         this.apiPath = this._tokenService.apiPath;
     }
 

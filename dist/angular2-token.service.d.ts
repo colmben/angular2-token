@@ -1,4 +1,3 @@
-import { ModuleWithProviders } from '@angular/core';
 import { ActivatedRoute, Router, CanActivate } from '@angular/router';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +11,6 @@ export declare class Angular2TokenService implements CanActivate {
     private http;
     private activatedRoute;
     private router;
-    static forRoot(): ModuleWithProviders;
     readonly currentUserType: string;
     readonly currentUserData: UserData;
     currentAuthData: AuthData;

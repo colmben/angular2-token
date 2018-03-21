@@ -1,12 +1,10 @@
-import {ClassProvider, Injectable, ModuleWithProviders, NgModule, Optional} from '@angular/core';
+import {Injectable, Optional} from '@angular/core';
 import {ActivatedRoute, Router, CanActivate} from '@angular/router';
 import {
     HttpClient,
     HttpResponse,
     HttpHeaders,
 } from "@angular/common/http";
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {Angular2TokenInteceptor} from './angular2-token.interceptor';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/interval';
@@ -28,21 +26,11 @@ import {
 } from './angular2-token.model';
 import {map, tap} from "rxjs/operators";
 
-const TOKEN_INTERCEPTOR_PROVIDER: ClassProvider = {
-    provide: HTTP_INTERCEPTORS,
-    useClass: Angular2TokenInteceptor,
-    multi: true
-};
+
 
 @Injectable()
 export class Angular2TokenService implements CanActivate {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: Angular2TokenService,
-            providers: [ Angular2TokenService,
-                TOKEN_INTERCEPTOR_PROVIDER ]
-        };
-    }
+
     get currentUserType(): string {
         if (this.atCurrentUserType != null)
             return this.atCurrentUserType.name;

@@ -1,4 +1,3 @@
-import {Angular2TokenInteceptor} from "./angular2-token.interceptor";
 
 export {
     SignInData,
