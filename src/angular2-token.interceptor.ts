@@ -46,8 +46,9 @@ export class Angular2TokenInteceptor implements HttpInterceptor {
                         }
                     },
                     err => {
+                        console.log('In token interceptor, err : ', err);
                         if (err instanceof HttpErrorResponse && err.url.match(this.apiPath)) {
-                            console.log('In token interceptor, err : ', err);
+                            console.log('In token interceptor, HTTP err : ', err);
                             this.getAuthHeadersFromResponse(<any>err);
                         } else {
                             console.log("Auth Interceptor, non HTTP error - ", err)

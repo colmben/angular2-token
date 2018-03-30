@@ -1,46 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cb05a80-3d85-4ba7-b29f-7f517918ec09" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-reset-password/a2t-reset-password.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-reset-password/a2t-reset-password.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-error/a2t-error.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-error/a2t-error.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form-field/a2t-form-field.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form-field/a2t-form-field.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form.service.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form.service.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/index.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/index.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-headline/a2t-headline.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-headline/a2t-headline.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-links/a2t-links.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-links/a2t-links.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-shared.module.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-shared.module.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/index.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/index.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-sign-in/a2t-sign-in.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-sign-in/a2t-sign-in.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-sign-up/a2t-sign-up.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-sign-up/a2t-sign-up.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.forms.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.forms.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.module.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.module.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.routes.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.routes.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-update-password/a2t-update-password.component.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/a2t-update-password/a2t-update-password.component.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/index.d.ts" afterPath="$PROJECT_DIR$/dist/a2t-ui/index.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/angular2-token.interceptor.d.ts" afterPath="$PROJECT_DIR$/dist/angular2-token.interceptor.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/angular2-token.metadata.json" afterPath="$PROJECT_DIR$/dist/angular2-token.metadata.json" />
-      <change beforePath="$PROJECT_DIR$/dist/angular2-token.service.d.ts" afterPath="$PROJECT_DIR$/dist/angular2-token.service.d.ts" />
-      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.js" afterPath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.js" />
-      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.js.map" afterPath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.js.map" />
-      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.min.js" afterPath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.min.js" />
-      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.min.js.map" afterPath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.min.js.map" />
-      <change beforePath="$PROJECT_DIR$/dist/esm2015/angular2-token.js" afterPath="$PROJECT_DIR$/dist/esm2015/angular2-token.js" />
-      <change beforePath="$PROJECT_DIR$/dist/esm2015/angular2-token.js.map" afterPath="$PROJECT_DIR$/dist/esm2015/angular2-token.js.map" />
-      <change beforePath="$PROJECT_DIR$/dist/esm5/angular2-token.js" afterPath="$PROJECT_DIR$/dist/esm5/angular2-token.js" />
-      <change beforePath="$PROJECT_DIR$/dist/esm5/angular2-token.js.map" afterPath="$PROJECT_DIR$/dist/esm5/angular2-token.js.map" />
-      <change beforePath="$PROJECT_DIR$/dist/package.json" afterPath="$PROJECT_DIR$/dist/package.json" />
-      <change beforePath="$PROJECT_DIR$/dist/public_api.d.ts" afterPath="$PROJECT_DIR$/dist/public_api.d.ts" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/src/angular2-token.interceptor.ts" afterPath="$PROJECT_DIR$/src/angular2-token.interceptor.ts" />
-      <change beforePath="$PROJECT_DIR$/src/angular2-token.service.ts" afterPath="$PROJECT_DIR$/src/angular2-token.service.ts" />
-      <change beforePath="$PROJECT_DIR$/src/angular2-token.spec.ts" afterPath="$PROJECT_DIR$/src/angular2-token.spec.ts" />
-      <change beforePath="$PROJECT_DIR$/src/public_api.ts" afterPath="$PROJECT_DIR$/src/public_api.ts" />
-    </list>
+    <list default="true" id="9cb05a80-3d85-4ba7-b29f-7f517918ec09" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +99,7 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1521590824659" expanded="true" signature="7:9" ph="..." />
+                <marker date="1521631038583" expanded="true" signature="7:9" ph="..." />
               </folding>
             </state>
           </provider>
@@ -266,7 +227,7 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ngx-restangular/demo" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -295,12 +256,12 @@
       <option name="presentableId" value="Default" />
       <updated>1521405448246</updated>
       <workItem from="1521405449502" duration="39920000" />
-      <workItem from="1521587229027" duration="6597000" />
+      <workItem from="1521587229027" duration="7917000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52178000" />
+    <option name="totallyTimeSpent" value="53498000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="2112" extended-state="0" />
@@ -645,7 +606,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1521590824659" expanded="true" signature="7:9" ph="..." />
+            <marker date="1521631038583" expanded="true" signature="7:9" ph="..." />
           </folding>
         </state>
       </provider>
