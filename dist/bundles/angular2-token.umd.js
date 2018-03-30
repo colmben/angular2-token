@@ -824,12 +824,12 @@ var Angular2TokenInteceptor = /** @class */ (function () {
             }
         }, function (err) {
             console.log('In token interceptor, err : ', err);
-            if (err instanceof http.HttpErrorResponse && err.url.match(_this.apiPath)) {
+            if (err instanceof http.HttpErrorResponse && err.url && err.url.match(_this.apiPath)) {
                 console.log('In token interceptor, HTTP err : ', err);
                 _this.getAuthHeadersFromResponse((err));
             }
             else {
-                console.log("Auth Interceptor, non HTTP error - ", err);
+                console.log("Auth Interceptor, non HTTP or no headers error - ", err);
             }
         }));
     };
