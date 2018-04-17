@@ -300,11 +300,9 @@ export class Angular2TokenService implements CanActivate {
                 password_confirmation: updatePasswordData.passwordConfirmation
             };
         }
-
-        if (updatePasswordData.resetPasswordToken) {
-            args.reset_password_token = updatePasswordData.resetPasswordToken;
-            this.tryLoadAuthData();
-        }
+        // Redo the header load in case this is a forgot password scenario and we need to get the headers from the
+        // redirected URL
+        this.tryLoadAuthData();
 
         let body = JSON.stringify(args);
 
