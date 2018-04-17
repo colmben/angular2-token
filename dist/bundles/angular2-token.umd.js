@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('rxjs/operators')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', 'rxjs/operators'], factory) :
-	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.common.http,global.Rx,global.Rx.Observable.prototype,global.Rx.Observable,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.Rx.Observable.prototype));
-}(this, (function (exports,core,forms,common,router,http,Observable,share,interval,fromEvent,pluck,filter,operators) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('url-parse'), require('rxjs/operators')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', 'url-parse', 'rxjs/operators'], factory) :
+	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.common.http,global.Rx,global.Rx.Observable.prototype,global.Rx.Observable,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.urlParse,global.Rx.Observable.prototype));
+}(this, (function (exports,core,forms,common,router,http,Observable,share,interval,fromEvent,pluck,filter,urlParse,operators) { 'use strict';
 
 var A2tFormService = /** @class */ (function () {
     function A2tFormService() {
@@ -475,6 +475,7 @@ var Angular2TokenService = /** @class */ (function () {
         }
         if (updatePasswordData.resetPasswordToken) {
             args.reset_password_token = updatePasswordData.resetPasswordToken;
+            this.tryLoadAuthData();
         }
         var body = JSON.stringify(args);
         return this.request('PUT', this.getUserPath() + this.atOptions.updatePasswordPath, body);
@@ -503,8 +504,7 @@ var Angular2TokenService = /** @class */ (function () {
         if (userType)
             this.atCurrentUserType = userType;
         this.getAuthDataFromStorage();
-        if (this.activatedRoute)
-            this.getAuthDataFromParams();
+        this.getAuthDataFromParams();
         if (this.atCurrentAuthData)
             this.validateToken();
     };
@@ -530,19 +530,19 @@ var Angular2TokenService = /** @class */ (function () {
             this.atCurrentAuthData = authData;
     };
     Angular2TokenService.prototype.getAuthDataFromParams = function () {
-        var _this = this;
-        if (this.activatedRoute.queryParams)
-            this.activatedRoute.queryParams.subscribe(function (queryParams) {
-                var authData = {
-                    accessToken: queryParams['token'] || queryParams['auth_token'],
-                    client: queryParams['client_id'],
-                    expiry: queryParams['expiry'],
-                    tokenType: 'Bearer',
-                    uid: queryParams['uid']
-                };
-                if (_this.checkAuthData(authData))
-                    _this.atCurrentAuthData = authData;
-            });
+        var url = new urlParse(window.location.href, true);
+        if (url && url.query) {
+            var authData = {
+                accessToken: url.query['token'] || url.query['auth_token'],
+                client: url.query['client_id'],
+                expiry: url.query['expiry'],
+                tokenType: 'Bearer',
+                uid: url.query['uid']
+            };
+            if (this.checkAuthData(authData)) {
+                this.atCurrentAuthData = authData;
+            }
+        }
     };
     Angular2TokenService.prototype.setAuthData = function (authData) {
         if (this.checkAuthData(authData)) {

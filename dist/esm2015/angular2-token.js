@@ -9,6 +9,7 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
+import * as urlParse from 'url-parse';
 import { tap } from 'rxjs/operators';
 
 /**
@@ -775,6 +776,7 @@ class Angular2TokenService {
         }
         if (updatePasswordData.resetPasswordToken) {
             args.reset_password_token = updatePasswordData.resetPasswordToken;
+            this.tryLoadAuthData();
         }
         let /** @type {?} */ body = JSON.stringify(args);
         return this.request('PUT', this.getUserPath() + this.atOptions.updatePasswordPath, body);
@@ -820,8 +822,7 @@ class Angular2TokenService {
         if (userType)
             this.atCurrentUserType = userType;
         this.getAuthDataFromStorage();
-        if (this.activatedRoute)
-            this.getAuthDataFromParams();
+        this.getAuthDataFromParams();
         if (this.atCurrentAuthData)
             this.validateToken();
     }
@@ -857,19 +858,19 @@ class Angular2TokenService {
      * @return {?}
      */
     getAuthDataFromParams() {
-        if (this.activatedRoute.queryParams)
-            // Fix for Testing, needs to be removed later
-            this.activatedRoute.queryParams.subscribe(queryParams => {
-                let /** @type {?} */ authData = {
-                    accessToken: queryParams['token'] || queryParams['auth_token'],
-                    client: queryParams['client_id'],
-                    expiry: queryParams['expiry'],
-                    tokenType: 'Bearer',
-                    uid: queryParams['uid']
-                };
-                if (this.checkAuthData(authData))
-                    this.atCurrentAuthData = authData;
-            });
+        const /** @type {?} */ url = new urlParse(window.location.href, true);
+        if (url && url.query) {
+            let /** @type {?} */ authData = {
+                accessToken: url.query['token'] || url.query['auth_token'],
+                client: url.query['client_id'],
+                expiry: url.query['expiry'],
+                tokenType: 'Bearer',
+                uid: url.query['uid']
+            };
+            if (this.checkAuthData(authData)) {
+                this.atCurrentAuthData = authData;
+            }
+        }
     }
     /**
      *

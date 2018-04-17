@@ -9,6 +9,7 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
+import * as urlParse from 'url-parse';
 import { tap } from 'rxjs/operators';
 
 var A2tFormService = /** @class */ (function () {
@@ -483,6 +484,7 @@ var Angular2TokenService = /** @class */ (function () {
         }
         if (updatePasswordData.resetPasswordToken) {
             args.reset_password_token = updatePasswordData.resetPasswordToken;
+            this.tryLoadAuthData();
         }
         var body = JSON.stringify(args);
         return this.request('PUT', this.getUserPath() + this.atOptions.updatePasswordPath, body);
@@ -511,8 +513,7 @@ var Angular2TokenService = /** @class */ (function () {
         if (userType)
             this.atCurrentUserType = userType;
         this.getAuthDataFromStorage();
-        if (this.activatedRoute)
-            this.getAuthDataFromParams();
+        this.getAuthDataFromParams();
         if (this.atCurrentAuthData)
             this.validateToken();
     };
@@ -538,19 +539,19 @@ var Angular2TokenService = /** @class */ (function () {
             this.atCurrentAuthData = authData;
     };
     Angular2TokenService.prototype.getAuthDataFromParams = function () {
-        var _this = this;
-        if (this.activatedRoute.queryParams)
-            this.activatedRoute.queryParams.subscribe(function (queryParams) {
-                var authData = {
-                    accessToken: queryParams['token'] || queryParams['auth_token'],
-                    client: queryParams['client_id'],
-                    expiry: queryParams['expiry'],
-                    tokenType: 'Bearer',
-                    uid: queryParams['uid']
-                };
-                if (_this.checkAuthData(authData))
-                    _this.atCurrentAuthData = authData;
-            });
+        var url = new urlParse(window.location.href, true);
+        if (url && url.query) {
+            var authData = {
+                accessToken: url.query['token'] || url.query['auth_token'],
+                client: url.query['client_id'],
+                expiry: url.query['expiry'],
+                tokenType: 'Bearer',
+                uid: url.query['uid']
+            };
+            if (this.checkAuthData(authData)) {
+                this.atCurrentAuthData = authData;
+            }
+        }
     };
     Angular2TokenService.prototype.setAuthData = function (authData) {
         if (this.checkAuthData(authData)) {
