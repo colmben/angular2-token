@@ -482,10 +482,7 @@ var Angular2TokenService = /** @class */ (function () {
                 password_confirmation: updatePasswordData.passwordConfirmation
             };
         }
-        if (updatePasswordData.resetPasswordToken) {
-            args.reset_password_token = updatePasswordData.resetPasswordToken;
-            this.tryLoadAuthData();
-        }
+        this.tryLoadAuthData();
         var body = JSON.stringify(args);
         return this.request('PUT', this.getUserPath() + this.atOptions.updatePasswordPath, body);
     };
