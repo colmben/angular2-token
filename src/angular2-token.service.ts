@@ -303,6 +303,7 @@ export class Angular2TokenService implements CanActivate {
 
         if (updatePasswordData.resetPasswordToken) {
             args.reset_password_token = updatePasswordData.resetPasswordToken;
+            this.tryLoadAuthData();
         }
 
         let body = JSON.stringify(args);
@@ -359,8 +360,7 @@ export class Angular2TokenService implements CanActivate {
 
         this.getAuthDataFromStorage();
 
-        if (this.activatedRoute)
-            this.getAuthDataFromParams();
+        this.getAuthDataFromParams();
 
         if (this.atCurrentAuthData)
             this.validateToken();
