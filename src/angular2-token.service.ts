@@ -11,7 +11,7 @@ import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
-
+import * as urlParse from 'url-parse';
 import {
     SignInData,
     RegisterData,
@@ -396,19 +396,23 @@ export class Angular2TokenService implements CanActivate {
 
     // Try to get auth data from url parameters.
     private getAuthDataFromParams(): void {
-        if (this.activatedRoute.queryParams) // Fix for Testing, needs to be removed later
-            this.activatedRoute.queryParams.subscribe(queryParams => {
-                let authData: AuthData = {
-                    accessToken: queryParams['token'] || queryParams['auth_token'],
-                    client: queryParams['client_id'],
-                    expiry: queryParams['expiry'],
-                    tokenType: 'Bearer',
-                    uid: queryParams['uid']
-                };
+        const url = new urlParse(window.location.href, true);
+        if(url && url.query) {
+            let authData: AuthData = {
+                accessToken: url.query['token'] || url.query['auth_token'],
+                client: url.query['client_id'],
+                expiry: url.query['expiry'],
+                tokenType: 'Bearer',
+                uid: url.query['uid']
+            };
 
-                if (this.checkAuthData(authData))
-                    this.atCurrentAuthData = authData;
-            });
+            if (this.checkAuthData(authData)){
+                this.atCurrentAuthData = authData;
+
+            }
+        }
+
+
     }
 
     /**

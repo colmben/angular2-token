@@ -74,5 +74,7 @@
     "url": "https://github.com/neroniaky/angular2-token/issues"
   },
   "homepage": "https://github.com/neroniaky/angular2-token#readme",
-  "dependencies": {}
+  "dependencies": {
+    "url-parse": "^1.3.0"
+  }
 }
