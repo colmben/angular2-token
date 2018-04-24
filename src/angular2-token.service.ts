@@ -409,8 +409,6 @@ export class Angular2TokenService implements CanActivate {
 
             }
         }
-
-
     }
 
     /**

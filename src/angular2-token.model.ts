@@ -37,10 +37,7 @@ export interface UserData {
     id:             number;
     provider:       string;
     uid:            string;
-    name:           string;
-    nickname:       string;
-    image:          any;
-    email:          string;
+    fullname:           string;
 }
 
 // Configuration Options
