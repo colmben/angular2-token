@@ -28,10 +28,7 @@ export interface UserData {
     id: number;
     provider: string;
     uid: string;
-    name: string;
-    nickname: string;
-    image: any;
-    email: string;
+    fullname: string;
 }
 export interface UserType {
     name: string;
