@@ -256,7 +256,7 @@ export class Angular2TokenService implements CanActivate {
             this.atCurrentAuthData = null;
             this.atCurrentUserType = null;
             this.atCurrentUserData = null;
-        })
+        });
 
 
         return observ;
