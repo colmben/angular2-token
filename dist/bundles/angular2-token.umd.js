@@ -449,8 +449,9 @@ var Angular2TokenService = /** @class */ (function () {
         var _this = this;
         var observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
         return observ.pipe(operators.tap(function (res) {
-            if (res instanceof http.HttpResponse) {
+            if (res.data) {
                 console.log('in validateResponse, res : ', res);
+                _this.atCurrentUserData = res.data;
             }
         }, function (error) {
             if (error.status === 401 && _this.atOptions.signOutFailedValidate) {

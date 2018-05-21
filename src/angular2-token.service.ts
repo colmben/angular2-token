@@ -269,9 +269,9 @@ export class Angular2TokenService implements CanActivate {
         return observ.pipe(
             tap(
                 res => {
-                    if (res instanceof HttpResponse) {
+                    if (res.data) {
                         console.log('in validateResponse, res : ', res);
-                        //this.atCurrentUserData = res.data;
+                        this.atCurrentUserData = res.data;
                     }
                 },
                 error => {

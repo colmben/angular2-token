@@ -2,7 +2,7 @@ import { Injectable, EventEmitter, Component, Input, NgModule, Optional } from '
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/interval';
@@ -746,9 +746,9 @@ class Angular2TokenService {
     validateToken() {
         let /** @type {?} */ observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
         return observ.pipe(tap(res => {
-            if (res instanceof HttpResponse) {
+            if (res.data) {
                 console.log('in validateResponse, res : ', res);
-                //this.atCurrentUserData = res.data;
+                this.atCurrentUserData = res.data;
             }
         }, error => {
             if (error.status === 401 && this.atOptions.signOutFailedValidate) {
