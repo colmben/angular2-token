@@ -745,16 +745,16 @@ class Angular2TokenService {
      */
     validateToken() {
         let /** @type {?} */ observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
-        observ.pipe(tap(res => {
+        return observ.pipe(tap(res => {
             if (res instanceof HttpResponse) {
-                this.atCurrentUserData = res.data;
+                console.log('in validateResponse, res : ', res);
+                //this.atCurrentUserData = res.data;
             }
         }, error => {
             if (error.status === 401 && this.atOptions.signOutFailedValidate) {
                 this.signOut();
             }
         }));
-        return observ;
     }
     /**
      * @param {?} updatePasswordData

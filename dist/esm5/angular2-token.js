@@ -458,16 +458,15 @@ var Angular2TokenService = /** @class */ (function () {
     Angular2TokenService.prototype.validateToken = function () {
         var _this = this;
         var observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
-        observ.pipe(tap(function (res) {
+        return observ.pipe(tap(function (res) {
             if (res instanceof HttpResponse) {
-                _this.atCurrentUserData = res.data;
+                console.log('in validateResponse, res : ', res);
             }
         }, function (error) {
             if (error.status === 401 && _this.atOptions.signOutFailedValidate) {
                 _this.signOut();
             }
         }));
-        return observ;
     };
     Angular2TokenService.prototype.updatePassword = function (updatePasswordData) {
         if (updatePasswordData.userType != null)

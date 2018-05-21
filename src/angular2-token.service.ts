@@ -266,11 +266,12 @@ export class Angular2TokenService implements CanActivate {
     validateToken(): Observable<any> {
         let observ = this.request<{success: Boolean, data: UserData}>('GET', this.getUserPath() + this.atOptions.validateTokenPath);
 
-        observ.pipe(
+        return observ.pipe(
             tap(
                 res => {
                     if (res instanceof HttpResponse) {
-                        this.atCurrentUserData = res.data;
+                        console.log('in validateResponse, res : ', res);
+                        //this.atCurrentUserData = res.data;
                     }
                 },
                 error => {
@@ -280,7 +281,7 @@ export class Angular2TokenService implements CanActivate {
                 }
             ));
 
-        return observ;
+
     }
 
     // Update password request
