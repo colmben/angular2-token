@@ -11,6 +11,7 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
 import * as urlParse from 'url-parse';
 import { tap } from 'rxjs/operators';
+import 'rxjs/add/operator/finally';
 
 /**
  * @fileoverview added by tsickle
@@ -727,14 +728,16 @@ class Angular2TokenService {
      */
     signOut() {
         let /** @type {?} */ observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('client');
-        localStorage.removeItem('expiry');
-        localStorage.removeItem('tokenType');
-        localStorage.removeItem('uid');
-        this.atCurrentAuthData = null;
-        this.atCurrentUserType = null;
-        this.atCurrentUserData = null;
+        observ.finally(() => {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('client');
+            localStorage.removeItem('expiry');
+            localStorage.removeItem('tokenType');
+            localStorage.removeItem('uid');
+            this.atCurrentAuthData = null;
+            this.atCurrentUserType = null;
+            this.atCurrentUserData = null;
+        });
         return observ;
     }
     /**

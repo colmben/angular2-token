@@ -1,6 +1,6 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('url-parse'), require('rxjs/operators')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', 'url-parse', 'rxjs/operators'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('url-parse'), require('rxjs/operators'), require('rxjs/add/operator/finally')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', 'url-parse', 'rxjs/operators', 'rxjs/add/operator/finally'], factory) :
 	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.common.http,global.Rx,global.Rx.Observable.prototype,global.Rx.Observable,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.urlParse,global.Rx.Observable.prototype));
 }(this, (function (exports,core,forms,common,router,http,Observable,share,interval,fromEvent,pluck,filter,urlParse,operators) { 'use strict';
 
@@ -431,15 +431,18 @@ var Angular2TokenService = /** @class */ (function () {
         this.getAuthDataFromParams();
     };
     Angular2TokenService.prototype.signOut = function () {
+        var _this = this;
         var observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('client');
-        localStorage.removeItem('expiry');
-        localStorage.removeItem('tokenType');
-        localStorage.removeItem('uid');
-        this.atCurrentAuthData = null;
-        this.atCurrentUserType = null;
-        this.atCurrentUserData = null;
+        observ.finally(function () {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('client');
+            localStorage.removeItem('expiry');
+            localStorage.removeItem('tokenType');
+            localStorage.removeItem('uid');
+            _this.atCurrentAuthData = null;
+            _this.atCurrentUserType = null;
+            _this.atCurrentUserData = null;
+        });
         return observ;
     };
     Angular2TokenService.prototype.validateToken = function () {

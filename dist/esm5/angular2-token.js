@@ -11,6 +11,7 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
 import * as urlParse from 'url-parse';
 import { tap } from 'rxjs/operators';
+import 'rxjs/add/operator/finally';
 
 var A2tFormService = /** @class */ (function () {
     function A2tFormService() {
@@ -440,15 +441,18 @@ var Angular2TokenService = /** @class */ (function () {
         this.getAuthDataFromParams();
     };
     Angular2TokenService.prototype.signOut = function () {
+        var _this = this;
         var observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('client');
-        localStorage.removeItem('expiry');
-        localStorage.removeItem('tokenType');
-        localStorage.removeItem('uid');
-        this.atCurrentAuthData = null;
-        this.atCurrentUserType = null;
-        this.atCurrentUserData = null;
+        observ.finally(function () {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('client');
+            localStorage.removeItem('expiry');
+            localStorage.removeItem('tokenType');
+            localStorage.removeItem('uid');
+            _this.atCurrentAuthData = null;
+            _this.atCurrentUserType = null;
+            _this.atCurrentUserData = null;
+        });
         return observ;
     };
     Angular2TokenService.prototype.validateToken = function () {

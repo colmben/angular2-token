@@ -24,7 +24,8 @@ import {
 
     Angular2TokenOptions
 } from './angular2-token.model';
-import {map, tap} from "rxjs/operators";
+import {finalize, map, tap} from "rxjs/operators";
+import "rxjs/add/operator/finally";
 
 
 
@@ -245,16 +246,18 @@ export class Angular2TokenService implements CanActivate {
     // Sign out request and delete storage
     signOut(): Observable<any> {
         let observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
+        observ.finally(() => {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('client');
+            localStorage.removeItem('expiry');
+            localStorage.removeItem('tokenType');
+            localStorage.removeItem('uid');
 
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('client');
-        localStorage.removeItem('expiry');
-        localStorage.removeItem('tokenType');
-        localStorage.removeItem('uid');
+            this.atCurrentAuthData = null;
+            this.atCurrentUserType = null;
+            this.atCurrentUserData = null;
+        })
 
-        this.atCurrentAuthData = null;
-        this.atCurrentUserType = null;
-        this.atCurrentUserData = null;
 
         return observ;
     }
