@@ -41,32 +41,11 @@
       <file leaf-file-name="angular2-token.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="257" column="42" selection-start-line="257" selection-start-column="42" selection-end-line="257" selection-end-column="42" />
+            <state relative-caret-position="-2970">
+              <caret line="253" column="43" selection-start-line="253" selection-start-column="43" selection-end-line="253" selection-end-column="43" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="angular2-token.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dist/esm2015/angular2-token.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1425">
-              <caret line="728" column="11" selection-start-line="728" selection-start-column="4" selection-end-line="728" selection-end-column="11" />
-              <folding>
-                <element signature="e#0#95#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="angular2-token.umd.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dist/bundles/angular2-token.umd.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="432" column="42" selection-start-line="432" selection-start-column="35" selection-end-line="432" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -101,8 +80,32 @@
       <file leaf-file-name="angular2-token.interceptor.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
+            <state relative-caret-position="394">
               <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angular2-token.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/esm2015/angular2-token.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="728" column="11" selection-start-line="728" selection-start-column="4" selection-end-line="728" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#95#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angular2-token.umd.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/bundles/angular2-token.umd.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-93">
+              <caret line="796" column="27" selection-start-line="796" selection-start-column="4" selection-end-line="796" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -289,12 +292,12 @@
       <workItem from="1525081079344" duration="619000" />
       <workItem from="1525279097524" duration="592000" />
       <workItem from="1525281645968" duration="18000" />
-      <workItem from="1526916975113" duration="2735000" />
+      <workItem from="1526916975113" duration="4089000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87911000" />
+    <option name="totallyTimeSpent" value="89265000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="2112" extended-state="0" />
@@ -304,9 +307,9 @@
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.33029842" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.33029842" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30469584" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30469584" />
       <window_info anchor="bottom" id="Statistic" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
@@ -638,13 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -661,17 +657,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="257" column="42" selection-start-line="257" selection-start-column="42" selection-end-line="257" selection-end-column="42" />
+        <state relative-caret-position="-2970">
+          <caret line="253" column="43" selection-start-line="253" selection-start-column="43" selection-end-line="253" selection-end-column="43" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dist/esm2015/angular2-token.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1425">
+        <state relative-caret-position="18">
           <caret line="728" column="11" selection-start-line="728" selection-start-column="4" selection-end-line="728" selection-end-column="11" />
           <folding>
             <element signature="e#0#95#0" expanded="true" />
@@ -681,8 +687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/bundles/angular2-token.umd.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="432" column="42" selection-start-line="432" selection-start-column="35" selection-end-line="432" selection-end-column="42" />
+        <state relative-caret-position="-93">
+          <caret line="796" column="27" selection-start-line="796" selection-start-column="4" selection-end-line="796" selection-end-column="27" />
         </state>
       </provider>
     </entry>
