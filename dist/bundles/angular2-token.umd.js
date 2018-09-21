@@ -433,7 +433,7 @@ var Angular2TokenService = /** @class */ (function () {
     Angular2TokenService.prototype.signOut = function () {
         var _this = this;
         var observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
-        observ.finally(function () {
+        observ.pipe(operators.finalize(function () {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('client');
             localStorage.removeItem('expiry');
@@ -442,7 +442,7 @@ var Angular2TokenService = /** @class */ (function () {
             _this.atCurrentAuthData = null;
             _this.atCurrentUserType = null;
             _this.atCurrentUserData = null;
-        });
+        }));
         return observ;
     };
     Angular2TokenService.prototype.validateToken = function () {

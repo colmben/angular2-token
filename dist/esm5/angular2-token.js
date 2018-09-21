@@ -10,7 +10,7 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
 import * as urlParse from 'url-parse';
-import { tap } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/finally';
 
 var A2tFormService = /** @class */ (function () {
@@ -443,7 +443,7 @@ var Angular2TokenService = /** @class */ (function () {
     Angular2TokenService.prototype.signOut = function () {
         var _this = this;
         var observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
-        observ.finally(function () {
+        observ.pipe(finalize(function () {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('client');
             localStorage.removeItem('expiry');
@@ -452,7 +452,7 @@ var Angular2TokenService = /** @class */ (function () {
             _this.atCurrentAuthData = null;
             _this.atCurrentUserType = null;
             _this.atCurrentUserData = null;
-        });
+        }));
         return observ;
     };
     Angular2TokenService.prototype.validateToken = function () {

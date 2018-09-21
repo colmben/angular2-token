@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cb05a80-3d85-4ba7-b29f-7f517918ec09" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/angular2-token.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/angular2-token.service.ts" afterDir="false" />
-    </list>
+    <list default="true" id="9cb05a80-3d85-4ba7-b29f-7f517918ec09" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,8 +32,8 @@
       <file leaf-file-name="angular2-token.service.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="808">
-              <caret line="273" column="24" selection-start-line="273" selection-start-column="24" selection-end-line="273" selection-end-column="24" />
+            <state relative-caret-position="502">
+              <caret line="256" column="42" selection-start-line="256" selection-start-column="42" selection-end-line="256" selection-end-column="42" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -237,16 +235,15 @@
       <workItem from="1525279097524" duration="592000" />
       <workItem from="1525281645968" duration="18000" />
       <workItem from="1526916975113" duration="4482000" />
-      <workItem from="1526922893826" duration="3174000" />
+      <workItem from="1526922893826" duration="6585000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92832000" />
+    <option name="totallyTimeSpent" value="96243000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="2112" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
@@ -633,8 +630,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="808">
-          <caret line="273" column="24" selection-start-line="273" selection-start-column="24" selection-end-line="273" selection-end-column="24" />
+        <state relative-caret-position="502">
+          <caret line="256" column="42" selection-start-line="256" selection-start-column="42" selection-end-line="256" selection-end-column="42" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>

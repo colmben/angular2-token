@@ -10,7 +10,7 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/filter';
 import * as urlParse from 'url-parse';
-import { tap } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/finally';
 
 /**
@@ -728,7 +728,7 @@ class Angular2TokenService {
      */
     signOut() {
         let /** @type {?} */ observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
-        observ.finally(() => {
+        observ.pipe(finalize(() => {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('client');
             localStorage.removeItem('expiry');
@@ -737,7 +737,7 @@ class Angular2TokenService {
             this.atCurrentAuthData = null;
             this.atCurrentUserType = null;
             this.atCurrentUserData = null;
-        });
+        }));
         return observ;
     }
     /**
