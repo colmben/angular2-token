@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs/Observable'), require('rxjs/add/operator/share'), require('rxjs/add/observable/interval'), require('rxjs/add/observable/fromEvent'), require('rxjs/add/operator/pluck'), require('rxjs/add/operator/filter'), require('url-parse'), require('rxjs/operators'), require('rxjs/add/operator/finally')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs/Observable', 'rxjs/add/operator/share', 'rxjs/add/observable/interval', 'rxjs/add/observable/fromEvent', 'rxjs/add/operator/pluck', 'rxjs/add/operator/filter', 'url-parse', 'rxjs/operators', 'rxjs/add/operator/finally'], factory) :
-	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.common.http,global.Rx,global.Rx.Observable.prototype,global.Rx.Observable,global.Rx.Observable,global.Rx.Observable.prototype,global.Rx.Observable.prototype,global.urlParse,global.Rx.Observable.prototype));
-}(this, (function (exports,core,forms,common,router,http,Observable,share,interval,fromEvent,pluck,filter,urlParse,operators) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs'), require('url-parse'), require('rxjs/operators'), require('rxjs/add/operator/finally')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs', 'url-parse', 'rxjs/operators', 'rxjs/add/operator/finally'], factory) :
+	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.common.http,global.rxjs,global.urlParse,global.Rx.Observable.prototype));
+}(this, (function (exports,core,forms,common,router,http,rxjs,urlParse,operators) { 'use strict';
 
 var A2tFormService = /** @class */ (function () {
     function A2tFormService() {
@@ -602,9 +602,8 @@ var Angular2TokenService = /** @class */ (function () {
         return url;
     };
     Angular2TokenService.prototype.requestCredentialsViaPostMessage = function (authWindow) {
-        var pollerObserv = Observable.Observable.interval(500);
-        var responseObserv = Observable.Observable.fromEvent(window, 'message').pluck('data')
-            .filter(this.oAuthWindowResponseFilter);
+        var pollerObserv = rxjs.interval(500);
+        var responseObserv = rxjs.fromEvent(window, 'message').pipe(operators.pluck('data'), operators.filter(this.oAuthWindowResponseFilter));
         var responseSubscription = responseObserv.subscribe(this.getAuthDataFromPostMessage.bind(this));
         var pollerSubscription = pollerObserv.subscribe(function () {
             if (authWindow.closed)

@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 import { SignInData } from '../../../angular2-token.model';
 import { BaseField } from '../../a2t-ui.forms';

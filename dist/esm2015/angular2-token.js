@@ -3,14 +3,9 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/share';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/pluck';
-import 'rxjs/add/operator/filter';
+import { fromEvent, interval } from 'rxjs';
 import * as urlParse from 'url-parse';
-import { finalize, tap } from 'rxjs/operators';
+import { filter, finalize, pluck, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/finally';
 
 /**
@@ -972,9 +967,8 @@ class Angular2TokenService {
      * @return {?}
      */
     requestCredentialsViaPostMessage(authWindow) {
-        let /** @type {?} */ pollerObserv = Observable.interval(500);
-        let /** @type {?} */ responseObserv = Observable.fromEvent(window, 'message').pluck('data')
-            .filter(this.oAuthWindowResponseFilter);
+        let /** @type {?} */ pollerObserv = interval(500);
+        let /** @type {?} */ responseObserv = fromEvent(window, 'message').pipe(pluck('data'), filter(this.oAuthWindowResponseFilter));
         let /** @type {?} */ responseSubscription = responseObserv.subscribe(this.getAuthDataFromPostMessage.bind(this));
         let /** @type {?} */ pollerSubscription = pollerObserv.subscribe(() => {
             if (authWindow.closed)

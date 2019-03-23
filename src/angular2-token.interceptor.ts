@@ -4,7 +4,7 @@ import {
 }
     from '@angular/common/http';
 import {Angular2TokenService} from './angular2-token.service';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {AuthData} from "./angular2-token.model";
 
