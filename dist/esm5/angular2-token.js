@@ -28,9 +28,9 @@ var A2tFormService = /** @class */ (function () {
     
     A2tFormService.prototype._createFormGroup = function () {
         var group = {};
-        this.fields.forEach(function (question) {
+        this.fields.forEach((function (question) {
             group[question.key] = new FormControl(null, question.validators);
-        });
+        }));
         this.formGroup = new FormGroup(group);
     };
     return A2tFormService;
@@ -157,14 +157,13 @@ var A2tFormFieldComponent = /** @class */ (function () {
 A2tFormFieldComponent.decorators = [
     { type: Component, args: [{
                 selector: 'a2t-form-field',
-                template: "\n        <div class=\"a2t-input-group\"\n            [formGroup]=\"form\">\n            <label\n                [attr.for]=\"question.key\"\n                [style.color]=\"labelColor\"\n                *ngIf=\"_control.pristine\">\n                {{question.label}}\n            </label>\n            <label class=\"a2t-error\"\n                [attr.for]=\"question.key\"\n                *ngIf=\"_control.hasError('required') && !_control.pristine\">\n                {{question.label}} is required\n            </label>\n            <label class=\"a2t-error\"\n                [attr.for]=\"question.key\"\n                *ngIf=\"_control.hasError('minlength')\">\n                {{question.label}} is too short\n            </label>\n            <label class=\"a2t-error\"\n                [attr.for]=\"question.key\"\n                *ngIf=\"_control.hasError('maxlength')\">\n                {{question.label}} is too long\n            </label>\n            <label class=\"a2t-valid\"\n                [attr.for]=\"question.key\"\n                *ngIf=\"_control.valid && !_control.pristine\">\n                {{question.label}}\n            </label>\n            <input\n                [formControlName]=\"question.key\"\n                [id]=\"question.key\"\n                [type]=\"question.type\">\n        </div>\n    ",
-                styles: ["\n        .a2t-input-group {\n            padding-bottom: 40px;\n            padding-right: 20px;\n            padding-left: 20px;\n            font-family: \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif;\n        }\n        .a2t-input-group input {\n            width: 100%;\n            outline: none;\n            border: none;\n            background-color: #eee;\n            line-height: 40px;\n            padding-left: 10px;\n            padding-right: 10px;\n        }\n        .a2t-input-group label {\n            color: #666;\n            font-weight: 600;\n            font-size: 13px;\n            margin-bottom: 0;\n        }\n        .a2t-error {\n            color: #df6564 !important;\n        }\n        .a2t-valid {\n            color: #72c380 !important;\n        }\n    "]
+                template: "\n        <div class=\"a2t-input-group\"\n            [formGroup]=\"form\">\n\n            <label\n                [attr.for]=\"question.key\"\n                [style.color]=\"labelColor\"\n                *ngIf=\"_control.pristine\">\n                {{question.label}}\n            </label>\n\n            <label class=\"a2t-error\"\n                [attr.for]=\"question.key\"\n                *ngIf=\"_control.hasError('required') && !_control.pristine\">\n                {{question.label}} is required\n            </label>\n\n            <label class=\"a2t-error\"\n                [attr.for]=\"question.key\"\n                *ngIf=\"_control.hasError('minlength')\">\n                {{question.label}} is too short\n            </label>\n\n            <label class=\"a2t-error\"\n                [attr.for]=\"question.key\"\n                *ngIf=\"_control.hasError('maxlength')\">\n                {{question.label}} is too long\n            </label>\n\n            <label class=\"a2t-valid\"\n                [attr.for]=\"question.key\"\n                *ngIf=\"_control.valid && !_control.pristine\">\n                {{question.label}}\n            </label>\n\n            <input\n                [formControlName]=\"question.key\"\n                [id]=\"question.key\"\n                [type]=\"question.type\">\n        </div>\n    ",
+                styles: ["\n        .a2t-input-group {\n            padding-bottom: 40px;\n            padding-right: 20px;\n            padding-left: 20px;\n            font-family: \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif;\n        }\n\n        .a2t-input-group input {\n            width: 100%;\n            outline: none;\n            border: none;\n            background-color: #eee;\n            line-height: 40px;\n\n            padding-left: 10px;\n            padding-right: 10px;\n        }\n\n        .a2t-input-group label {\n            color: #666;\n            font-weight: 600;\n            font-size: 13px;\n            margin-bottom: 0;\n        }\n\n        .a2t-error {\n            color: #df6564 !important;\n        }\n\n        .a2t-valid {\n            color: #72c380 !important;\n        }\n    "]
             },] },
 ];
-A2tFormFieldComponent.ctorParameters = function () { return []; };
 A2tFormFieldComponent.propDecorators = {
-    "question": [{ type: Input },],
-    "form": [{ type: Input },],
+    question: [{ type: Input }],
+    form: [{ type: Input }]
 };
 var A2tFormComponent = /** @class */ (function () {
     function A2tFormComponent(_formService) {
@@ -175,12 +174,12 @@ var A2tFormComponent = /** @class */ (function () {
 A2tFormComponent.decorators = [
     { type: Component, args: [{
                 selector: 'a2t-form',
-                template: "\n        <form class=\"a2t-form\"\n            (ngSubmit)=\"_formService.submit()\"\n            [formGroup]=\"_formService.formGroup\">\n            <a2t-form-field\n                *ngFor=\"let field of this._formService.fields\"\n                [question]=\"field\"\n                [form]=\"_formService.formGroup\">\n            </a2t-form-field>\n            <button type=\"submit\" [disabled]=\"!_formService.formGroup.valid || _formService.formGroup.pristine || _formService.submitLock\">\n                <ng-content *ngIf=\"!_formService.submitLock\"></ng-content>\n                <span *ngIf=\"_formService.submitLock\">Submitting ...</span>\n            </button>\n        </form>\n    ",
-                styles: ["\n        .a2t-form {\n            background-color: white;\n            border-radius: 3px;\n            box-shadow: 0px 1px 5px 0 rgba(0,0,0,0.3);\n            padding-top: 20px;\n            font-family: \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif;\n        }\n        .a2t-form button {\n            width: 100%;\n            transition: .3s;\n            background-color: #72c380;\n            border-bottom-right-radius: 3px;\n            border-bottom-left-radius: 3px;\n            outline: none;\n            text-align: center;\n            font-weight: 400;\n            border: none;\n            font-size: 16px;\n            line-height: 30px;\n            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);\n            color: white;\n            border-bottom: 3px solid transparent;\n        }\n        .a2t-form button:disabled {\n            background-color: #eee !important;\n            cursor: not-allowed;\n            color: #999;\n            text-shadow: none;\n        }\n        .a2t-form button:hover {\n            background-color: #a6d9ae;\n        }\n    "]
+                template: "\n        <form class=\"a2t-form\"\n            (ngSubmit)=\"_formService.submit()\"\n            [formGroup]=\"_formService.formGroup\">\n\n            <a2t-form-field\n                *ngFor=\"let field of this._formService.fields\"\n                [question]=\"field\"\n                [form]=\"_formService.formGroup\">\n            </a2t-form-field>\n\n            <button type=\"submit\" [disabled]=\"!_formService.formGroup.valid || _formService.formGroup.pristine || _formService.submitLock\">\n                <ng-content *ngIf=\"!_formService.submitLock\"></ng-content>\n                <span *ngIf=\"_formService.submitLock\">Submitting ...</span>\n            </button>\n        </form>\n    ",
+                styles: ["\n        .a2t-form {\n            background-color: white;\n            border-radius: 3px;\n            box-shadow: 0px 1px 5px 0 rgba(0,0,0,0.3);\n            padding-top: 20px;\n            font-family: \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif;\n        }\n\n        .a2t-form button {\n            width: 100%;\n\n            transition: .3s;\n            background-color: #72c380;\n\n            border-bottom-right-radius: 3px;\n            border-bottom-left-radius: 3px;\n\n            outline: none;\n            text-align: center;\n            font-weight: 400;\n            border: none;\n            font-size: 16px;\n            line-height: 30px;\n\n            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);\n            color: white;\n            border-bottom: 3px solid transparent;\n        }\n\n        .a2t-form button:disabled {\n            background-color: #eee !important;\n            cursor: not-allowed;\n            color: #999;\n            text-shadow: none;\n        }\n\n        .a2t-form button:hover {\n            background-color: #a6d9ae;\n        }\n    "]
             },] },
 ];
 A2tFormComponent.ctorParameters = function () { return [
-    { type: A2tFormService, },
+    { type: A2tFormService }
 ]; };
 var A2tLinksComponent = /** @class */ (function () {
     function A2tLinksComponent() {
@@ -191,12 +190,12 @@ A2tLinksComponent.decorators = [
     { type: Component, args: [{
                 selector: 'a2t-links',
                 template: "\n        <div class=\"a2t-wrapper\">\n            <p><a routerLink=\"/session/reset-password\" *ngIf=\"case != 'reset-password'\">Forgot Password?</a></p>\n            <p><a routerLink=\"/session/sign-up\" *ngIf=\"case != 'sign-up'\">Sign Up</a></p>\n            <p><a routerLink=\"/session/sign-in\" *ngIf=\"case != 'sign-in'\">Sign In</a></p>\n        </div>\n    ",
-                styles: ["\n        .a2t-wrapper {\n            margin-top: 20px;\n        }\n        p {\n            margin-bottom: 0;\n        }\n        a {\n            color: #eee !important;\n            transition: .3s;\n            text-decoration: none;\n            font-size: 15px;\n            font-weight: 300;\n            font-family: \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif;\n        }\n        a:hover {\n            color: white;\n        }\n    "]
+                styles: ["\n        .a2t-wrapper {\n            margin-top: 20px;\n        }\n\n        p {\n            margin-bottom: 0;\n        }\n\n        a {\n            color: #eee !important;\n            transition: .3s;\n            text-decoration: none;\n            font-size: 15px;\n            font-weight: 300;\n            font-family: \"Segoe UI\", \"Helvetica Neue\", Arial, sans-serif;\n        }\n\n        a:hover {\n            color: white;\n        }\n    "]
             },] },
 ];
 A2tLinksComponent.ctorParameters = function () { return []; };
 A2tLinksComponent.propDecorators = {
-    "case": [{ type: Input },],
+    case: [{ type: Input }]
 };
 var A2tErrorComponent = /** @class */ (function () {
     function A2tErrorComponent() {
@@ -207,12 +206,12 @@ A2tErrorComponent.decorators = [
     { type: Component, args: [{
                 selector: 'a2t-error',
                 template: '<div *ngFor="let error of errors"><p>{{error}}</p></div>',
-                styles: ["\n        div {\n            width: 100%;\n            background-color: #df6564;\n            color: white;\n            font-weight: 300;\n            font-size: 15px;\n            padding: 10px 20px;\n            border-radius: 3px;\n            margin-bottom: 15px;\n        }\n        div > p {\n            margin-bottom: 0;\n        }\n    "]
+                styles: ["\n        div {\n            width: 100%;\n            background-color: #df6564;\n            color: white;\n            font-weight: 300;\n            font-size: 15px;\n            padding: 10px 20px;\n            border-radius: 3px;\n            margin-bottom: 15px;\n        }\n\n        div > p {\n            margin-bottom: 0;\n        }\n    "]
             },] },
 ];
 A2tErrorComponent.ctorParameters = function () { return []; };
 A2tErrorComponent.propDecorators = {
-    "errors": [{ type: Input },],
+    errors: [{ type: Input }]
 };
 var A2tHeadlineComponent = /** @class */ (function () {
     function A2tHeadlineComponent() {
@@ -254,7 +253,6 @@ A2tSharedModule.decorators = [
                 ]
             },] },
 ];
-A2tSharedModule.ctorParameters = function () { return []; };
 var A2tUiComponent = /** @class */ (function () {
     function A2tUiComponent() {
     }
@@ -264,7 +262,7 @@ A2tUiComponent.decorators = [
     { type: Component, args: [{
                 selector: 'a2t-ui',
                 template: "\n        <div class=\"a2t-wrapper\">\n            <div class=\"a2t-container\">\n                <router-outlet></router-outlet>\n            </div>\n        </div>\n    ",
-                styles: ["\n        .a2t-wrapper {\n            width: 100%;\n            height: 100vh;\n            min-height: 500px;\n            padding-top: 100px;\n            display: flex;\n            justify-content: center;\n            background-color: #3270a0;\n        }\n        .a2t-logo {\n            text-align: center;\n            color: white;\n            font-size: 30px;\n        }\n        .a2t-container {\n            width: 400px;\n        }\n    "]
+                styles: ["\n        .a2t-wrapper {\n            width: 100%;\n            height: 100vh;\n            min-height: 500px;\n\n            padding-top: 100px;\n\n            display: flex;\n            justify-content: center;\n\n            background-color: #3270a0;\n        }\n\n        .a2t-logo {\n            text-align: center;\n            color: white;\n            font-size: 30px;\n        }\n\n        .a2t-container {\n            width: 400px;\n        }\n    "]
             },] },
 ];
 A2tUiComponent.ctorParameters = function () { return []; };
@@ -370,19 +368,19 @@ var Angular2TokenService = /** @class */ (function () {
                 }
             }
         };
-        this.atOptions = ((Object)).assign(defaultOptions, options);
+        this.atOptions = (((Object))).assign(defaultOptions, options);
         this.tryLoadAuthData();
     };
     Angular2TokenService.prototype.registerAccount = function (registerData) {
-        if (registerData["userType"] == null)
+        if (registerData.userType == null)
             this.atCurrentUserType = null;
         else {
-            this.atCurrentUserType = this.getUserTypeByName(registerData["userType"]);
-            delete registerData["userType"];
+            this.atCurrentUserType = this.getUserTypeByName(registerData.userType);
+            delete registerData.userType;
         }
-        registerData["password_confirmation"] = registerData["passwordConfirmation"];
-        delete registerData["passwordConfirmation"];
-        registerData["confirm_success_url"] = this.atOptions.registerAccountCallback;
+        registerData.password_confirmation = registerData.passwordConfirmation;
+        delete registerData.passwordConfirmation;
+        registerData.confirm_success_url = this.atOptions.registerAccountCallback;
         return this.request('POST', this.getUserPath() + this.atOptions.registerAccountPath, JSON.stringify(registerData));
     };
     Angular2TokenService.prototype.deleteAccount = function () {
@@ -401,13 +399,13 @@ var Angular2TokenService = /** @class */ (function () {
         });
         var observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
         console.log('In singIn tap, returned observ : ', observ);
-        return observ.pipe(tap(function (res) {
+        return observ.pipe(tap((function (res) {
             console.log('In singIn tap, res  : ', res);
             _this.atCurrentUserData = res.data;
             console.log('In singIn tap, this.atCurrentUserData  : ', _this.atCurrentUserData);
-        }, function (err) {
+        }), (function (err) {
             console.log('In singIn tap, error : ', err);
-        }));
+        })));
     };
     Angular2TokenService.prototype.signInOAuth = function (oAuthType) {
         var oAuthPath = this.getOAuthPath(oAuthType);
@@ -438,7 +436,7 @@ var Angular2TokenService = /** @class */ (function () {
     Angular2TokenService.prototype.signOut = function () {
         var _this = this;
         var observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
-        observ.pipe(finalize(function () {
+        observ.pipe(finalize((function () {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('client');
             localStorage.removeItem('expiry');
@@ -447,22 +445,22 @@ var Angular2TokenService = /** @class */ (function () {
             _this.atCurrentAuthData = null;
             _this.atCurrentUserType = null;
             _this.atCurrentUserData = null;
-        }));
+        })));
         return observ;
     };
     Angular2TokenService.prototype.validateToken = function () {
         var _this = this;
         var observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
-        return observ.pipe(tap(function (res) {
+        return observ.pipe(tap((function (res) {
             if (res.data) {
                 console.log('in validateResponse, res : ', res);
                 _this.atCurrentUserData = res.data;
             }
-        }, function (error) {
+        }), (function (error) {
             if (error.status === 401 && _this.atOptions.signOutFailedValidate) {
                 _this.signOut();
             }
-        }));
+        })));
     };
     Angular2TokenService.prototype.updatePassword = function (updatePasswordData) {
         if (updatePasswordData.userType != null)
@@ -499,8 +497,8 @@ var Angular2TokenService = /** @class */ (function () {
     Angular2TokenService.prototype.request = function (method, url, body) {
         var options = {};
         var baseHeaders = this.atOptions.globalOptions.headers;
-        options["headers"] = new HttpHeaders(baseHeaders);
-        options["body"] = body;
+        options.headers = new HttpHeaders(baseHeaders);
+        options.body = body;
         var response = this.http.request(method, this.getApiPath() + url, options);
         return response;
     };
@@ -610,12 +608,12 @@ var Angular2TokenService = /** @class */ (function () {
         var pollerObserv = interval(500);
         var responseObserv = fromEvent(window, 'message').pipe(pluck('data'), filter(this.oAuthWindowResponseFilter));
         var responseSubscription = responseObserv.subscribe(this.getAuthDataFromPostMessage.bind(this));
-        var pollerSubscription = pollerObserv.subscribe(function () {
+        var pollerSubscription = pollerObserv.subscribe((function () {
             if (authWindow.closed)
                 pollerSubscription.unsubscribe();
             else
                 authWindow.postMessage('requestCredentials', '*');
-        });
+        }));
         return responseObserv;
     };
     Angular2TokenService.prototype.oAuthWindowResponseFilter = function (data) {
@@ -625,7 +623,7 @@ var Angular2TokenService = /** @class */ (function () {
     Angular2TokenService.prototype.getUserTypeByName = function (name) {
         if (name == null || this.atOptions.userTypes == null)
             return null;
-        return this.atOptions.userTypes.find(function (userType) { return userType.name === name; });
+        return this.atOptions.userTypes.find((function (userType) { return userType.name === name; }));
     };
     return Angular2TokenService;
 }());
@@ -633,9 +631,9 @@ Angular2TokenService.decorators = [
     { type: Injectable },
 ];
 Angular2TokenService.ctorParameters = function () { return [
-    { type: HttpClient, },
-    { type: ActivatedRoute, decorators: [{ type: Optional },] },
-    { type: Router, decorators: [{ type: Optional },] },
+    { type: HttpClient },
+    { type: ActivatedRoute, decorators: [{ type: Optional }] },
+    { type: Router, decorators: [{ type: Optional }] }
 ]; };
 var A2tSignInComponent = /** @class */ (function () {
     function A2tSignInComponent(_formService, _sessionService, _router) {
@@ -644,7 +642,7 @@ var A2tSignInComponent = /** @class */ (function () {
         this._sessionService = _sessionService;
         this._router = _router;
         this._formService.initForm(SIGN_IN_FORM);
-        this._formService.submit$.subscribe(function (data) { return _this._sessionService.signIn(data).subscribe(function (res) { return _this._handleSuccess(res); }, function (error) { return _this._handleError(error); }); });
+        this._formService.submit$.subscribe((function (data) { return _this._sessionService.signIn(data).subscribe((function (res) { return _this._handleSuccess(res); }), (function (error) { return _this._handleError(error); })); }));
     }
     A2tSignInComponent.prototype._handleSuccess = function (data) {
         this._errors = null;
@@ -665,9 +663,9 @@ A2tSignInComponent.decorators = [
             },] },
 ];
 A2tSignInComponent.ctorParameters = function () { return [
-    { type: A2tFormService, },
-    { type: Angular2TokenService, },
-    { type: Router, },
+    { type: A2tFormService },
+    { type: Angular2TokenService },
+    { type: Router }
 ]; };
 var A2tSignUpComponent = /** @class */ (function () {
     function A2tSignUpComponent(_formService, _sessionService, _router) {
@@ -676,7 +674,7 @@ var A2tSignUpComponent = /** @class */ (function () {
         this._sessionService = _sessionService;
         this._router = _router;
         this._formService.initForm(SIGN_UP_FORM);
-        this._formService.submit$.subscribe(function (data) { return _this._sessionService.registerAccount(data).subscribe(function (res) { return _this._handleSuccess(res); }, function (error) { return _this._handleError(error); }); });
+        this._formService.submit$.subscribe((function (data) { return _this._sessionService.registerAccount(data).subscribe((function (res) { return _this._handleSuccess(res); }), (function (error) { return _this._handleError(error); })); }));
     }
     A2tSignUpComponent.prototype._handleSuccess = function (data) {
         this._errors = null;
@@ -697,9 +695,9 @@ A2tSignUpComponent.decorators = [
             },] },
 ];
 A2tSignUpComponent.ctorParameters = function () { return [
-    { type: A2tFormService, },
-    { type: Angular2TokenService, },
-    { type: Router, },
+    { type: A2tFormService },
+    { type: Angular2TokenService },
+    { type: Router }
 ]; };
 var A2tResetPasswordComponent = /** @class */ (function () {
     function A2tResetPasswordComponent(_formService, _sessionService) {
@@ -708,7 +706,7 @@ var A2tResetPasswordComponent = /** @class */ (function () {
         this._sessionService = _sessionService;
         this._emailSend = false;
         this._formService.initForm(RESET_PASSWORD_FORM);
-        this._formService.submit$.subscribe(function (data) { return _this._sessionService.resetPassword(data).subscribe(function (res) { return _this._handleSuccess(); }, function (error) { return _this._handleError(); }); });
+        this._formService.submit$.subscribe((function (data) { return _this._sessionService.resetPassword(data).subscribe((function (res) { return _this._handleSuccess(); }), (function (error) { return _this._handleError(); })); }));
     }
     A2tResetPasswordComponent.prototype._handleSuccess = function () {
         this._emailSend = true;
@@ -727,8 +725,8 @@ A2tResetPasswordComponent.decorators = [
             },] },
 ];
 A2tResetPasswordComponent.ctorParameters = function () { return [
-    { type: A2tFormService, },
-    { type: Angular2TokenService, },
+    { type: A2tFormService },
+    { type: Angular2TokenService }
 ]; };
 var A2tUpdatePasswordComponent = /** @class */ (function () {
     function A2tUpdatePasswordComponent(_formService, _sessionService, _router) {
@@ -737,7 +735,7 @@ var A2tUpdatePasswordComponent = /** @class */ (function () {
         this._sessionService = _sessionService;
         this._router = _router;
         this._formService.initForm(UPDATE_PASSWORD_FORM);
-        this._formService.submit$.subscribe(function (data) { return _this._sessionService.updatePassword(data).subscribe(function (res) { return _this._handleSuccess(res); }, function (error) { return _this._handleError(error); }); });
+        this._formService.submit$.subscribe((function (data) { return _this._sessionService.updatePassword(data).subscribe((function (res) { return _this._handleSuccess(res); }), (function (error) { return _this._handleError(error); })); }));
     }
     A2tUpdatePasswordComponent.prototype._handleSuccess = function (data) {
         this._router.navigate(['session/sign-in']);
@@ -756,9 +754,9 @@ A2tUpdatePasswordComponent.decorators = [
             },] },
 ];
 A2tUpdatePasswordComponent.ctorParameters = function () { return [
-    { type: A2tFormService, },
-    { type: Angular2TokenService, },
-    { type: Router, },
+    { type: A2tFormService },
+    { type: Angular2TokenService },
+    { type: Router }
 ]; };
 var routes = [{
         path: 'session',
@@ -797,7 +795,6 @@ A2tUiModule.decorators = [
                 ]
             },] },
 ];
-A2tUiModule.ctorParameters = function () { return []; };
 var Angular2TokenInteceptor = /** @class */ (function () {
     function Angular2TokenInteceptor(_tokenService) {
         this._tokenService = _tokenService;
@@ -807,35 +804,35 @@ var Angular2TokenInteceptor = /** @class */ (function () {
         var _this = this;
         console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
         var headersWithAuth = this._tokenService.currentAuthHeaders;
-        var apiPath = req.headers.keys().forEach(function (key) {
+        var apiPath = req.headers.keys().forEach((function (key) {
             headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
-        });
+        }));
         console.log('In intercept request, new headers : ', headersWithAuth);
         if (req.url.match(this.apiPath)) {
             req = req.clone({ headers: headersWithAuth });
             var authHeaders_1 = this._tokenService.currentAuthHeaders;
-            authHeaders_1.keys().forEach(function (key) {
+            authHeaders_1.keys().forEach((function (key) {
                 req.headers.append(key, authHeaders_1.get(key));
-            });
+            }));
         }
         return next.handle(req)
-            .pipe(tap(function (res) {
+            .pipe(tap((function (res) {
             console.log('In token interceptor, evt : ', res);
             if (res instanceof HttpResponse && res.url.match(_this.apiPath)) {
                 console.log('---> status:', res.status);
                 console.log('---> filter:', req.params.get('filter'));
-                _this.getAuthHeadersFromResponse((res));
+                _this.getAuthHeadersFromResponse(((res)));
             }
-        }, function (err) {
+        }), (function (err) {
             console.log('In token interceptor, err : ', err);
             if (err instanceof HttpErrorResponse && err.url && err.url.match(_this.apiPath)) {
                 console.log('In token interceptor, HTTP err : ', err);
-                _this.getAuthHeadersFromResponse((err));
+                _this.getAuthHeadersFromResponse(((err)));
             }
             else {
                 console.log("Auth Interceptor, non HTTP or no headers error - ", err);
             }
-        }));
+        })));
     };
     Angular2TokenInteceptor.prototype.getAuthHeadersFromResponse = function (data) {
         var headers = data.headers;
@@ -854,7 +851,7 @@ Angular2TokenInteceptor.decorators = [
     { type: Injectable },
 ];
 Angular2TokenInteceptor.ctorParameters = function () { return [
-    { type: Angular2TokenService, },
+    { type: Angular2TokenService }
 ]; };
 
 export { A2tUiModule, Angular2TokenService, Angular2TokenInteceptor };

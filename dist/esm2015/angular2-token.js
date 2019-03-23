@@ -10,10 +10,11 @@ import 'rxjs/add/operator/finally';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tFormService {
     constructor() {
+        // Submit Event
         this.submit$ = new EventEmitter();
         this.submitLock = false;
     }
@@ -41,13 +42,19 @@ class A2tFormService {
     }
     ;
     /**
+     * @private
      * @return {?}
      */
     _createFormGroup() {
-        let /** @type {?} */ group = {};
-        this.fields.forEach(question => {
+        /** @type {?} */
+        let group = {};
+        this.fields.forEach((/**
+         * @param {?} question
+         * @return {?}
+         */
+        question => {
             group[question.key] = new FormControl(null, question.validators);
-        });
+        }));
         this.formGroup = new FormGroup(group);
     }
 }
@@ -59,7 +66,7 @@ A2tFormService.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class BaseField {
     /**
@@ -73,6 +80,7 @@ class BaseField {
         this.type = options.type || '';
     }
 }
+/** @type {?} */
 const SIGN_IN_FORM = [
     new BaseField({
         key: 'email',
@@ -93,6 +101,7 @@ const SIGN_IN_FORM = [
         ]
     })
 ];
+/** @type {?} */
 const SIGN_UP_FORM = [
     new BaseField({
         key: 'email',
@@ -122,6 +131,7 @@ const SIGN_UP_FORM = [
         ]
     })
 ];
+/** @type {?} */
 const RESET_PASSWORD_FORM = [
     new BaseField({
         key: 'email',
@@ -133,6 +143,7 @@ const RESET_PASSWORD_FORM = [
         ]
     })
 ];
+/** @type {?} */
 const UPDATE_PASSWORD_FORM = [
     new BaseField({
         key: 'password',
@@ -165,7 +176,7 @@ const UPDATE_PASSWORD_FORM = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tFormFieldComponent {
     /**
@@ -187,32 +198,38 @@ A2tFormFieldComponent.decorators = [
                 template: `
         <div class="a2t-input-group"
             [formGroup]="form">
+
             <label
                 [attr.for]="question.key"
                 [style.color]="labelColor"
                 *ngIf="_control.pristine">
                 {{question.label}}
             </label>
+
             <label class="a2t-error"
                 [attr.for]="question.key"
                 *ngIf="_control.hasError('required') && !_control.pristine">
                 {{question.label}} is required
             </label>
+
             <label class="a2t-error"
                 [attr.for]="question.key"
                 *ngIf="_control.hasError('minlength')">
                 {{question.label}} is too short
             </label>
+
             <label class="a2t-error"
                 [attr.for]="question.key"
                 *ngIf="_control.hasError('maxlength')">
                 {{question.label}} is too long
             </label>
+
             <label class="a2t-valid"
                 [attr.for]="question.key"
                 *ngIf="_control.valid && !_control.pristine">
                 {{question.label}}
             </label>
+
             <input
                 [formControlName]="question.key"
                 [id]="question.key"
@@ -226,40 +243,43 @@ A2tFormFieldComponent.decorators = [
             padding-left: 20px;
             font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
         }
+
         .a2t-input-group input {
             width: 100%;
             outline: none;
             border: none;
             background-color: #eee;
             line-height: 40px;
+
             padding-left: 10px;
             padding-right: 10px;
         }
+
         .a2t-input-group label {
             color: #666;
             font-weight: 600;
             font-size: 13px;
             margin-bottom: 0;
         }
+
         .a2t-error {
             color: #df6564 !important;
         }
+
         .a2t-valid {
             color: #72c380 !important;
         }
     `]
             },] },
 ];
-/** @nocollapse */
-A2tFormFieldComponent.ctorParameters = () => [];
 A2tFormFieldComponent.propDecorators = {
-    "question": [{ type: Input },],
-    "form": [{ type: Input },],
+    question: [{ type: Input }],
+    form: [{ type: Input }]
 };
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tFormComponent {
     /**
@@ -276,11 +296,13 @@ A2tFormComponent.decorators = [
         <form class="a2t-form"
             (ngSubmit)="_formService.submit()"
             [formGroup]="_formService.formGroup">
+
             <a2t-form-field
                 *ngFor="let field of this._formService.fields"
                 [question]="field"
                 [form]="_formService.formGroup">
             </a2t-form-field>
+
             <button type="submit" [disabled]="!_formService.formGroup.valid || _formService.formGroup.pristine || _formService.submitLock">
                 <ng-content *ngIf="!_formService.submitLock"></ng-content>
                 <span *ngIf="_formService.submitLock">Submitting ...</span>
@@ -295,28 +317,35 @@ A2tFormComponent.decorators = [
             padding-top: 20px;
             font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
         }
+
         .a2t-form button {
             width: 100%;
+
             transition: .3s;
             background-color: #72c380;
+
             border-bottom-right-radius: 3px;
             border-bottom-left-radius: 3px;
+
             outline: none;
             text-align: center;
             font-weight: 400;
             border: none;
             font-size: 16px;
             line-height: 30px;
+
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
             color: white;
             border-bottom: 3px solid transparent;
         }
+
         .a2t-form button:disabled {
             background-color: #eee !important;
             cursor: not-allowed;
             color: #999;
             text-shadow: none;
         }
+
         .a2t-form button:hover {
             background-color: #a6d9ae;
         }
@@ -325,17 +354,17 @@ A2tFormComponent.decorators = [
 ];
 /** @nocollapse */
 A2tFormComponent.ctorParameters = () => [
-    { type: A2tFormService, },
+    { type: A2tFormService }
 ];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tLinksComponent {
     constructor() { }
@@ -354,9 +383,11 @@ A2tLinksComponent.decorators = [
         .a2t-wrapper {
             margin-top: 20px;
         }
+
         p {
             margin-bottom: 0;
         }
+
         a {
             color: #eee !important;
             transition: .3s;
@@ -365,6 +396,7 @@ A2tLinksComponent.decorators = [
             font-weight: 300;
             font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
         }
+
         a:hover {
             color: white;
         }
@@ -374,12 +406,12 @@ A2tLinksComponent.decorators = [
 /** @nocollapse */
 A2tLinksComponent.ctorParameters = () => [];
 A2tLinksComponent.propDecorators = {
-    "case": [{ type: Input },],
+    case: [{ type: Input }]
 };
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tErrorComponent {
     constructor() { }
@@ -399,6 +431,7 @@ A2tErrorComponent.decorators = [
             border-radius: 3px;
             margin-bottom: 15px;
         }
+
         div > p {
             margin-bottom: 0;
         }
@@ -408,12 +441,12 @@ A2tErrorComponent.decorators = [
 /** @nocollapse */
 A2tErrorComponent.ctorParameters = () => [];
 A2tErrorComponent.propDecorators = {
-    "errors": [{ type: Input },],
+    errors: [{ type: Input }]
 };
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tHeadlineComponent {
     constructor() { }
@@ -436,7 +469,7 @@ A2tHeadlineComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tSharedModule {
 }
@@ -462,17 +495,15 @@ A2tSharedModule.decorators = [
                 ]
             },] },
 ];
-/** @nocollapse */
-A2tSharedModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tUiComponent {
     constructor() { }
@@ -492,16 +523,21 @@ A2tUiComponent.decorators = [
             width: 100%;
             height: 100vh;
             min-height: 500px;
+
             padding-top: 100px;
+
             display: flex;
             justify-content: center;
+
             background-color: #3270a0;
         }
+
         .a2t-logo {
             text-align: center;
             color: white;
             font-size: 30px;
         }
+
         .a2t-container {
             width: 400px;
         }
@@ -513,7 +549,7 @@ A2tUiComponent.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class Angular2TokenService {
     /**
@@ -598,12 +634,14 @@ class Angular2TokenService {
             return false;
         }
     }
+    // Inital configuration
     /**
      * @param {?=} options
      * @return {?}
      */
     init(options) {
-        let /** @type {?} */ defaultOptions = {
+        /** @type {?} */
+        let defaultOptions = {
             apiPath: null,
             apiBase: null,
             signInPath: 'auth/sign_in',
@@ -633,7 +671,7 @@ class Angular2TokenService {
                 }
             }
         };
-        this.atOptions = (/** @type {?} */ (Object)).assign(defaultOptions, options);
+        this.atOptions = ((/** @type {?} */ (Object))).assign(defaultOptions, options);
         this.tryLoadAuthData();
     }
     /**
@@ -643,24 +681,27 @@ class Angular2TokenService {
      * @param {?} registerData
      * @return {?}
      */
+    // Register request
     registerAccount(registerData) {
-        if (registerData["userType"] == null)
+        if (registerData.userType == null)
             this.atCurrentUserType = null;
         else {
-            this.atCurrentUserType = this.getUserTypeByName(registerData["userType"]);
-            delete registerData["userType"];
+            this.atCurrentUserType = this.getUserTypeByName(registerData.userType);
+            delete registerData.userType;
         }
-        registerData["password_confirmation"] = registerData["passwordConfirmation"];
-        delete registerData["passwordConfirmation"];
-        registerData["confirm_success_url"] = this.atOptions.registerAccountCallback;
+        registerData.password_confirmation = registerData.passwordConfirmation;
+        delete registerData.passwordConfirmation;
+        registerData.confirm_success_url = this.atOptions.registerAccountCallback;
         return this.request('POST', this.getUserPath() + this.atOptions.registerAccountPath, JSON.stringify(registerData));
     }
+    // Delete Account
     /**
      * @return {?}
      */
     deleteAccount() {
         return this.request('DELETE', this.getUserPath() + this.atOptions.deleteAccountPath);
     }
+    // Sign in request and set storage
     /**
      * @param {?} signInData
      * @return {?}
@@ -671,38 +712,55 @@ class Angular2TokenService {
             this.atCurrentUserType = null;
         else
             this.atCurrentUserType = this.getUserTypeByName(signInData.userType);
-        let /** @type {?} */ body = JSON.stringify({
+        /** @type {?} */
+        let body = JSON.stringify({
             email: signInData.email,
             password: signInData.password
         });
-        let /** @type {?} */ observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
+        /** @type {?} */
+        let observ = this.request('POST', this.getUserPath() + this.atOptions.signInPath, body);
         console.log('In singIn tap, returned observ : ', observ);
-        return observ.pipe(tap(res => {
+        return observ.pipe(tap((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             console.log('In singIn tap, res  : ', res);
             this.atCurrentUserData = res.data;
             console.log('In singIn tap, this.atCurrentUserData  : ', this.atCurrentUserData);
-        }, err => {
+        }), (/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => {
             console.log('In singIn tap, error : ', err);
-        }));
+        })));
     }
     /**
      * @param {?} oAuthType
      * @return {?}
      */
     signInOAuth(oAuthType) {
-        let /** @type {?} */ oAuthPath = this.getOAuthPath(oAuthType);
-        let /** @type {?} */ callbackUrl = `${window.location.origin}/${this.atOptions.oAuthCallbackPath}`;
-        let /** @type {?} */ oAuthWindowType = this.atOptions.oAuthWindowType;
-        let /** @type {?} */ authUrl = this.getOAuthUrl(oAuthPath, callbackUrl, oAuthWindowType);
+        /** @type {?} */
+        let oAuthPath = this.getOAuthPath(oAuthType);
+        /** @type {?} */
+        let callbackUrl = `${window.location.origin}/${this.atOptions.oAuthCallbackPath}`;
+        /** @type {?} */
+        let oAuthWindowType = this.atOptions.oAuthWindowType;
+        /** @type {?} */
+        let authUrl = this.getOAuthUrl(oAuthPath, callbackUrl, oAuthWindowType);
         if (oAuthWindowType == 'newWindow') {
-            let /** @type {?} */ oAuthWindowOptions = this.atOptions.oAuthWindowOptions;
-            let /** @type {?} */ windowOptions = '';
+            /** @type {?} */
+            let oAuthWindowOptions = this.atOptions.oAuthWindowOptions;
+            /** @type {?} */
+            let windowOptions = '';
             if (oAuthWindowOptions) {
-                for (let /** @type {?} */ key in oAuthWindowOptions) {
+                for (let key in oAuthWindowOptions) {
                     windowOptions += `,${key}=${oAuthWindowOptions[key]}`;
                 }
             }
-            let /** @type {?} */ popup = window.open(authUrl, '_blank', `closebuttoncaption=Cancel${windowOptions}`);
+            /** @type {?} */
+            let popup = window.open(authUrl, '_blank', `closebuttoncaption=Cancel${windowOptions}`);
             return this.requestCredentialsViaPostMessage(popup);
         }
         else if (oAuthWindowType == 'sameWindow') {
@@ -718,12 +776,17 @@ class Angular2TokenService {
     processOAuthCallback() {
         this.getAuthDataFromParams();
     }
+    // Sign out request and delete storage
     /**
      * @return {?}
      */
     signOut() {
-        let /** @type {?} */ observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
-        observ.pipe(finalize(() => {
+        /** @type {?} */
+        let observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
+        observ.pipe(finalize((/**
+         * @return {?}
+         */
+        () => {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('client');
             localStorage.removeItem('expiry');
@@ -732,25 +795,36 @@ class Angular2TokenService {
             this.atCurrentAuthData = null;
             this.atCurrentUserType = null;
             this.atCurrentUserData = null;
-        }));
+        })));
         return observ;
     }
+    // Validate token request
     /**
      * @return {?}
      */
     validateToken() {
-        let /** @type {?} */ observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
-        return observ.pipe(tap(res => {
+        /** @type {?} */
+        let observ = this.request('GET', this.getUserPath() + this.atOptions.validateTokenPath);
+        return observ.pipe(tap((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             if (res.data) {
                 console.log('in validateResponse, res : ', res);
                 this.atCurrentUserData = res.data;
             }
-        }, error => {
+        }), (/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => {
             if (error.status === 401 && this.atOptions.signOutFailedValidate) {
                 this.signOut();
             }
-        }));
+        })));
     }
+    // Update password request
     /**
      * @param {?} updatePasswordData
      * @return {?}
@@ -758,7 +832,8 @@ class Angular2TokenService {
     updatePassword(updatePasswordData) {
         if (updatePasswordData.userType != null)
             this.atCurrentUserType = this.getUserTypeByName(updatePasswordData.userType);
-        let /** @type {?} */ args;
+        /** @type {?} */
+        let args;
         if (updatePasswordData.passwordCurrent == null) {
             args = {
                 password: updatePasswordData.password,
@@ -775,9 +850,11 @@ class Angular2TokenService {
         // Redo the header load in case this is a forgot password scenario and we need to get the headers from the
         // redirected URL
         this.tryLoadAuthData();
-        let /** @type {?} */ body = JSON.stringify(args);
+        /** @type {?} */
+        let body = JSON.stringify(args);
         return this.request('PUT', this.getUserPath() + this.atOptions.updatePasswordPath, body);
     }
+    // Reset password request
     /**
      * @param {?} resetPasswordData
      * @return {?}
@@ -787,12 +864,14 @@ class Angular2TokenService {
             this.atCurrentUserType = null;
         else
             this.atCurrentUserType = this.getUserTypeByName(resetPasswordData.userType);
-        let /** @type {?} */ body = JSON.stringify({
+        /** @type {?} */
+        let body = JSON.stringify({
             email: resetPasswordData.email,
             redirect_url: this.atOptions.resetPasswordCallback
         });
         return this.request('POST', this.getUserPath() + this.atOptions.resetPasswordPath, body);
     }
+    // Construct and send Http request
     /**
      * @template T
      * @param {?} method
@@ -801,21 +880,27 @@ class Angular2TokenService {
      * @return {?}
      */
     request(method, url, body) {
-        const /** @type {?} */ options = {};
-        let /** @type {?} */ baseHeaders = this.atOptions.globalOptions.headers;
-        options["headers"] = new HttpHeaders(baseHeaders);
-        options["body"] = body;
-        const /** @type {?} */ response = this.http.request(method, this.getApiPath() + url, options);
+        /** @type {?} */
+        const options = {};
+        /** @type {?} */
+        let baseHeaders = this.atOptions.globalOptions.headers;
+        options.headers = new HttpHeaders(baseHeaders);
+        options.body = body;
+        /** @type {?} */
+        const response = this.http.request(method, this.getApiPath() + url, options);
         return response;
     }
     /**
      *
      * Get Auth Data
      *
+     * @private
      * @return {?}
      */
+    // Try to load auth data
     tryLoadAuthData() {
-        let /** @type {?} */ userType = this.getUserTypeByName(localStorage.getItem('userType'));
+        /** @type {?} */
+        let userType = this.getUserTypeByName(localStorage.getItem('userType'));
         if (userType)
             this.atCurrentUserType = userType;
         this.getAuthDataFromStorage();
@@ -823,12 +908,15 @@ class Angular2TokenService {
         if (this.atCurrentAuthData)
             this.validateToken();
     }
+    // Parse Auth data from post message
     /**
+     * @private
      * @param {?} data
      * @return {?}
      */
     getAuthDataFromPostMessage(data) {
-        let /** @type {?} */ authData = {
+        /** @type {?} */
+        let authData = {
             accessToken: data['auth_token'],
             client: data['client_id'],
             expiry: data['expiry'],
@@ -837,11 +925,14 @@ class Angular2TokenService {
         };
         this.setAuthData(authData);
     }
+    // Try to get auth data from storage.
     /**
+     * @private
      * @return {?}
      */
     getAuthDataFromStorage() {
-        let /** @type {?} */ authData = {
+        /** @type {?} */
+        let authData = {
             accessToken: localStorage.getItem('accessToken'),
             client: localStorage.getItem('client'),
             expiry: localStorage.getItem('expiry'),
@@ -851,13 +942,17 @@ class Angular2TokenService {
         if (this.checkAuthData(authData))
             this.atCurrentAuthData = authData;
     }
+    // Try to get auth data from url parameters.
     /**
+     * @private
      * @return {?}
      */
     getAuthDataFromParams() {
-        const /** @type {?} */ url = new urlParse(window.location.href, true);
+        /** @type {?} */
+        const url = new urlParse(window.location.href, true);
         if (url && url.query) {
-            let /** @type {?} */ authData = {
+            /** @type {?} */
+            let authData = {
                 accessToken: url.query['token'] || url.query['auth_token'],
                 client: url.query['client_id'],
                 expiry: url.query['expiry'],
@@ -873,9 +968,11 @@ class Angular2TokenService {
      *
      * Set Auth Data
      *
+     * @private
      * @param {?} authData
      * @return {?}
      */
+    // Write auth data to storage
     setAuthData(authData) {
         if (this.checkAuthData(authData)) {
             this.atCurrentAuthData = authData;
@@ -892,9 +989,11 @@ class Angular2TokenService {
      *
      * Validate Auth Data
      *
+     * @private
      * @param {?} authData
      * @return {?}
      */
+    // Check if auth data complete and if response token is newer
     checkAuthData(authData) {
         if (authData.accessToken != null &&
             authData.client != null &&
@@ -914,6 +1013,7 @@ class Angular2TokenService {
      *
      * Construct Paths / Urls
      *
+     * @private
      * @return {?}
      */
     getUserPath() {
@@ -923,10 +1023,12 @@ class Angular2TokenService {
             return this.atCurrentUserType.path + '/';
     }
     /**
+     * @private
      * @return {?}
      */
     getApiPath() {
-        let /** @type {?} */ constructedPath = '';
+        /** @type {?} */
+        let constructedPath = '';
         if (this.atOptions.apiBase != null)
             constructedPath += this.atOptions.apiBase + '/';
         if (this.atOptions.apiPath != null)
@@ -934,24 +1036,28 @@ class Angular2TokenService {
         return constructedPath;
     }
     /**
+     * @private
      * @param {?} oAuthType
      * @return {?}
      */
     getOAuthPath(oAuthType) {
-        let /** @type {?} */ oAuthPath;
+        /** @type {?} */
+        let oAuthPath;
         oAuthPath = this.atOptions.oAuthPaths[oAuthType];
         if (oAuthPath == null)
             oAuthPath = `/auth/${oAuthType}`;
         return oAuthPath;
     }
     /**
+     * @private
      * @param {?} oAuthPath
      * @param {?} callbackUrl
      * @param {?} windowType
      * @return {?}
      */
     getOAuthUrl(oAuthPath, callbackUrl, windowType) {
-        let /** @type {?} */ url;
+        /** @type {?} */
+        let url;
         url = `${this.atOptions.oAuthBase}/${oAuthPath}`;
         url += `?omniauth_window_type=${windowType}`;
         url += `&auth_origin_url=${encodeURIComponent(callbackUrl)}`;
@@ -963,22 +1069,31 @@ class Angular2TokenService {
      *
      * OAuth
      *
+     * @private
      * @param {?} authWindow
      * @return {?}
      */
     requestCredentialsViaPostMessage(authWindow) {
-        let /** @type {?} */ pollerObserv = interval(500);
-        let /** @type {?} */ responseObserv = fromEvent(window, 'message').pipe(pluck('data'), filter(this.oAuthWindowResponseFilter));
-        let /** @type {?} */ responseSubscription = responseObserv.subscribe(this.getAuthDataFromPostMessage.bind(this));
-        let /** @type {?} */ pollerSubscription = pollerObserv.subscribe(() => {
+        /** @type {?} */
+        let pollerObserv = interval(500);
+        /** @type {?} */
+        let responseObserv = fromEvent(window, 'message').pipe(pluck('data'), filter(this.oAuthWindowResponseFilter));
+        /** @type {?} */
+        let responseSubscription = responseObserv.subscribe(this.getAuthDataFromPostMessage.bind(this));
+        /** @type {?} */
+        let pollerSubscription = pollerObserv.subscribe((/**
+         * @return {?}
+         */
+        () => {
             if (authWindow.closed)
                 pollerSubscription.unsubscribe();
             else
                 authWindow.postMessage('requestCredentials', '*');
-        });
+        }));
         return responseObserv;
     }
     /**
+     * @private
      * @param {?} data
      * @return {?}
      */
@@ -990,13 +1105,19 @@ class Angular2TokenService {
      *
      * Utilities
      *
+     * @private
      * @param {?} name
      * @return {?}
      */
+    // Match user config by user config name
     getUserTypeByName(name) {
         if (name == null || this.atOptions.userTypes == null)
             return null;
-        return this.atOptions.userTypes.find(userType => userType.name === name);
+        return this.atOptions.userTypes.find((/**
+         * @param {?} userType
+         * @return {?}
+         */
+        userType => userType.name === name));
     }
 }
 Angular2TokenService.decorators = [
@@ -1004,14 +1125,14 @@ Angular2TokenService.decorators = [
 ];
 /** @nocollapse */
 Angular2TokenService.ctorParameters = () => [
-    { type: HttpClient, },
-    { type: ActivatedRoute, decorators: [{ type: Optional },] },
-    { type: Router, decorators: [{ type: Optional },] },
+    { type: HttpClient },
+    { type: ActivatedRoute, decorators: [{ type: Optional }] },
+    { type: Router, decorators: [{ type: Optional }] }
 ];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tSignInComponent {
     /**
@@ -1024,9 +1145,22 @@ class A2tSignInComponent {
         this._sessionService = _sessionService;
         this._router = _router;
         this._formService.initForm(SIGN_IN_FORM);
-        this._formService.submit$.subscribe((data) => this._sessionService.signIn(data).subscribe((res) => this._handleSuccess(res), (error) => this._handleError(error)));
+        this._formService.submit$.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this._sessionService.signIn(data).subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        (res) => this._handleSuccess(res)), (/**
+         * @param {?} error
+         * @return {?}
+         */
+        (error) => this._handleError(error)))));
     }
     /**
+     * @private
      * @param {?} data
      * @return {?}
      */
@@ -1036,6 +1170,7 @@ class A2tSignInComponent {
         this._router.navigate(['restricted']);
     }
     /**
+     * @private
      * @param {?} error
      * @return {?}
      */
@@ -1058,14 +1193,14 @@ A2tSignInComponent.decorators = [
 ];
 /** @nocollapse */
 A2tSignInComponent.ctorParameters = () => [
-    { type: A2tFormService, },
-    { type: Angular2TokenService, },
-    { type: Router, },
+    { type: A2tFormService },
+    { type: Angular2TokenService },
+    { type: Router }
 ];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tSignUpComponent {
     /**
@@ -1078,9 +1213,22 @@ class A2tSignUpComponent {
         this._sessionService = _sessionService;
         this._router = _router;
         this._formService.initForm(SIGN_UP_FORM);
-        this._formService.submit$.subscribe((data) => this._sessionService.registerAccount(data).subscribe(res => this._handleSuccess(res), error => this._handleError(error)));
+        this._formService.submit$.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this._sessionService.registerAccount(data).subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => this._handleSuccess(res)), (/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => this._handleError(error)))));
     }
     /**
+     * @private
      * @param {?} data
      * @return {?}
      */
@@ -1090,6 +1238,7 @@ class A2tSignUpComponent {
         this._router.navigate(['restricted']);
     }
     /**
+     * @private
      * @param {?} error
      * @return {?}
      */
@@ -1112,14 +1261,14 @@ A2tSignUpComponent.decorators = [
 ];
 /** @nocollapse */
 A2tSignUpComponent.ctorParameters = () => [
-    { type: A2tFormService, },
-    { type: Angular2TokenService, },
-    { type: Router, },
+    { type: A2tFormService },
+    { type: Angular2TokenService },
+    { type: Router }
 ];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tResetPasswordComponent {
     /**
@@ -1131,15 +1280,29 @@ class A2tResetPasswordComponent {
         this._sessionService = _sessionService;
         this._emailSend = false;
         this._formService.initForm(RESET_PASSWORD_FORM);
-        this._formService.submit$.subscribe((data) => this._sessionService.resetPassword(data).subscribe(res => this._handleSuccess(), error => this._handleError()));
+        this._formService.submit$.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this._sessionService.resetPassword(data).subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => this._handleSuccess()), (/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => this._handleError()))));
     }
     /**
+     * @private
      * @return {?}
      */
     _handleSuccess() {
         this._emailSend = true;
     }
     /**
+     * @private
      * @return {?}
      */
     _handleError() {
@@ -1172,13 +1335,13 @@ A2tResetPasswordComponent.decorators = [
 ];
 /** @nocollapse */
 A2tResetPasswordComponent.ctorParameters = () => [
-    { type: A2tFormService, },
-    { type: Angular2TokenService, },
+    { type: A2tFormService },
+    { type: Angular2TokenService }
 ];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tUpdatePasswordComponent {
     /**
@@ -1191,9 +1354,22 @@ class A2tUpdatePasswordComponent {
         this._sessionService = _sessionService;
         this._router = _router;
         this._formService.initForm(UPDATE_PASSWORD_FORM);
-        this._formService.submit$.subscribe((data) => this._sessionService.updatePassword(data).subscribe(res => this._handleSuccess(res), error => this._handleError(error)));
+        this._formService.submit$.subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this._sessionService.updatePassword(data).subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => this._handleSuccess(res)), (/**
+         * @param {?} error
+         * @return {?}
+         */
+        error => this._handleError(error)))));
     }
     /**
+     * @private
      * @param {?} data
      * @return {?}
      */
@@ -1201,6 +1377,7 @@ class A2tUpdatePasswordComponent {
         this._router.navigate(['session/sign-in']);
     }
     /**
+     * @private
      * @param {?} error
      * @return {?}
      */
@@ -1222,15 +1399,16 @@ A2tUpdatePasswordComponent.decorators = [
 ];
 /** @nocollapse */
 A2tUpdatePasswordComponent.ctorParameters = () => [
-    { type: A2tFormService, },
-    { type: Angular2TokenService, },
-    { type: Router, },
+    { type: A2tFormService },
+    { type: Angular2TokenService },
+    { type: Router }
 ];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
 const routes = [{
         path: 'session',
         component: A2tUiComponent,
@@ -1245,11 +1423,12 @@ const routes = [{
             }
         ]
     }];
+/** @type {?} */
 const a2tRoutes = RouterModule.forChild(routes);
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class A2tUiModule {
 }
@@ -1270,17 +1449,15 @@ A2tUiModule.decorators = [
                 ]
             },] },
 ];
-/** @nocollapse */
-A2tUiModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class Angular2TokenInteceptor {
     /**
@@ -1297,44 +1474,67 @@ class Angular2TokenInteceptor {
      */
     intercept(req, next) {
         console.log('In token interceptor, request : ', req, this._tokenService.currentAuthHeaders);
-        let /** @type {?} */ headersWithAuth = this._tokenService.currentAuthHeaders;
-        const /** @type {?} */ apiPath = req.headers.keys().forEach(key => {
+        /** @type {?} */
+        let headersWithAuth = this._tokenService.currentAuthHeaders;
+        /** @type {?} */
+        const apiPath = req.headers.keys().forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => {
             headersWithAuth = headersWithAuth.append(key, req.headers.get(key));
-        });
+        }));
         console.log('In intercept request, new headers : ', headersWithAuth);
         if (req.url.match(this.apiPath)) {
             req = req.clone({ headers: headersWithAuth });
-            const /** @type {?} */ authHeaders = this._tokenService.currentAuthHeaders;
-            authHeaders.keys().forEach(key => {
+            /** @type {?} */
+            const authHeaders = this._tokenService.currentAuthHeaders;
+            authHeaders.keys().forEach((/**
+             * @param {?} key
+             * @return {?}
+             */
+            key => {
                 req.headers.append(key, authHeaders.get(key));
-            });
+            }));
         }
         return next.handle(req)
-            .pipe(tap(res => {
+            .pipe(tap((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => {
             console.log('In token interceptor, evt : ', res);
             if (res instanceof HttpResponse && res.url.match(this.apiPath)) {
                 console.log('---> status:', res.status);
                 console.log('---> filter:', req.params.get('filter'));
-                this.getAuthHeadersFromResponse(/** @type {?} */ (res));
+                this.getAuthHeadersFromResponse((/** @type {?} */ (res)));
             }
-        }, err => {
+        }), (/**
+         * @param {?} err
+         * @return {?}
+         */
+        err => {
             console.log('In token interceptor, err : ', err);
             if (err instanceof HttpErrorResponse && err.url && err.url.match(this.apiPath)) {
                 console.log('In token interceptor, HTTP err : ', err);
-                this.getAuthHeadersFromResponse(/** @type {?} */ (err));
+                this.getAuthHeadersFromResponse((/** @type {?} */ (err)));
             }
             else {
                 console.log("Auth Interceptor, non HTTP or no headers error - ", err);
             }
-        }));
+        })));
     }
+    // Parse Auth data from response
     /**
+     * @private
      * @param {?} data
      * @return {?}
      */
     getAuthHeadersFromResponse(data) {
-        let /** @type {?} */ headers = data.headers;
-        let /** @type {?} */ authData = {
+        /** @type {?} */
+        let headers = data.headers;
+        /** @type {?} */
+        let authData = {
             accessToken: headers.get('access-token'),
             client: headers.get('client'),
             expiry: headers.get('expiry'),
@@ -1349,17 +1549,17 @@ Angular2TokenInteceptor.decorators = [
 ];
 /** @nocollapse */
 Angular2TokenInteceptor.ctorParameters = () => [
-    { type: Angular2TokenService, },
+    { type: Angular2TokenService }
 ];
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * Generated bundle index. Do not edit.

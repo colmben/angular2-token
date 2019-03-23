@@ -3,47 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9cb05a80-3d85-4ba7-b29f-7f517918ec09" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-reset-password/a2t-reset-password.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-error/a2t-error.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form-field/a2t-form-field.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-headline/a2t-headline.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-links/a2t-links.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-shared.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-sign-in/a2t-sign-in.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-sign-up/a2t-sign-up.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.forms.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.routes.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-update-password/a2t-update-password.component.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/angular2-token.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/angular2-token.interceptor.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/angular2-token.metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/angular2-token.model.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/angular2-token.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/angular2-token.spec.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/esm2015/angular2-token.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/esm2015/angular2-token.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/esm5/angular2-token.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/esm5/angular2-token.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/public_api.d.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/a2t-ui/a2t-shared/a2t-form/a2t-form.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/a2t-ui/a2t-shared/a2t-form/a2t-form.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/angular2-token.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/angular2-token.interceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/angular2-token.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/angular2-token.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,20 +14,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+            <state relative-caret-position="254">
+              <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public_api.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
               <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="519" column="12" selection-start-line="519" selection-start-column="12" selection-end-line="519" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/rxjs/src/internal/observable/fromEvent.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -117,29 +99,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="522">
               <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="11" column="63" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="63" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/a2t-ui/a2t-ui.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -327,12 +286,12 @@
       <workItem from="1537710286441" duration="12000" />
       <workItem from="1539862473452" duration="2675000" />
       <workItem from="1553362898310" duration="216000" />
-      <workItem from="1553363408392" duration="1053000" />
+      <workItem from="1553363408392" duration="2015000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102484000" />
+    <option name="totallyTimeSpent" value="103446000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="2112" extended-state="0" />
@@ -536,16 +495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/angular2-token.model.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1188">
@@ -635,17 +584,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/public_api.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/rxjs/src/internal/observable/fromEvent.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="519" column="12" selection-start-line="519" selection-start-column="12" selection-end-line="519" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
         </state>
       </provider>
     </entry>
