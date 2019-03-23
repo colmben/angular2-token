@@ -2,7 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cb05a80-3d85-4ba7-b29f-7f517918ec09" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-reset-password/a2t-reset-password.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-error/a2t-error.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form-field/a2t-form-field.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/a2t-form.service.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-form/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-headline/a2t-headline.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-links/a2t-links.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/a2t-shared.module.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-shared/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-sign-in/a2t-sign-in.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-sign-up/a2t-sign-up.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.forms.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.module.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-ui.routes.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/a2t-update-password/a2t-update-password.component.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/a2t-ui/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/angular2-token.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/angular2-token.interceptor.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/angular2-token.metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/angular2-token.model.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/angular2-token.service.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/angular2-token.spec.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/bundles/angular2-token.umd.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/esm2015/angular2-token.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/esm2015/angular2-token.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/esm5/angular2-token.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/esm5/angular2-token.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/public_api.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ng-package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ng-package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/angular2-token.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/angular2-token.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/angular2-token.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/angular2-token.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,11 +60,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tsconfig.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+            <state relative-caret-position="306">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -34,63 +82,50 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/@angular/common/http/src/backend.d.ts">
+        <entry file="file://$PROJECT_DIR$/dist/angular2-token.interceptor.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding>
-                <element signature="e#203#237#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="18">
+              <caret line="1" column="63" selection-start-line="1" selection-start-column="63" selection-end-line="1" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/rxjs/observable/ArrayLikeObservable.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/rxjs/internal/Observer.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/rxjs/internal/Operator.d.ts">
+        <entry file="file://$PROJECT_DIR$/dist/angular2-token.service.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="36">
+              <caret line="2" column="32" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.d.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/rxjs/internal/Observable.d.ts">
+        <entry file="file://$PROJECT_DIR$/ng-package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-31">
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="108">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/rxjs/add/observable/bindCallback.d.ts">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/rxjs/migrations/update-6_0_0/index.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/rxjs/bundles/rxjs.umd.js">
+        <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7236" />
+            <state relative-caret-position="463">
+              <caret line="521" column="7" selection-start-line="521" selection-start-column="7" selection-end-line="521" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
@@ -144,10 +179,12 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/angular2-token.model.ts" />
-        <option value="$PROJECT_DIR$/ng-package.json" />
-        <option value="$PROJECT_DIR$/src/angular2-token.service.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/angular2-token.interceptor.ts" />
+        <option value="$PROJECT_DIR$/src/angular2-token.service.ts" />
+        <option value="$PROJECT_DIR$/ng-package.json" />
+        <option value="$PROJECT_DIR$/dist/angular2-token.interceptor.d.ts" />
+        <option value="$PROJECT_DIR$/dist/angular2-token.service.d.ts" />
       </list>
     </option>
   </component>
@@ -183,24 +220,6 @@
               <item name="angular2-token" type="b2602c69:ProjectViewProjectNode" />
               <item name="angular2-token" type="462c0819:PsiDirectoryNode" />
               <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="angular2-token" type="b2602c69:ProjectViewProjectNode" />
-              <item name="angular2-token" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="angular2-token" type="b2602c69:ProjectViewProjectNode" />
-              <item name="angular2-token" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="rxjs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="angular2-token" type="b2602c69:ProjectViewProjectNode" />
-              <item name="angular2-token" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="rxjs" type="462c0819:PsiDirectoryNode" />
-              <item name="bundles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="angular2-token" type="b2602c69:ProjectViewProjectNode" />
@@ -293,16 +312,15 @@
       <workItem from="1537710286441" duration="12000" />
       <workItem from="1539862473452" duration="2675000" />
       <workItem from="1553362898310" duration="216000" />
-      <workItem from="1553363408392" duration="8890000" />
+      <workItem from="1553363408392" duration="10995000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110321000" />
+    <option name="totallyTimeSpent" value="112426000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="2112" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33084312" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -356,14 +374,18 @@
       </list>
     </option>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/dist/angular2-token.interceptor.d.ts</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/@angular/core/src/di/injection_token.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@angular/http/src/headers.d.ts" />
     <entry file="file://$PROJECT_DIR$/node_modules/@angular/router/src/create_url_tree.d.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -461,18 +483,12 @@
     <entry file="file://$PROJECT_DIR$/dist/angular2-token.model.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/angular2-token.service.d.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/public_api.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/angular2-token.interceptor.d.ts">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/node-sass/lib/binding.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -525,13 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/ng-packagr/lib/ngc/compile-source-files.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -569,24 +578,10 @@
     <entry file="file://$PROJECT_DIR$/node_modules/rxjs/Observable.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="51" selection-start-column="51" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/angular2-token.model.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1188">
           <caret line="66" column="23" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ng-package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -642,13 +637,6 @@
         <state relative-caret-position="-7236" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@angular/common/http/src/backend.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -659,13 +647,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="521" column="7" selection-start-line="521" selection-start-column="7" selection-end-line="521" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ng-package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/angular2-token.interceptor.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="63" selection-start-line="1" selection-start-column="63" selection-end-line="1" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/angular2-token.service.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="32" lean-forward="true" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        <state relative-caret-position="306">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
         </state>
       </provider>
     </entry>

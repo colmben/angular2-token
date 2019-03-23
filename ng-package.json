@@ -4,7 +4,6 @@
       "entryFile": "src/public_api.ts"
     },
     "whitelistedNonPeerDependencies": [
-      "rxjs",
       "url-parse"
     ]
   }
