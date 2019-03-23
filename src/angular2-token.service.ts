@@ -5,7 +5,7 @@ import {
     HttpResponse,
     HttpHeaders,
 } from "@angular/common/http";
-import {fromEvent, interval, Observable} from 'rxjs';
+import {fromEvent, interval} from 'rxjs';
 
 
 
@@ -157,7 +157,7 @@ export class Angular2TokenService implements CanActivate {
      */
 
     // Register request
-    registerAccount(registerData: RegisterData): Observable<any> {
+    registerAccount(registerData: RegisterData) {
 
         if (registerData.userType == null)
             this.atCurrentUserType = null;
@@ -175,12 +175,12 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Delete Account
-    deleteAccount(): Observable<any> {
+    deleteAccount() {
         return this.request('DELETE', this.getUserPath() + this.atOptions.deleteAccountPath);
     }
 
     // Sign in request and set storage
-    signIn(signInData: SignInData): Observable<any> {
+    signIn(signInData: SignInData) {
         console.log('In singIn tap!');
 
         if (signInData.userType == null)
@@ -244,7 +244,7 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Sign out request and delete storage
-    signOut(): Observable<any> {
+    signOut() {
         let observ = this.request('DELETE', this.getUserPath() + this.atOptions.signOutPath);
         observ.pipe(
             finalize( () => {
@@ -264,7 +264,7 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Validate token request
-    validateToken(): Observable<any> {
+    validateToken() {
         let observ = this.request<{success: Boolean, data: UserData}>('GET', this.getUserPath() + this.atOptions.validateTokenPath);
 
         return observ.pipe(
@@ -286,7 +286,7 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Update password request
-    updatePassword(updatePasswordData: UpdatePasswordData): Observable<any> {
+    updatePassword(updatePasswordData: UpdatePasswordData) {
 
         if (updatePasswordData.userType != null)
             this.atCurrentUserType = this.getUserTypeByName(updatePasswordData.userType);
@@ -315,7 +315,7 @@ export class Angular2TokenService implements CanActivate {
     }
 
     // Reset password request
-    resetPassword(resetPasswordData: ResetPasswordData): Observable<any> {
+    resetPassword(resetPasswordData: ResetPasswordData){
 
         if (resetPasswordData.userType == null)
             this.atCurrentUserType = null;
@@ -332,7 +332,7 @@ export class Angular2TokenService implements CanActivate {
 
 
     // Construct and send Http request
-    request<T>(method: string, url: string, body?: any): Observable<T> {
+    request<T>(method: string, url: string, body?: any) {
 
         const options: { [key: string]: any; } = {};
 
@@ -521,7 +521,7 @@ export class Angular2TokenService implements CanActivate {
      *
      */
 
-    private requestCredentialsViaPostMessage(authWindow: any): Observable<any> {
+    private requestCredentialsViaPostMessage(authWindow: any) {
         let pollerObserv = interval(500);
 
         let responseObserv = fromEvent(window, 'message').pipe(
