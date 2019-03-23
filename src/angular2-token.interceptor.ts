@@ -18,7 +18,7 @@ export class Angular2TokenInteceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>,
-              next: HttpHandler): Observable<HttpEvent<any>> {
+              next: HttpHandler) {
         console.log('In token interceptor, request : ', req,
             this._tokenService.currentAuthHeaders);
         let headersWithAuth = this._tokenService.currentAuthHeaders;
@@ -54,8 +54,6 @@ export class Angular2TokenInteceptor implements HttpInterceptor {
                         } else {
                             console.log("Auth Interceptor, non HTTP or no headers error - ", err)
                         }
-
-
                     }
                 )
             )
