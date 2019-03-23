@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1028">
-              <caret line="68" column="4" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
+            <state relative-caret-position="92">
+              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -34,11 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2862">
-              <caret line="159" column="53" selection-start-line="159" selection-start-column="53" selection-end-line="159" selection-end-column="53" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="51" selection-start-column="51" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -55,8 +52,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+            <state relative-caret-position="720">
+              <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,8 +98,8 @@
       <find>signOut</find>
       <find>Angular2TokenInteceptor</find>
       <find>Observable</find>
-      <find>interval</find>
       <find>rxjs-compat</find>
+      <find>interval</find>
       <find>rx</find>
     </findStrings>
     <dirStrings>
@@ -262,16 +262,15 @@
       <workItem from="1537710286441" duration="12000" />
       <workItem from="1539862473452" duration="2675000" />
       <workItem from="1553362898310" duration="216000" />
-      <workItem from="1553363408392" duration="4726000" />
+      <workItem from="1553363408392" duration="6133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106157000" />
+    <option name="totallyTimeSpent" value="107564000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="2112" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33084312" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -551,32 +550,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ng-package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/package.json">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2862">
-          <caret line="159" column="53" selection-start-line="159" selection-start-column="53" selection-end-line="159" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/angular2-token.model.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1188">
-          <caret line="66" column="23" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="23" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/rxjs/operator/onErrorResumeNext.d.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -588,20 +563,44 @@
     <entry file="file://$PROJECT_DIR$/node_modules/rxjs/Observer.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1028">
-          <caret line="68" column="4" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/rxjs/Observable.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/angular2-token.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="51" selection-start-column="51" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/angular2-token.model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1188">
+          <caret line="66" column="23" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ng-package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/angular2-token.interceptor.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+        <state relative-caret-position="720">
+          <caret line="40" column="18" lean-forward="true" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

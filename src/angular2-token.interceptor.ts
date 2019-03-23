@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
 import {
     HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, HttpErrorResponse
 }
     from '@angular/common/http';
 import {Angular2TokenService} from './angular2-token.service';
-import {tap} from 'rxjs/operators';
 import {AuthData} from "./angular2-token.model";
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 
 @Injectable()
