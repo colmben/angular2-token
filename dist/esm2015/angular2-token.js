@@ -6,7 +6,6 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angul
 import { fromEvent, interval } from 'rxjs';
 import * as urlParse from 'url-parse';
 import { filter, finalize, pluck, tap } from 'rxjs/operators';
-import 'rxjs/add/operator/finally';
 
 /**
  * @fileoverview added by tsickle

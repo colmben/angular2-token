@@ -1,6 +1,6 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs'), require('url-parse'), require('rxjs/operators'), require('rxjs/add/operator/finally')) :
-	typeof define === 'function' && define.amd ? define('angular2-token', ['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs', 'url-parse', 'rxjs/operators', 'rxjs/add/operator/finally'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('rxjs'), require('url-parse'), require('rxjs/operators')) :
+	typeof define === 'function' && define.amd ? define('angular2-token', ['exports', '@angular/core', '@angular/forms', '@angular/common', '@angular/router', '@angular/common/http', 'rxjs', 'url-parse', 'rxjs/operators'], factory) :
 	(factory((global['angular2-token'] = {}),global.ng.core,global.ng.forms,global.ng.common,global.ng.router,global.ng.common.http,global.rxjs,global.urlParse,global.Rx.Observable.prototype));
 }(this, (function (exports,core,forms,common,router,http,rxjs,urlParse,operators) { 'use strict';
 

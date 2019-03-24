@@ -2,7 +2,6 @@ import { ActivatedRoute, Router, CanActivate } from '@angular/router';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { SignInData, RegisterData, UpdatePasswordData, ResetPasswordData, UserData, AuthData, Angular2TokenOptions } from './angular2-token.model';
-import "rxjs/add/operator/finally";
 export declare class Angular2TokenService implements CanActivate {
     private http;
     private activatedRoute;

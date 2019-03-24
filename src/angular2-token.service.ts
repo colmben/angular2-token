@@ -25,7 +25,6 @@ import {
     Angular2TokenOptions
 } from './angular2-token.model';
 import {filter, finalize, map, pluck, tap} from "rxjs/operators";
-import "rxjs/add/operator/finally";
 
 
 
